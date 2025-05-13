@@ -45,7 +45,7 @@
  *   previous interval. This ensures the maximum number of non-overlapping 
  *   intervals are retained.
  */
-package interval;
+
 import java.util.Arrays;
 
 

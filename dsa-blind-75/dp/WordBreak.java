@@ -40,7 +40,7 @@
  * - Dynamic Programming: The problem is solved by breaking it into smaller subproblems and
  *   using previously computed results to build the solution for the larger problem.
  */
-package dp;
+
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;

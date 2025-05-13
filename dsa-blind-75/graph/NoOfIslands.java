@@ -38,7 +38,7 @@
  * - Instantiate the class and call the `numIslands` method with a 2D grid as input.
  * - The method returns the number of islands in the grid.
  */
-package graph;
+
 import java.util.LinkedList;
 import java.util.Queue;
 

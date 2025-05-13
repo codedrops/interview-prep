@@ -38,7 +38,7 @@
  * - The recursive approach uses the call stack to handle the merging, while the iterative approach
  *   uses a dummy node and a pointer to build the merged list.
  */
-package linked_list;
+
 
 public class MergeTwoSortedLists {
     

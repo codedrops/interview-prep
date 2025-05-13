@@ -38,7 +38,7 @@
  * - The algorithm relies on a delimiter-based approach to separate the length of each string from the string itself.
  * - During decoding, the length prefix is used to extract the exact substring, ensuring no ambiguity.
  */
-package string;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -35,7 +35,7 @@
  * - NeetCode: https://www.youtube.com/watch?v=bNvIQI2wAjk
  * - TechDose: https://www.youtube.com/watch?v=ZDaZxxk2Sb8
  */
-package array;
+
 
 public class ProductOfArrayExceptSelf {
 

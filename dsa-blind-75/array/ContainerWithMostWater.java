@@ -40,7 +40,7 @@
  *   System.out.println("Maximum Area: " + result); // Output: 49
  */
 
-package array;
+
 
 public class ContainerWithMostWater {
     

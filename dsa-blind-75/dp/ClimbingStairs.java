@@ -42,7 +42,7 @@
  * For n > 2, the solution iteratively calculates the number of ways using the relation:
  * ways(n) = ways(n-1) + ways(n-2).
  */
-package dp;
+
 
 public class ClimbingStairs {
     public int climbStairs(int n) {

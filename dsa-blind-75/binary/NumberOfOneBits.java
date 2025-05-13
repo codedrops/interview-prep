@@ -37,7 +37,7 @@
  * Video Explanation:
  * - Hamming Weight Explanation: https://www.youtube.com/watch?v=5Km3utixwZs
  */
-package binary;
+
 
 public class NumberOfOneBits {
     // Function to count the number of 1 bits in an unsigned integer

@@ -41,7 +41,7 @@
  * Author: [Your Name]
  * Date: [Insert Date]
  */
-package dp;
+
 
 public class CoinChange {
     public int coinChange(int[] coins, int amount) {

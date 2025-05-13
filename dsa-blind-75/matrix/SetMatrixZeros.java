@@ -45,7 +45,7 @@
  * - The algorithm leverages the first row and column of the matrix as markers to reduce space complexity.
  * - It ensures that the matrix is updated in place without requiring additional storage.
  */
-package matrix;
+
 
 public class SetMatrixZeros {
 

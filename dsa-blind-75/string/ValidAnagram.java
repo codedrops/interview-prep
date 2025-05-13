@@ -35,7 +35,6 @@
  * - HashMap-based frequency counting is used to efficiently track character occurrences.
  * - The algorithm ensures that the two strings have the same characters with the same frequencies.
  */
-package string;
 import java.util.HashMap;
 
 public class ValidAnagram {

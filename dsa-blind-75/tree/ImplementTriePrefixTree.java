@@ -49,7 +49,7 @@
  * - Words are stored as paths from the root to a node marked as the end of a word.
  * - Prefix-based operations are efficient because they traverse only the relevant portion of the tree.
  */
-package tree;
+
 
 public class ImplementTriePrefixTree {
     

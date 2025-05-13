@@ -40,7 +40,6 @@
  * - If the input contains a large number of strings or very long strings, consider optimizing 
  *   the key generation process (e.g., using character counts instead of sorting).
  */
-package string;
 import java.util.*;
 
 public class GroupAnagrams {

@@ -45,7 +45,7 @@
  * - After constructing the tree, perform a preorder and inorder traversal of the tree and compare the results
  *   with the input arrays to ensure correctness.
  */
-package tree;
+
 import java.util.HashMap;
 
 public class ConstructBinaryTreeFromPreorderAndInorderTraversal {

@@ -39,7 +39,6 @@
  * - It leverages the property of palindromes to expand outward symmetrically from a center.
  * - By iterating through all possible centers, the algorithm ensures that the longest palindrome is found.
  */
-package string;
 
 public class LongestPalindromicSubstring {
     public String longestPalindrome(String s) {

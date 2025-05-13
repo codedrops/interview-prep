@@ -33,7 +33,7 @@
  * - This solution can be used in scheduling problems where intervals need to be merged after inserting a new one.
  * - It is also applicable in scenarios involving range merging or timeline adjustments.
  */
-package interval;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -40,7 +40,7 @@
  *   an integer array as input to get the maximum subarray sum.
  * 
  */
-package array;
+
 
 public class MaximumSubArray {
 

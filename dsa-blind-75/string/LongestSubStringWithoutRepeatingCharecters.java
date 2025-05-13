@@ -42,7 +42,6 @@
  * - Sliding Window: The algorithm dynamically adjusts the window size to maintain 
  *   the condition of no repeating characters, ensuring an efficient solution.
  */
-package string;
 
 public class LongestSubStringWithoutRepeatingCharecters {
     public int lengthOfLongestSubstring(String s) {

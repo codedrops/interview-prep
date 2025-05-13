@@ -36,7 +36,7 @@
  * - Call `removeNthFromEnd` with `n = 2` to remove the 2nd node from the end.
  * - Print the modified list to verify the result.
  */
-package linked_list;
+
 
 public class RemoveNthNodeFromEndOfList {
     class ListNode {

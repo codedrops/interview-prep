@@ -42,7 +42,7 @@
  *   - Use a `dp` array to store results of subproblems to avoid redundant calculations.
  *   - Recursively calculate the result for the current target using previously computed results.
  */
-package dp;
+
 import java.util.Arrays;
 
 public class CombinationSum4 {

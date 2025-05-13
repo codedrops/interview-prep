@@ -34,7 +34,7 @@
  * The solution uses sorting and a single pass through the intervals to detect overlaps.
  * Sorting ensures that intervals are processed in chronological order, making it easy to check for overlaps.
  */
-package interval;
+
 import java.util.Arrays;
 
 

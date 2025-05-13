@@ -46,7 +46,7 @@
  * - Dynamic Programming: The problem is solved by breaking it into overlapping subproblems 
  *   and solving each subproblem only once, storing the results for future reference.
  */
-package dp;
+
 
 public class HouseRobber {
     

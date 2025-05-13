@@ -30,7 +30,7 @@
  * - "Binary Search in Rotated Sorted Array" by TechDose: https://www.youtube.com/watch?v=QdVrY3stDD4
  * 
  */
-package array;
+
 
 public class SearchInRotatedSortedArray {
 

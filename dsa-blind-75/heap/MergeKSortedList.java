@@ -44,7 +44,7 @@
  * - The dummy node technique is used to simplify the construction of the result
  *   linked list.
  */
-package heap;
+
 import java.util.PriorityQueue;
 
 

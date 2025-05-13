@@ -36,7 +36,6 @@
  * - Sliding Window Technique: Dynamically adjusts the window size to find the optimal solution.
  * - Frequency Map: Tracks the count of required characters and ensures all are included in the window.
  */
-package string;
 
 public class MinimumWindowSubstring {
     public String minWindow(String s, String t) {

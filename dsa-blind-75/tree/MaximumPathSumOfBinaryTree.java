@@ -43,7 +43,7 @@
  * - Dynamic programming is applied implicitly by storing the maximum path sum for each subtree 
  *   and reusing it to calculate the result for the parent node.
  */
-package tree;
+
 
 public class MaximumPathSumOfBinaryTree {
     

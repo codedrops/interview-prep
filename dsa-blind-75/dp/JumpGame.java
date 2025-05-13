@@ -45,7 +45,7 @@
  * - Greedy Algorithm: At each step, make the locally optimal choice of jumping as far as possible.
  * - The greedy approach ensures that we minimize unnecessary computations and achieve an efficient solution.
  */
-package dp;
+
 
 public class JumpGame {
     

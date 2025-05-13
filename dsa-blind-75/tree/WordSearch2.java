@@ -52,7 +52,7 @@
  * - DFS: A graph traversal algorithm used here to explore all possible paths on the board 
  *   to form words.
  */
-package tree;
+
 import java.util.ArrayList;
 import java.util.List;
 

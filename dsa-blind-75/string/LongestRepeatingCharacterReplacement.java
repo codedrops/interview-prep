@@ -41,7 +41,6 @@
  * - Frequency Counting: A fixed-size array is used to efficiently count character frequencies 
  *   within the window.
  */
-package string;
 
 public class LongestRepeatingCharacterReplacement {
     // Function to find the length of the longest substring with the same letters after replacement

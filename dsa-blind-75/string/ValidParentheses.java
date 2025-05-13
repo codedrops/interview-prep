@@ -44,7 +44,6 @@
  * - The algorithm leverages the stack data structure to ensure Last-In-First-Out (LIFO) 
  *   behavior, which is ideal for matching nested structures like parentheses.
  */
-package string;
 import java.util.Stack;
 
 public class ValidParentheses {

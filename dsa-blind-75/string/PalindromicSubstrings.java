@@ -35,7 +35,6 @@
  *   for finding palindromic substrings without requiring additional space for dynamic 
  *   programming tables or preprocessing.
  */
-package string;
 
 public class PalindromicSubstrings {
     public int countSubstrings(String s) {

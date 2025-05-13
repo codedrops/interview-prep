@@ -51,7 +51,7 @@
  * - Circular Array Handling:
  *   - Split the problem into two linear subproblems to handle the circular adjacency constraint.
  */
-package dp;
+
 
 public class HouseRobber2 {
     

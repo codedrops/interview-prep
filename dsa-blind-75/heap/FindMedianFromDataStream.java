@@ -52,7 +52,7 @@
  * - The max-heap ensures that the largest element of the smaller half is easily accessible,
  *   while the min-heap ensures that the smallest element of the larger half is easily accessible.
  */
-package heap;
+
 import java.util.PriorityQueue;
 
 public class FindMedianFromDataStream {

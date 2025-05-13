@@ -38,7 +38,7 @@
  * - The algorithm leverages a min-heap (PriorityQueue in Java) to efficiently manage and retrieve the smallest element among the current heads of the k lists.
  * - By always extracting the smallest element and adding its next node to the heap, the algorithm ensures that the merged list is constructed in sorted order.
  */
-package linked_list;
+
 import java.util.PriorityQueue;
 
 

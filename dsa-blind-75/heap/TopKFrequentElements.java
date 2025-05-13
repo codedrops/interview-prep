@@ -40,7 +40,7 @@
  * - The solution leverages a combination of a HashMap for frequency counting and a Min-Heap for efficiently maintaining the top `k` elements.
  * - The Min-Heap ensures that the least frequent element is removed when the size exceeds `k`, keeping the most frequent elements in the heap.
  */
-package heap;
+
 import java.util.*;
 
 public class TopKFrequentElements {

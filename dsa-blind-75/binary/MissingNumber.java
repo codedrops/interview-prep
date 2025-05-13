@@ -29,7 +29,7 @@
  *   https://www.youtube.com/watch?v=WnPLSRLSANE
  * 
  */
-package binary;
+
 
 public class MissingNumber {
 

@@ -48,7 +48,7 @@
  * - The algorithm is based on the divide-and-conquer paradigm and utilizes the BST property to efficiently
  *   locate the LCA without traversing the entire tree.
  */
-package tree;
+
 
 public class LowestCommonAncestorBST {
     

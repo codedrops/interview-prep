@@ -47,7 +47,7 @@
  * - The algorithm leverages the properties of a BST and the in-order traversal technique
  *   to efficiently find the k-th smallest element.
  */
-package tree;
+
 import java.util.Stack;
 
 public class KthSmallestElementInBST {

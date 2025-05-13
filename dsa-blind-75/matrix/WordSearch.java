@@ -50,7 +50,7 @@
  * - The `exist` method iterates through all cells in the grid to find a starting point
  *   for the word.
  */
-package matrix;
+
 
 public class WordSearch {
     public boolean exist(char[][] board, String word) {

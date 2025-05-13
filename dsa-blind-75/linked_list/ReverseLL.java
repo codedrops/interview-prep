@@ -34,7 +34,7 @@
  * - The `ListNode` class is a nested class within `ReverseLL` and represents the structure of a node in the linked list.
  * - The `main` method demonstrates the usage of the `reverseList` method by creating a sample linked list, reversing it, and printing the result.
  */
-package linked_list;
+
 
 public class ReverseLL {
     public ListNode reverseList(ListNode head) {

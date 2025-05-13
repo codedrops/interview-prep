@@ -40,7 +40,7 @@
  * - This implementation assumes that the input is valid and does not contain invalid course indices.
  * - The algorithm can be extended to return the order of courses (topological sort) if required.
  */
-package graph;
+
 
 import java.util.*;
 

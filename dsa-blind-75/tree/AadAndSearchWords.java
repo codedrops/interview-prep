@@ -44,7 +44,7 @@
  * - The Trie data structure is used to efficiently store and retrieve strings.
  * - Wildcard searches are implemented using recursive backtracking to explore all possible matches.
  */
-package tree;
+
 
 public class AadAndSearchWords {
     

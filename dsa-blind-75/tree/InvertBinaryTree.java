@@ -47,7 +47,7 @@
  * - At each node, the left and right subtrees are swapped, and the process is repeated
  *   recursively for the child nodes.
  */
-package tree;
+
 
 public class InvertBinaryTree {
     // Definition for a binary tree node.

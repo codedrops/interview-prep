@@ -49,7 +49,7 @@
  * - The algorithm uses Depth-First Search (DFS) to traverse the tree and validate the BST properties.
  * - It leverages the concept of range constraints to ensure that each node satisfies the BST rules.
  */
-package tree;
+
 
 public class ValidateBinarySearchTree {
 

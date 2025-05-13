@@ -46,7 +46,7 @@
  * - The solution uses pre-order traversal for serialization and a queue-based approach for deserialization.
  * - The use of "null" as a placeholder ensures that the tree structure is preserved during serialization.
  */
-package tree;
+
 
 public class SerializeAndDeserializeBinaryTree {
 

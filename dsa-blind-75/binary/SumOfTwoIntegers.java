@@ -33,7 +33,7 @@
  * Video Explanation:
  * - "Sum of Two Integers Without Using '+' or '-' Operators" by NeetCode: https://youtu.be/gVUrDV4tZfY
  */
-package binary;
+
 
 public class SumOfTwoIntegers {
     public int getSum(int a, int b) {

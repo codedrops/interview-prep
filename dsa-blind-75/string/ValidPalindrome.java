@@ -50,7 +50,6 @@
  * - Two-pointer technique is used to efficiently check for palindrome properties
  *   while skipping non-alphanumeric characters.
  */
-package string;
 
 public class ValidPalindrome {
     public boolean isPalindrome(String s) {

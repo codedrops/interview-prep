@@ -38,7 +38,7 @@
  * Usage:
  * - This solution can be used to validate tree structures in network design, dependency graphs, etc.
  */
-package graph;
+
 import java.util.*;
 
 

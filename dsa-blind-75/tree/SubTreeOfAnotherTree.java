@@ -39,7 +39,7 @@
  * - The algorithm assumes that the input trees are binary trees.
  * - Edge cases include when `root` or `subRoot` is null.
  */
-package tree;
+
 
 public class SubTreeOfAnotherTree {
     

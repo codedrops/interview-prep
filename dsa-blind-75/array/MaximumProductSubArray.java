@@ -35,7 +35,7 @@
  * - The initial values for `currentMax`, `currentMin`, and `maxProduct` are set to 
  *   the first element of the array to handle cases where the array has only one element.
  */
-package array;
+
 
 public class MaximumProductSubArray {
     public int maxProduct(int[] nums) {

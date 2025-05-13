@@ -43,7 +43,7 @@
  *   3. If `slow` and `fast` meet, a cycle exists.
  *   4. If `fast` reaches the end of the list, no cycle exists.
  */
-package linked_list;
+
 
 public class DetectCycleLL {
     public boolean hasCycle(ListNode head) {

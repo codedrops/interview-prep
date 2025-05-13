@@ -42,7 +42,7 @@
  * - Output: 4
  * - Explanation: The LIS is [2, 3, 7, 101].
  */
-package dp;
+
 
 public class LongestIncreasingSubsequence {
     public int lengthOfLIS(int[] nums) {

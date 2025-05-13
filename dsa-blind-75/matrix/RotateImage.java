@@ -43,7 +43,7 @@
  * - Ensure the input matrix is square (n x n) as the algorithm assumes this structure.
  * - The algorithm modifies the input matrix directly, so no additional memory is allocated.
  */
-package matrix;
+
 
 public class RotateImage {
     public void rotate(int[][] matrix) {

@@ -41,7 +41,7 @@
  * - The TreeNode class is defined as an inner class to represent the structure of a binary tree node.
  * - The main method demonstrates the usage of the `maxDepth` method with a sample binary tree.
  */
-package tree;
+
 
 public class MaximumDepthOfBinaryTree {
     class TreeNode {

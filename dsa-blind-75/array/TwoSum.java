@@ -34,7 +34,7 @@
  * - For a detailed walkthrough of the Two Sum problem, refer to:
  *   https://www.youtube.com/watch?v=KLlXCFG5TnA
  */
-package array;
+
 
 import java.util.HashMap;
 import java.util.Map;

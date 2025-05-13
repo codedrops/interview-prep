@@ -41,7 +41,7 @@
  * the boundaries after each traversal, it ensures that all elements are visited in the correct 
  * order without revisiting any element.
  */
-package matrix;
+
 import java.util.ArrayList;
 import java.util.List;
 

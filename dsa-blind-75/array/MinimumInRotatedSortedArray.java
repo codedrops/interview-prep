@@ -33,7 +33,7 @@
  * - Instantiate the `MinimumInRotatedSortedArray` class and call the `findMin` method
  *   with the rotated sorted array as input to get the minimum element.
  */
-package array;
+
 
 public class MinimumInRotatedSortedArray {
     

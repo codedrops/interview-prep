@@ -46,7 +46,7 @@
  * - Depth-First Search (DFS) is used to traverse the trees recursively.
  * - The algorithm ensures that both structure and values are compared at every level.
  */
-package tree;
+
 
 public class SameTree {
     public boolean isSameTree(TreeNode p, TreeNode q) {

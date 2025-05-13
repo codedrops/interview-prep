@@ -40,7 +40,7 @@
  * - Dynamic Programming: The problem is solved by breaking it into overlapping subproblems 
  *   and solving each subproblem only once, storing the results for reuse.
  */
-package dp;
+
 
 public class LongestCommonSubsequence {
     public int longestCommonSubsequence(String text1, String text2) {

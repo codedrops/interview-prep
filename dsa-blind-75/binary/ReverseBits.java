@@ -34,7 +34,7 @@
  * Video Explanation:
  * - "Reverse Bits - LeetCode 190" by NeetCode: https://www.youtube.com/watch?v=UcoN6UjAI64
  */
-package binary;
+
 
 public class ReverseBits {
     // you need treat n as an unsigned value

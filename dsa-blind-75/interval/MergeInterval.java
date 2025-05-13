@@ -39,7 +39,7 @@
  * - Sorting: The intervals are sorted by their start times to ensure that overlapping intervals are adjacent.
  * - Greedy Approach: The algorithm iteratively merges intervals by comparing the current interval with the last merged interval.
  */
-package interval;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;

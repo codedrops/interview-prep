@@ -38,7 +38,7 @@
  * - "Counting Bits - LeetCode 338 - Python, Java, C++" by NeetCode: https://www.youtube.com/watch?v=RyBM56RIWrM
  * 
  */
-package binary;
+
 
 public class CountingBits {
 

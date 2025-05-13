@@ -40,7 +40,7 @@
  * - By sorting the intervals and processing them in order, we ensure that we always handle the 
  *   earliest starting meeting first.
  */
-package interval;
+
 import java.util.Arrays;
 import java.util.PriorityQueue;
 

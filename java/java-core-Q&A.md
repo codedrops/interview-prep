@@ -2,15 +2,90 @@
 # Core Java Prep
 
 # Table of Contents
+- [1. Why is Java platform independent?](#1-why-is-java-platform-independent)
+- [2. What are the top features of Java?](#2-what-are-the-top-features-of-java)
+- [3. What is JVM?](#3-what-is-jvm)
+- [4. What is JIT?](#4-what-is-jit)
+- [5. What are memory storages available with JVM?](#5-what-are-memory-storages-available-with-jvm)
+- [6. What is ClassLoader?](#6-what-is-classloader)
+- [7. What is the difference between JVM, JRE, and JDK?](#7-what-is-the-difference-between-jvm-jre-and-jdk)
+- [8. Explain `public static void main(String args[])` in Java](#8-explain-public-static-void-mainstring-args-in-java)
+- [9. What is the String Pool in Java?](#9-what-is-the-string-pool-in-java)
+- [10. What will happen if we don’t declare the main as static?](#10-what-will-happen-if-we-dont-declare-the-main-as-static)
+- [11. What are packages? Why are they used? Advantages and types of packages?](#11-what-are-packages-why-are-they-used-advantages-and-types-of-packages)
+- [12. Explain different data types in Java](#12-explain-different-data-types-in-java)
+- [13. What is the `byte` datatype in Java? When is it used? What is its default value?](#13-what-is-the-byte-datatype-in-java-when-is-it-used-what-is-its-default-value)
+- [14. What is the default value of `float` and `double` datatype in Java?](#14-what-is-the-default-value-of-float-and-double-datatype-in-java)
+- [15. What are Wrapper Classes in Java? Why are they used?](#15-what-are-wrapper-classes-in-java-why-are-they-used)
+- [16. What are the default values assigned to variables and instances in Java?](#16-what-are-the-default-values-assigned-to-variables-and-instances-in-java)
+- [17. What is a Class Variable?](#17-what-is-a-class-variable)
+- [18. What is a static variable?](#18-what-is-a-static-variable)
+- [19. What is the difference between System.out, System.err, and System.in?](#19-what-is-the-difference-between-systemout-systemerr-and-systemin)
+- [20. What is the difference between the Reader/Writer class hierarchy and the InputStream/OutputStream class hierarchy?](#20-what-is-the-difference-between-the-readerwriter-class-hierarchy-and-the-inputstreamoutputstream-class-hierarchy)
+- [21. What are the super most classes for all the streams?](#21-what-are-the-super-most-classes-for-all-the-streams)
+- [22. What are the FileInputStream and FileOutputStream?](#22-what-are-the-fileinputstream-and-fileoutputstream)
+- [23. What is the purpose of using BufferedInputStream and BufferedOutputStream classes?](#23-what-is-the-purpose-of-using-bufferedinputstream-and-bufferedoutputstream-classes)
+- [24. What are FilterStreams?](#24-what-are-filterstreams)
+- [25. What is an I/O filter?](#25-what-is-an-io-filter)
+- [26. What is the difference in the use of `print`, `println`, and `printf`?](#26-what-is-the-difference-in-the-use-of-print-println-and-printf)
+- [27. What are operators? How many types of operators are available in Java?](#27-what-are-operators-how-many-types-of-operators-are-available-in-java)
+- [28. Explain the difference between `>>` and `>>>` operators](#28-explain-the-difference-between-and-operators)
+- [29. Which Java operator is right associative?](#29-which-java-operator-is-right-associative)
+- [30. What is the dot operator?](#30-what-is-the-dot-operator)
+- [31. What is covariant return type?](#31-what-is-covariant-return-type)
+- [32. What is the `transient` keyword?](#32-what-is-the-transient-keyword)
+- [33. What are the differences between String and StringBuffer?](#33-what-are-the-differences-between-string-and-stringbuffer)
+- [34. What are the differences between StringBuffer and StringBuilder?](#34-what-are-the-differences-between-stringbuffer-and-stringbuilder)
+- [35. Which among StringBuilder or StringBuffer should be preferred when there are a lot of updates required to be done in the data?](#35-which-among-stringbuilder-or-stringbuffer-should-be-preferred-when-there-are-a-lot-of-updates-required-to-be-done-in-the-data)
+- [36. Why is StringBuffer called mutable?](#36-why-is-stringbuffer-called-mutable)
+- [37. How is the creation of a String using `new()` different from that of a literal?](#37-how-is-the-creation-of-a-string-using-new-different-from-that-of-a-literal)
+- [38. What is an array in Java?](#38-what-is-an-array-in-java)
+- [39. On which memory arrays are created in Java?](#39-on-which-memory-arrays-are-created-in-java)
+- [40. What are the types of an array?](#40-what-are-the-types-of-an-array)
+- [41. Why does the Java array index start with 0?](#41-why-does-the-java-array-index-start-with-0)
+- [42. What is the difference between `int array[]` and `int[] array`?](#42-what-is-the-difference-between-int-array-and-int-array)
+- [43. How to copy an array in Java?](#43-how-to-copy-an-array-in-java)
+- [44. What do you understand by the jagged array?](#44-what-do-you-understand-by-the-jagged-array)
+- [45. Is it possible to make an array volatile?](#45-is-it-possible-to-make-an-array-volatile)
+- [46. What are the advantages and disadvantages of an array?](#46-what-are-the-advantages-and-disadvantages-of-an-array)
+- [47. What is an object-oriented paradigm?](#47-what-is-an-object-oriented-paradigm)
+- [48. What are the main concepts of OOPs in Java?](#48-what-are-the-main-concepts-of-oops-in-java)
+- [49. How is the `new` operator different from the `newInstance()` operator in Java?](#49-how-is-the-new-operator-different-from-the-newinstance-operator-in-java)
+- [50. What are Classes in Java?](#50-what-are-classes-in-java)
+- [51. What is `this` keyword in Java?](#51-what-is-this-keyword-in-java)
+- [52. What is the difference between static (class) method and instance method?](#52-what-is-the-difference-between-static-class-method-and-instance-method)
+- [53. What are Access Specifiers in Java?](#53-what-are-access-specifiers-in-java)
+- [54. What will be the initial value of an object reference which is defined as an instance variable?](#54-what-will-be-the-initial-value-of-an-object-reference-which-is-defined-as-an-instance-variable)
+- [55. What is an object?](#55-what-is-an-object)
+- [56. What are the different ways to create objects in Java?](#56-what-are-the-different-ways-to-create-objects-in-java)
+- [57. What are the advantages and disadvantages of object cloning?](#57-what-are-the-advantages-and-disadvantages-of-object-cloning)
+- [58. What are the advantages of passing `this` into a method instead of the current class object itself?](#58-what-are-the-advantages-of-passing-this-into-a-method-instead-of-the-current-class-object-itself)
+- [59. What is the constructor?](#59-what-is-the-constructor)
+- [60. What happens if you don’t provide a constructor in a class?](#60-what-happens-if-you-dont-provide-a-constructor-in-a-class)
+- [61. How many types of constructors are used in Java?](#61-how-many-types-of-constructors-are-used-in-java)
+- [62. What is the purpose of a default constructor?](#62-what-is-the-purpose-of-a-default-constructor)
+- [63. What do you understand by copy constructor in Java?](#63-what-do-you-understand-by-copy-constructor-in-java)
+- [64. Where and how can you use a private constructor?](#64-where-and-how-can-you-use-a-private-constructor)
+- [65. What are the differences between the constructors and methods?](#65-what-are-the-differences-between-the-constructors-and-methods)
+- [66. What is an Interface? Features of Interface?](#66-what-is-an-interface-features-of-interface)
+- [67. What is a marker interface?](#67-what-is-a-marker-interface)
+- [68. What do you mean by data encapsulation? Advantages, primary benefit?](#68-what-do-you-mean-by-data-encapsulation-advantages-primary-benefit)
+- [69. What do you mean by aggregation?](#69-what-do-you-mean-by-aggregation)
+- [70. What is Is-a relationship?](#70-what-is-is-a-relationship)
+- [71. Define Inheritance. Types?](#71-define-inheritance-types)
+- [72. Although inheritance is a popular OOPs concept, it is less advantageous than composition. Explain.](#72-although-inheritance-is-a-popular-oops-concept-it-is-less-advantageous-than-composition-explain)
+- [73. What is association and aggregation?](#73-what-is-association-and-aggregation)
+- [74. What is Composition in Java?](#74-what-is-composition-in-java)
+- [75. What is the difference between Composition and Aggregation?](#75-what-is-the-difference-between-composition-and-aggregation)
 
 # Q&A
 
-## Why is Java platform independent?
+## 1. Why is Java platform independent?
 
 Java is considered platform independent because its code is compiled into an intermediate form called bytecode. This bytecode can be executed on any platform that has a Java Virtual Machine (JVM), which acts as an interpreter between the bytecode and the underlying operating system. This "write once, run anywhere" capability is a key feature of Java.
 
 
-## What are the top features of Java?
+## 2. What are the top features of Java?
 
 Java has several key features that make it a popular programming language:
 
@@ -25,7 +100,7 @@ Java has several key features that make it a popular programming language:
 
 
 
-## What is JVM?
+## 3. What is JVM?
 
 The Java Virtual Machine (JVM) is an integral part of the Java Runtime Environment (JRE) that enables Java applications to run. It performs the following key functions:
 
@@ -38,7 +113,7 @@ The JVM is what makes Java's "write once, run anywhere" principle possible.
 
 ![jvm](assets/jvm.png)
 
-## What is JIT?
+## 4. What is JIT?
 
 The Just-In-Time (JIT) compiler is a component of the Java Virtual Machine (JVM) that improves the performance of Java applications. It works by compiling bytecode into native machine code at runtime, allowing the program to execute faster. Key features of JIT include:
 
@@ -51,7 +126,7 @@ The JIT compiler is a crucial part of the JVM's ability to deliver high performa
 
 ![jit](assets/jit.png)
 
-## What are memory storages available with JVM?
+## 5. What are memory storages available with JVM?
 
 The JVM divides memory into different regions to efficiently manage the execution of Java applications. These memory storages include:
 
@@ -73,7 +148,7 @@ These memory areas work together to ensure efficient execution and memory manage
 ![JVM memory storages](assets/jvm-mem-storage.png)
 
 
-## What is ClassLoader?
+## 6. What is ClassLoader?
 
 The ClassLoader in Java is a part of the Java Runtime Environment (JRE) responsible for dynamically loading Java classes into the Java Virtual Machine (JVM). It is a subsystem of the JVM that loads, links, and initializes classes during runtime. Key points about ClassLoader include:
 
@@ -88,7 +163,7 @@ The ClassLoader in Java is a part of the Java Runtime Environment (JRE) responsi
 The ClassLoader plays a crucial role in Java's ability to support dynamic and flexible application architectures.
 
 
-## What is the difference between JVM, JRE, and JDK?
+## 7. What is the difference between JVM, JRE, and JDK?
 
 Java has three key components that work together to enable development and execution of Java applications:
 
@@ -116,7 +191,7 @@ Java has three key components that work together to enable development and execu
 | JDK       | Develops Java applications      | JRE + Development Tools      |
 
 
-## Explain `public static void main(String args[])` in Java
+## 8. Explain `public static void main(String args[])` in Java
 
 The `public static void main(String args[])` method is the entry point of any Java application. Each part of the method signature has a specific purpose:
 
@@ -139,7 +214,7 @@ public class Main {
 In this example, the `main` method is executed by the JVM, and it prints "Hello, World!" to the console.
 
 
-## What is the String Pool in Java?
+## 9. What is the String Pool in Java?
 
 The String Pool in Java is a special memory area within the heap where `String` literals are stored. It is part of the Java String Interning mechanism, which helps optimize memory usage and improve performance. Key points about the String Pool include:
 
@@ -173,7 +248,7 @@ In this example, `s1` and `s2` share the same reference from the String Pool, wh
 ![string-pool](assets/string-pool.png)
 
 
-## What will happen if we don’t declare the main as static?
+## 10. What will happen if we don’t declare the main as static?
 
 If the `main` method is not declared as `static`, the Java Virtual Machine (JVM) will not be able to invoke it directly when starting the program. This will result in a runtime error. The reason for this is that the JVM needs to call the `main` method without creating an instance of the class, and a non-static method requires an instance to be invoked.
 
@@ -197,7 +272,7 @@ Error: Main method is not static in class Main, please define the main method as
 To fix this issue, the `main` method must be declared as `static` so that the JVM can call it without needing an object of the class.
 
 
-## What are packages? Why are they used? Advantages and types of packages?
+## 11. What are packages? Why are they used? Advantages and types of packages?
 
 In Java, a package is a namespace that organizes classes and interfaces. It is used to group related classes and interfaces together, making it easier to manage and avoid naming conflicts. Packages are similar to directories in a file system.
 
@@ -265,7 +340,7 @@ Hello from MyPackage!
 In this example, the `MyClass` is part of the `MyPackage` package, and it is imported and used in the `Main` class.
 
 
-## Explain different data types in Java
+## 12. Explain different data types in Java
 
 Java provides a rich set of data types to handle different kinds of data. These data types are broadly categorized into two types: **Primitive Data Types** and **Non-Primitive Data Types**.
 
@@ -351,7 +426,7 @@ Non-primitive data types (also called reference types) are more complex and incl
 Understanding these data types is essential for writing efficient and error-free Java programs.
 
 
-## What is the `byte` datatype in Java? When is it used? What is its default value?
+## 13. What is the `byte` datatype in Java? When is it used? What is its default value?
 
 The `byte` datatype in Java is one of the eight primitive data types. It is used to store small integer values and is particularly useful in scenarios where memory optimization is critical.
 
@@ -392,7 +467,7 @@ In this example, the `byte` datatype is used to store a small integer value, dem
 
 
 
-## What is the default value of `float` and `double` datatype in Java?
+## 14. What is the default value of `float` and `double` datatype in Java?
 
 In Java, the `float` and `double` datatypes are used to store fractional numbers. Each has a specific default value:
 
@@ -430,7 +505,7 @@ Default double value: 0.0
 In this example, the default values of `float` and `double` are demonstrated when they are declared as static variables.
 
 
-## What are Wrapper Classes in Java? Why are they used?
+## 15. What are Wrapper Classes in Java? Why are they used?
 
 Wrapper classes in Java are used to convert primitive data types into objects. Each primitive type has a corresponding wrapper class in the `java.lang` package. For example, `int` has `Integer`, `double` has `Double`, and so on.
 
@@ -489,7 +564,7 @@ Parsed Integer: 123
 Wrapper classes bridge the gap between primitive types and objects, making them essential for modern Java programming.
 
 
-## What are the default values assigned to variables and instances in Java?
+## 16. What are the default values assigned to variables and instances in Java?
 
 In Java, when variables or instance fields are declared but not explicitly initialized, they are assigned default values based on their data type. These default values ensure that uninitialized variables have a predictable state.
 
@@ -553,7 +628,7 @@ Default String: null
 Default values provide a safety net for uninitialized fields, ensuring that they have a defined state when accessed. 
 
 
-## What is a Class Variable?
+## 17. What is a Class Variable?
 
 A class variable, also known as a static variable, is a variable that is declared with the `static` keyword in a class. It is shared among all instances of the class, meaning that there is only one copy of the variable in memory, regardless of how many objects of the class are created.
 
@@ -598,7 +673,7 @@ Number of objects created: 3
 
 Class variables are an essential feature of Java, enabling shared state and behavior across all instances of a class.
 
-## What is a static variable?
+## 18. What is a static variable?
 
 A static variable in Java is a class-level variable that is declared using the `static` keyword. It is shared among all instances of the class, meaning there is only one copy of the variable in memory, regardless of how many objects of the class are created.
 
@@ -644,7 +719,7 @@ Number of objects created: 3
 Static variables are an essential feature of Java, enabling shared state and behavior across all instances of a class.
 
 
-## What is the difference between System.out, System.err, and System.in?
+## 19. What is the difference between System.out, System.err, and System.in?
 
 In Java, `System.out`, `System.err`, and `System.in` are standard streams provided by the `java.lang.System` class for input and output operations. Each serves a specific purpose:
 
@@ -695,7 +770,7 @@ In Java, `System.out`, `System.err`, and `System.in` are standard streams provid
 These streams provide a simple way to handle input and output in Java applications.
 
 
-## What is the difference between the Reader/Writer class hierarchy and the InputStream/OutputStream class hierarchy?
+## 20. What is the difference between the Reader/Writer class hierarchy and the InputStream/OutputStream class hierarchy?
 
 In Java, the `Reader/Writer` and `InputStream/OutputStream` class hierarchies are used for handling I/O operations, but they are designed for different types of data.
 
@@ -778,7 +853,7 @@ public class InputStreamOutputStreamExample {
 
 
 
-## What are the super most classes for all the streams?
+## 21. What are the super most classes for all the streams?
 
 In Java, the stream classes for handling input and output operations are organized into two main hierarchies: **byte streams** and **character streams**. Each hierarchy has a top-level abstract class that serves as the super most class.
 
@@ -818,7 +893,7 @@ In Java, the stream classes for handling input and output operations are organiz
 These super most classes provide the foundation for Java's I/O framework, enabling developers to work with a wide variety of data sources and destinations.
 
 
-## What are the FileInputStream and FileOutputStream?
+## 22. What are the FileInputStream and FileOutputStream?
 
 `FileInputStream` and `FileOutputStream` are classes in Java's `java.io` package used for reading and writing raw binary data to and from files. They are part of the byte stream hierarchy and are designed to handle binary data like images, audio, and video files.
 
@@ -884,7 +959,7 @@ These classes are fundamental for low-level file I/O operations in Java.
 
 
 
-## What is the purpose of using BufferedInputStream and BufferedOutputStream classes?
+## 23. What is the purpose of using BufferedInputStream and BufferedOutputStream classes?
 
 The `BufferedInputStream` and `BufferedOutputStream` classes in Java are used to improve the performance of input and output operations by adding a buffer to the underlying input and output streams. They are part of the `java.io` package and are designed to reduce the number of I/O operations by reading or writing larger chunks of data at once.
 
@@ -949,7 +1024,7 @@ public class BufferedOutputStreamExample {
 The `BufferedInputStream` and `BufferedOutputStream` classes are essential for efficient I/O operations in Java, particularly when working with large files or slow data sources.
 
 
-## What are FilterStreams?
+## 24. What are FilterStreams?
 
 FilterStreams in Java are part of the `java.io` package and are used to modify or filter data as it is read from or written to a stream. They act as wrappers around existing streams, providing additional functionality without altering the underlying stream's behavior.
 
@@ -1015,8 +1090,7 @@ public class FilterOutputStreamExample {
 
 FilterStreams are a powerful feature in Java's I/O framework, enabling developers to process data streams in a flexible and efficient manner.
 
-
-## What is an I/O filter?
+25. What is an I/O filter?
 
 An I/O filter in Java is a mechanism used to process data as it is read from or written to a stream. Filters are implemented using the `FilterInputStream` and `FilterOutputStream` classes, which act as wrappers around existing streams to provide additional functionality, such as data transformation, compression, encryption, or buffering.
 
@@ -1071,7 +1145,7 @@ I/O filters are a powerful feature of Java's I/O framework, enabling developers 
 
 
 
-## What is the difference in the use of `print`, `println`, and `printf`?
+## 26. What is the difference in the use of `print`, `println`, and `printf`?
 
 In Java, `print`, `println`, and `printf` are methods of the `PrintStream` class (commonly used via `System.out`) that are used to display output on the console. Each method has a specific purpose and behavior:
 
@@ -1141,7 +1215,7 @@ These methods provide flexibility for displaying output in Java, depending on th
 
 
 
-## What are operators? How many types of operators are available in Java?
+## 27. What are operators? How many types of operators are available in Java?
 
 Operators in Java are special symbols or keywords used to perform operations on variables and values. They are the building blocks of any programming language and are used to manipulate data and variables.
 
@@ -1226,7 +1300,7 @@ Maximum: 20
 Operators are fundamental in Java programming, enabling developers to perform a wide range of operations efficiently.
 
 
-## Explain the difference between `>>` and `>>>` operators
+## 28. Explain the difference between `>>` and `>>>` operators
 
 In Java, `>>` and `>>>` are bitwise shift operators used to shift bits of a number to the right. However, they differ in how they handle the sign bit (the leftmost bit) during the shift operation.
 
@@ -1272,7 +1346,7 @@ System.out.println(num >>> 2); // Output: 1073741822 (Binary: 00111111 11111111 
 Understanding the difference between `>>` and `>>>` is crucial when performing bitwise operations, especially when dealing with signed and unsigned data.
 
 
-## Which Java operator is right associative?
+## 29. Which Java operator is right associative?
 
 In Java, most operators are left associative, meaning they are evaluated from left to right. However, the **assignment operator (`=`)** and its compound forms (e.g., `+=`, `-=`, `*=`, `/=`, etc.) are **right associative**. This means that when multiple assignment operators are used in a single expression, they are evaluated from right to left.
 
@@ -1296,7 +1370,7 @@ Understanding operator associativity is important for writing clear and predicta
 
 
 
-## What is the dot operator?
+## 30. What is the dot operator?
 
 The dot operator (`.`) in Java is used to access members (fields, methods, or nested classes) of a class or an object. It is one of the most commonly used operators in Java and plays a crucial role in object-oriented programming.
 
@@ -1378,7 +1452,7 @@ The dot operator is essential for navigating and interacting with the members of
 
 
 
-## What is covariant return type?
+## 31. What is covariant return type?
 
 In Java, a covariant return type allows a method in a subclass to override a method in its superclass by returning a more specific type (a subclass of the return type declared in the superclass method). This feature was introduced in Java 5 to improve type safety and flexibility in method overriding.
 
@@ -1422,7 +1496,7 @@ Covariant return types enhance the usability and readability of overridden metho
 
 
 
-## What is the `transient` keyword?
+## 32. What is the `transient` keyword?
 
 The `transient` keyword in Java is a modifier used in the context of serialization. It indicates that a field should not be serialized when an object is converted into a byte stream. This is useful for fields that are either sensitive (e.g., passwords) or not necessary to persist (e.g., temporary data).
 
@@ -1488,7 +1562,7 @@ The `transient` keyword is a powerful tool for controlling the serialization pro
 
 
 
-## What are the differences between String and StringBuffer?
+## 33. What are the differences between String and StringBuffer?
 
 In Java, `String` and `StringBuffer` are classes used to handle and manipulate strings. However, they differ in terms of mutability, performance, and use cases.
 
@@ -1535,7 +1609,7 @@ public class StringBufferExample {
 
 
 
-## What are the differences between StringBuffer and StringBuilder?
+## 34. What are the differences between StringBuffer and StringBuilder?
 
 In Java, both `StringBuffer` and `StringBuilder` are classes used to create mutable strings. However, they differ in terms of thread safety and performance.
 
@@ -1580,7 +1654,7 @@ public class StringBuilderExample {
 
 
 
-## Which among StringBuilder or StringBuffer should be preferred when there are a lot of updates required to be done in the data?
+## 35. Which among StringBuilder or StringBuffer should be preferred when there are a lot of updates required to be done in the data?
 
 When there are a lot of updates required to be done in the data, the choice between `StringBuilder` and `StringBuffer` depends on the threading requirements of the application:
 
@@ -1644,7 +1718,7 @@ public class StringBufferExample {
 
 
 
-## Why is StringBuffer called mutable?
+## 36. Why is StringBuffer called mutable?
 
 `StringBuffer` is called mutable because its content can be changed after the object is created. Unlike `String`, which is immutable and creates a new object for every modification, `StringBuffer` allows modifications such as appending, inserting, or deleting characters without creating a new object. This makes it more efficient for scenarios where frequent string modifications are required.
 
@@ -1671,7 +1745,7 @@ public class StringBufferExample {
 In this example, all modifications are performed on the same `StringBuffer` object, demonstrating its mutability.
 
 
-## How is the creation of a String using `new()` different from that of a literal?
+## 37. How is the creation of a String using `new()` different from that of a literal?
 
 In Java, Strings can be created either using string literals or the `new` keyword. These two approaches differ in terms of memory allocation and behavior.
 
@@ -1730,7 +1804,7 @@ System.out.println(s1.equals(s2)); // true, content is the same
 
 
 
-## What is an array in Java?
+## 38. What is an array in Java?
 
 An array in Java is a data structure that allows you to store multiple values of the same data type in a single variable. It is a fixed-size, indexed collection of elements, where each element can be accessed using its index.
 
@@ -1808,7 +1882,7 @@ Arrays are a fundamental data structure in Java, providing a simple and efficien
 
 
 
-## On which memory arrays are created in Java?
+## 39. On which memory arrays are created in Java?
 
 In Java, arrays are created in the **heap memory**. This is because arrays are objects in Java, and all objects are allocated memory in the heap. The heap is a part of the JVM's memory where dynamic memory allocation takes place.
 
@@ -1844,7 +1918,7 @@ public class ArrayMemoryExample {
 
 
 
-## What are the types of an array?
+## 40. What are the types of an array?
 
 In Java, arrays are classified into two main types based on their structure and usage:
 
@@ -1885,7 +1959,7 @@ Arrays in Java provide a flexible way to store and manage collections of data, w
 
 
 
-## Why does the Java array index start with 0?
+## 41. Why does the Java array index start with 0?
 
 Java array indexing starts with 0 because it aligns with the way memory is addressed in most programming languages. The index represents an offset from the starting memory address of the array. 
 
@@ -1913,7 +1987,7 @@ Starting array indices at 0 is a widely accepted practice that ensures consisten
 
 
 
-## What is the difference between `int array[]` and `int[] array`?
+## 42. What is the difference between `int array[]` and `int[] array`?
 
 In Java, both `int array[]` and `int[] array` are valid ways to declare an array of integers. They are functionally equivalent, but there is a difference in style and convention.
 
@@ -1953,7 +2027,7 @@ System.out.println(array2[0]); // Output: 4
 While both styles are functionally identical, `int[] array` is preferred for better readability and consistency with Java's conventions.
 
 
-## How to copy an array in Java?
+## 43. How to copy an array in Java?
 
 In Java, there are several ways to copy an array. The choice of method depends on the use case, such as whether you need a shallow copy or a deep copy.
 
@@ -2030,7 +2104,7 @@ Choose the method that best fits your requirements for copying arrays in Java.
 
 
 
-## What do you understand by the jagged array?
+## 44. What do you understand by the jagged array?
 
 A jagged array in Java is an array of arrays where the sub-arrays can have different lengths. Unlike a regular multi-dimensional array, where all rows must have the same number of columns, a jagged array allows each row to have a different number of elements.
 
@@ -2087,7 +2161,7 @@ public class JaggedArrayExample {
 Jagged arrays provide flexibility and memory efficiency for handling irregular data structures in Java.
 
 
-## Is it possible to make an array volatile?
+## 45. Is it possible to make an array volatile?
 
 In Java, it is possible to declare an array reference as `volatile`, but this does not make the elements of the array volatile. Declaring an array as `volatile` ensures that the reference to the array is always read from and written to the main memory, but it does not guarantee visibility or atomicity for individual elements of the array.
 
@@ -2135,7 +2209,7 @@ Declaring an array as `volatile` is useful when the reference to the array might
 
 
 
-## What are the advantages and disadvantages of an array?
+## 46. What are the advantages and disadvantages of an array?
 
 ### Advantages of Arrays:
 
@@ -2189,7 +2263,7 @@ Declaring an array as `volatile` is useful when the reference to the array might
 Arrays are a fundamental data structure in Java, offering simplicity and efficiency for managing collections of data, but they are best suited for scenarios where the size and type of data are known in advance.
 
 
-## What is an object-oriented paradigm?
+## 47. What is an object-oriented paradigm?
 
 The object-oriented paradigm is a programming paradigm based on the concept of "objects," which can contain data in the form of fields (often called attributes or properties) and code in the form of methods (functions). It is a design philosophy that promotes modularity, reusability, and abstraction in software development.
 
@@ -2256,7 +2330,7 @@ Buddy is barking.
 The object-oriented paradigm is widely used in modern programming languages like Java, C++, Python, and C#, as it provides a robust framework for building complex and scalable applications.
 
 
-## What are the main concepts of OOPs in Java?
+## 48. What are the main concepts of OOPs in Java?
 
 Object-Oriented Programming (OOP) in Java is based on four main concepts that provide a structured and modular approach to software development. These concepts are:
 
@@ -2345,7 +2419,7 @@ Object-Oriented Programming (OOP) in Java is based on four main concepts that pr
 These four pillars of OOP form the foundation of Java's object-oriented programming model, enabling developers to build modular, reusable, and maintainable code.
 
 
-## How is the `new` operator different from the `newInstance()` operator in Java?
+## 49. How is the `new` operator different from the `newInstance()` operator in Java?
 
 The `new` operator and the `newInstance()` method in Java are both used to create objects, but they differ in how they work and when they are used.
 
@@ -2411,7 +2485,7 @@ The `new` operator and the `newInstance()` method in Java are both used to creat
 
 
 
-## What are Classes in Java?
+## 50. What are Classes in Java?
 
 A class in Java is a blueprint or template for creating objects. It defines the properties (fields) and behaviors (methods) that the objects created from the class will have. Classes are a fundamental part of Java's object-oriented programming model.
 
@@ -2465,7 +2539,7 @@ public class Main {
 Classes are the building blocks of Java programs, enabling developers to model real-world entities and their interactions in a structured and reusable way.
 
 
-## What is `this` keyword in Java?
+## 51. What is `this` keyword in Java?
 
 The `this` keyword in Java is a reference variable that refers to the current object of the class. It is used to eliminate ambiguity between instance variables and parameters, and to access members of the current object.
 
@@ -2538,7 +2612,7 @@ The `this` keyword in Java is a reference variable that refers to the current ob
 The `this` keyword is an essential feature in Java, enabling developers to work with the current object in a flexible and intuitive way.
 
 
-## What is the difference between static (class) method and instance method?
+## 52. What is the difference between static (class) method and instance method?
 
 In Java, methods can be categorized as either static (class) methods or instance methods based on how they are associated with the class or its objects.
 
@@ -2597,7 +2671,7 @@ In Java, methods can be categorized as either static (class) methods or instance
 Static methods are ideal for operations that do not depend on instance-specific data, while instance methods are used when the behavior is tied to a specific object.
 
 
-## What are Access Specifiers in Java?
+## 53. What are Access Specifiers in Java?
 
 Access specifiers in Java are keywords that define the visibility or accessibility of classes, methods, and variables. They determine which parts of a program can access a particular member or class.
 
@@ -2670,7 +2744,7 @@ Access specifiers in Java are keywords that define the visibility or accessibili
 Access specifiers are crucial for implementing encapsulation and controlling the visibility of members in Java.
 
 
-## What will be the initial value of an object reference which is defined as an instance variable?
+## 54. What will be the initial value of an object reference which is defined as an instance variable?
 
 In Java, if an object reference is defined as an instance variable but not explicitly initialized, it is assigned a default value of `null`. This is because instance variables are automatically initialized to their default values when an object of the class is created.
 
@@ -2700,7 +2774,7 @@ Understanding the default value of object references helps avoid `NullPointerExc
 
 
 
-## What is an object?
+## 55. What is an object?
 
 An object in Java is an instance of a class. It is a real-world entity that has a state (attributes) and behavior (methods). Objects are created from classes, which act as blueprints defining the structure and behavior of the objects.
 
@@ -2752,7 +2826,7 @@ Car is starting
 
 
 
-## What are the different ways to create objects in Java?
+## 56. What are the different ways to create objects in Java?
 
 In Java, objects can be created using several methods. Each method has its own use case and is suited for specific scenarios.
 
@@ -2866,7 +2940,7 @@ Each method has its own advantages and is used based on the requirements of the 
 
 
 
-## What are the advantages and disadvantages of object cloning?
+## 57. What are the advantages and disadvantages of object cloning?
 
 Object cloning in Java refers to creating a copy of an existing object using the `clone()` method. The class must implement the `Cloneable` interface to enable cloning.
 
@@ -2940,7 +3014,7 @@ public class Main {
 Object cloning can be useful in certain scenarios but should be used cautiously due to its limitations and potential pitfalls.
 
 
-## What are the advantages of passing `this` into a method instead of the current class object itself?
+## 58. What are the advantages of passing `this` into a method instead of the current class object itself?
 
 Passing `this` into a method provides several advantages, as it allows the method to operate directly on the current instance of the class. Here are the key benefits:
 
@@ -2985,7 +3059,7 @@ class Example {
 Passing `this` provides a flexible and efficient way to work with the current object in various programming scenarios.
 
 
-## What is the constructor?
+## 59. What is the constructor?
 
 A constructor in Java is a special method used to initialize objects. It is called automatically when an object of a class is created. The constructor has the same name as the class and does not have a return type.
 
@@ -3081,7 +3155,7 @@ A constructor in Java is a special method used to initialize objects. It is call
 Constructors are a fundamental part of Java's object-oriented programming model, enabling the creation and initialization of objects in a structured and efficient way.
 
 
-## What happens if you don’t provide a constructor in a class?
+## 60. What happens if you don’t provide a constructor in a class?
 
 If you don’t provide a constructor in a class, Java automatically provides a **default constructor**. This default constructor is a no-argument constructor that initializes the object with default values for its fields.
 
@@ -3137,7 +3211,7 @@ public class Main {
 
 
 
-## How many types of constructors are used in Java?
+## 61. How many types of constructors are used in Java?
 
 In Java, there are three main types of constructors:
 
@@ -3229,7 +3303,7 @@ These constructors provide flexibility in object creation and initialization in 
 
 
 
-## What is the purpose of a default constructor?
+## 62. What is the purpose of a default constructor?
 
 A default constructor in Java is a no-argument constructor that is either provided by the Java compiler or explicitly defined by the programmer. Its primary purpose is to initialize an object with default values.
 
@@ -3292,7 +3366,7 @@ The default constructor is a fundamental feature in Java, ensuring that objects 
 
 
 
-## What do you understand by copy constructor in Java?
+## 63. What do you understand by copy constructor in Java?
 
 A copy constructor in Java is a special type of constructor used to create a new object by copying the fields of an existing object. Unlike languages like C++, Java does not provide a built-in copy constructor, so it must be explicitly defined by the programmer.
 
@@ -3410,7 +3484,7 @@ The copy constructor is a powerful tool for creating independent copies of objec
 
 
 
-## Where and how can you use a private constructor?
+## 64. Where and how can you use a private constructor?
 
 A private constructor in Java is a constructor that is declared with the `private` access modifier. It restricts the instantiation of a class from outside the class itself. Private constructors are used in specific scenarios to enforce certain design patterns or constraints.
 
@@ -3482,7 +3556,7 @@ Private constructors are a powerful tool for controlling object creation and enf
 
 
 
-## What are the differences between the constructors and methods?
+## 65. What are the differences between the constructors and methods?
 
 Constructors and methods are both used in Java classes, but they serve different purposes and have distinct characteristics.
 
@@ -3529,7 +3603,7 @@ class Example {
 - Constructors are invoked automatically, whereas methods must be called explicitly.
 
 
-## What is an Interface? Features of Interface?
+## 66. What is an Interface? Features of Interface?
 
 An **interface** in Java is a reference type that acts as a contract for classes. It specifies a set of abstract methods that a class must implement. Interfaces are used to achieve abstraction and multiple inheritance in Java.
 
@@ -3600,7 +3674,7 @@ public class Main {
 Interfaces are a powerful tool in Java for achieving abstraction, defining contracts, and enabling multiple inheritance. They are widely used in frameworks and APIs to ensure consistency and flexibility.
 
 
-## What is a marker interface?
+## 67. What is a marker interface?
 
 A marker interface in Java is an interface that does not contain any methods or fields. It is used to "mark" a class with a specific property or behavior, which can then be recognized and handled by the Java runtime or frameworks.
 
@@ -3664,7 +3738,7 @@ Marker interfaces are a simple yet powerful way to convey metadata about a class
 
 
 
-## What do you mean by data encapsulation? Advantages, primary benefit?
+## 68. What do you mean by data encapsulation? Advantages, primary benefit?
 
 ### What is Data Encapsulation?
 
@@ -3749,7 +3823,7 @@ The primary benefit of data encapsulation is **data security and integrity**. By
 
 
 
-## What do you mean by aggregation?
+## 69. What do you mean by aggregation?
 
 Aggregation in Java is a relationship between two classes where one class contains a reference to another class. It represents a "has-a" relationship, meaning that one class is a part of another class but can exist independently. Aggregation is a form of association and is used to model relationships where one object is composed of other objects.
 
@@ -3805,7 +3879,7 @@ Car is driving.
 
 ---
 
-## What is Is-a relationship?
+## 70. What is Is-a relationship?
 
 The "Is-a" relationship in Java represents inheritance, where one class (subclass) inherits the properties and behaviors of another class (superclass). It is used to model a hierarchical relationship between classes.
 
@@ -3863,7 +3937,7 @@ Aggregation and Is-a relationships are fundamental concepts in object-oriented p
 
 
 
-## Define Inheritance. Types?
+## 71. Define Inheritance. Types?
 
 Inheritance is a fundamental concept in object-oriented programming that allows one class (called the child or subclass) to inherit the properties and behaviors (fields and methods) of another class (called the parent or superclass). It promotes code reuse and establishes a hierarchical relationship between classes.
 
@@ -3947,7 +4021,7 @@ Inheritance is a powerful feature in Java that enables developers to create modu
 
 
 
-## Although inheritance is a popular OOPs concept, it is less advantageous than composition. Explain.
+## 72. Although inheritance is a popular OOPs concept, it is less advantageous than composition. Explain.
 
 While inheritance is a widely used concept in object-oriented programming (OOP), it has certain limitations that make composition a more favorable approach in many scenarios. Here’s why:
 
@@ -4037,7 +4111,7 @@ While inheritance is useful for "is-a" relationships and can simplify code in ce
 
 
 
-## What is association and aggregation?
+## 73. What is association and aggregation?
 
 ### Association
 Association in Java represents a relationship between two classes where one class uses or interacts with another. It defines how objects of one class are connected to objects of another class. Association can be of two types:
@@ -4131,7 +4205,7 @@ Association and aggregation are essential concepts in object-oriented programmin
 
 
 
-## What is Composition in Java?
+## 74. What is Composition in Java?
 
 Composition in Java is a design principle where one class contains references to objects of other classes. It represents a "has-a" relationship, meaning that one class is composed of one or more objects of other classes. Composition is used to achieve code reuse and flexibility in object-oriented programming.
 
@@ -4217,8 +4291,7 @@ Car is driving.
 Composition is a powerful design principle in Java that promotes modularity, reusability, and flexibility, making it a preferred choice over inheritance in many scenarios.
 
 
-
-## What is the difference between Composition and Aggregation?
+## 75. What is the difference between Composition and Aggregation?
 
 ### Composition vs. Aggregation:
 

@@ -1,6 +1,56 @@
 
 # JavaScript Interview Q&A
 
+
+## Table of Contents
+
+1. [JavaScript Data Types](#1-javascript-data-types)
+2. [What is Temporal Dead Zone (TDZ)?](#2-what-is-temporal-dead-zone-tdz)
+3. [What is Hoisting?](#3-what-is-hoisting)
+4. [How to Avoid Hoisting?](#4-how-to-avoid-hoisting)
+5. [Difference Between `==` and `===`](#5-difference-between--and-)
+6. [Difference Between `var`, `let`, and `const`](#6-difference-between-var-let-and-const)
+7. [Type Coercion](#8-type-coercion)
+8. [Is JavaScript Statically Typed or Dynamically Typed?](#9-is-javascript-statically-typed-or-dynamically-typed)
+9. [NaN](#10-nan)
+10. [Passed by Value and Passed by Reference](#11-passed-by-value-and-passed-by-reference)
+11. [Immediately Invoked Function Expression (IIFE)](#12-immediately-invoked-function-expression-iife)
+12. [What is Strict Mode?](#13-what-is-strict-mode)
+13. [Higher Order Functions](#14-higher-order-functions)
+14. [The `this` Keyword](#15-the-this-keyword)
+15. [`call`, `apply`, and `bind` Methods](#16-call-apply-and-bind-methods)
+16. [Difference Between `exec()` and `test()` Methods](#17-difference-between-exec-and-test-methods)
+17. [What is Currying?](#18-what-is-currying)
+18. [Scope and Scope Chain](#19-scope-and-scope-chain)
+19. [Closures](#20-closures)
+20. [What are Object Prototypes?](#21-what-are-object-prototypes)
+21. [What are Callbacks?](#22-what-are-callbacks)
+22. [What is Memoization?](#23-what-is-memoization)
+23. [Constructor Functions](#24-constructor-functions)
+24. [Must-Know JavaScript Array Methods](#25-must-know-javascript-array-methods)
+25. [Must-Know JavaScript String Methods](#26-must-know-javascript-string-methods)
+26. [Must-Know JavaScript Object Methods](#27-must-know-javascript-object-methods)
+27. [What is an Arrow Function?](#28-what-is-an-arrow-function)
+28. [Rest Parameter and Spread Operator](#29-rest-parameter-and-spread-operator)
+29. [Deep Copy of an Object with Spread Operator](#30-deep-copy-of-an-object-with-spread-operator)
+30. [Shallow Copy vs Deep Copy](#31-shallow-copy-vs-deep-copy)
+31. [Object Destructuring](#32-object-destructuring)
+32. [Array Destructuring](#33-array-destructuring)
+33. [WeakMap](#34-weakmap)
+34. [Map and Set](#35-map-and-set)
+35. [Generator Functions](#36-generator-functions)
+36. [Set and WeakSet](#37-set-and-weakset)
+37. [Promises](#38-promises)
+38. [Async/Await](#39-asyncawait)
+39. [What are Pure Functions?](#40-what-are-pure-functions)
+40. [What is Functional Programming?](#41-what-is-functional-programming)
+41. [Function Composition](#42-function-composition)
+42. [Object Prototypes](#43-object-prototypes)
+43. [Classes](#44-classes)
+44. [Currying and Partial Application](#45-currying-and-partial-application)
+45. [Truthy and Falsy Values](#46-truthy-and-falsy-values)
+
+
 ## 1. JavaScript Data Types
 
 JavaScript provides different types of data that can be used to store and manipulate values. These are categorized into two main types: **Primitive** and **Non-Primitive (Reference)**.
@@ -59,7 +109,7 @@ JavaScript provides different types of data that can be used to store and manipu
 - JavaScript is dynamically typed, meaning variables can hold any data type and can change types during execution.
 
 
-## 2. What is Temporal Dead Zone (TDZ) in JavaScript?
+## 2. What is Temporal Dead Zone (TDZ)?
 
 The Temporal Dead Zone (TDZ) refers to the time between the entering of a block scope and the actual declaration of a variable (using `let` or `const`) within that scope. During this time, the variable is in an uninitialized state and accessing it will result in a `ReferenceError`.
 
@@ -87,7 +137,7 @@ console.log(c); // Output: 30
 2. **`let` and `const`**: Variables declared with `let` and `const` are also hoisted but are not initialized. They remain in the TDZ from the start of the block until the declaration is encountered. Accessing them during this period throws a `ReferenceError`.
 
 
-## 3. What is Hoisting in JavaScript?
+## 3. What is Hoisting?
 
 Hoisting is a JavaScript mechanism where variables, function declarations, and classes are moved to the top of their scope during the compile phase. This allows these entities to be used before they are declared in the code.
 
@@ -139,7 +189,7 @@ Hoisting is a JavaScript mechanism where variables, function declarations, and c
 
 
 
-## 4. How to Avoid Hoisting in JavaScript?
+## 4. How to Avoid Hoisting?
 
 To avoid issues caused by hoisting, follow these best practices:
 
@@ -186,9 +236,7 @@ To avoid issues caused by hoisting, follow these best practices:
     console.log(x); // Output: 10
     ```
 
-By following these practices, you can minimize the risks and confusion associated with hoisting in JavaScript.
-
-## 5. Difference Between `==` and `===` in JavaScript
+## 5. Difference Between `==` and `===`
 
 In JavaScript, `==` and `===` are comparison operators used to compare two values. However, they differ in how they perform the comparison.
 
@@ -234,9 +282,7 @@ console.log(a === b); // Output: false (strict comparison)
 console.log(a == b);  // Output: true (loose comparison)
 ```
 
-By understanding the difference between `==` and `===`, you can write more predictable and bug-free JavaScript code.
-
-## 6. Difference Between `var`, `let`, and `const` in JavaScript
+## 6. Difference Between `var`, `let`, and `const`
 
 In JavaScript, `var`, `let`, and `const` are used to declare variables, but they differ in their scope, hoisting behavior, and mutability.
 
@@ -313,11 +359,9 @@ currentUsers += 1;
 console.log(currentUsers); // Output: 1
 ```
 
-By understanding the differences between `var`, `let`, and `const`, you can write cleaner and more predictable JavaScript code.
+## 8. Type Coercion
 
-## 8. Type Coercion in JavaScript
-
-Type coercion in JavaScript refers to the automatic or implicit conversion of values from one data type to another. This occurs when an operation involves values of different types, and JavaScript attempts to convert one or both values to a common type.
+Type coercion refers to the automatic or implicit conversion of values from one data type to another. This occurs when an operation involves values of different types, and JavaScript attempts to convert one or both values to a common type.
 
 #### Types of Coercion:
 1. **Implicit Coercion**: Performed automatically by JavaScript.
@@ -370,9 +414,6 @@ Type coercion in JavaScript refers to the automatic or implicit conversion of va
 - Use explicit coercion to avoid confusion and improve code readability.
 - Be cautious with implicit coercion, especially when using operators like `+`, `-`, `*`, and `/`.
 
-By understanding type coercion, you can write more predictable and bug-free JavaScript code.
-
-
 ## 9. Is JavaScript Statically Typed or Dynamically Typed?
 
 JavaScript is a **dynamically typed** language. This means that variables are not bound to a specific data type, and their type can change during runtime.
@@ -424,7 +465,7 @@ JavaScript is a **dynamically typed** language. This means that variables are no
     - TypeScript is a superset of JavaScript that adds static typing, helping catch type-related errors during development.
 
 
-## 10. NaN in JavaScript
+## 10. NaN
 
 `NaN` stands for "Not-a-Number" and is a special value in JavaScript that indicates an invalid number. It is a property of the global object and is returned when a mathematical operation or function fails to produce a valid number.
 
@@ -474,7 +515,7 @@ Since `NaN` is not equal to itself, you cannot use equality operators to check f
 
 By understanding and properly handling `NaN`, you can write more robust JavaScript code.
 
-## 11. Passed by Value and Passed by Reference in JavaScript
+## 11. Passed by Value and Passed by Reference
 
 In JavaScript, variables can be passed by value or by reference depending on the type of data they hold. Understanding this distinction is crucial for avoiding unintended side effects in your code.
 
@@ -524,9 +565,7 @@ console.log(obj2.name); // Output: Bob
 2. **Use Immutable Data Structures**:
     - Libraries like `Immutable.js` can help manage state without unintended mutations.
 
-By understanding the concepts of passed by value and passed by reference, you can write more predictable and bug-free JavaScript code.
-
-## 12. Immediately Invoked Function Expression (IIFE) in JavaScript
+## 12. Immediately Invoked Function Expression (IIFE)
 
 An **Immediately Invoked Function Expression (IIFE)** is a JavaScript function that is executed immediately after it is defined. It is a common pattern used to create a new scope and avoid polluting the global namespace.
 
@@ -591,9 +630,7 @@ console.log(typeof message); // Output: undefined
    })();
    ```
 
-By understanding and using IIFEs, you can write cleaner and more modular JavaScript code.
-
-## 13. What is Strict Mode in JavaScript?
+## 13. What is Strict Mode?
 
 Strict mode in JavaScript is a way to opt into a restricted variant of JavaScript, introduced in ECMAScript 5. It helps catch common coding mistakes and prevents the use of certain unsafe features of JavaScript.
 
@@ -665,7 +702,7 @@ Strict mode can be enabled by adding the string `"use strict";` at the beginning
 
 By understanding and using strict mode, you can improve the quality and maintainability of your JavaScript code.
 
-## 14. Higher Order Functions in JavaScript
+## 14. Higher Order Functions
 
 Higher Order Functions are functions that either take other functions as arguments, return a function, or both. They are a key feature of JavaScript and enable functional programming paradigms.
 
@@ -731,9 +768,7 @@ Higher Order Functions are functions that either take other functions as argumen
 3. **Functional Programming**:
     - They enable functional programming techniques, such as immutability and pure functions.
 
-By mastering higher order functions, you can write more expressive and concise JavaScript code.
-
-## 15. The `this` Keyword in JavaScript
+## 15. The `this` Keyword
 
 The `this` keyword in JavaScript refers to the object it belongs to. Its value depends on the context in which it is used.
 
@@ -807,7 +842,7 @@ person.sayName(); // Output: John
 - Use `bind()`, `call()`, or `apply()` to explicitly set the value of `this` when needed.
 
 
-## 16. `call`, `apply`, and `bind` Methods in JavaScript
+## 16. `call`, `apply`, and `bind` Methods
 
 The `call`, `apply`, and `bind` methods are used to explicitly set the value of `this` in JavaScript. These methods are particularly useful when working with functions and objects.
 
@@ -892,9 +927,7 @@ boundGreet(); // Output: Hey, Charlie
 2. **`apply`**: Use when you need to invoke a function immediately with a specific `this` value and arguments as an array.
 3. **`bind`**: Use when you need to create a new function with a specific `this` value for later use.
 
-By understanding `call`, `apply`, and `bind`, you can write more flexible and reusable JavaScript code.
-
-## 17. Difference Between `exec()` and `test()` Methods in JavaScript
+## 17. Difference Between `exec()` and `test()` Methods
 
 The `exec()` and `test()` methods are used with regular expressions in JavaScript, but they serve different purposes.
 
@@ -945,7 +978,7 @@ console.log(result); // Output: true
 
 By understanding the difference between `exec()` and `test()`, you can choose the appropriate method for your use case.
 
-## 18. What is Currying in JavaScript?
+## 18. What is Currying?
 
 Curring is an advanced technique to transform a function of arguments n - to n functions of one or fewer arguments.
 
@@ -1006,9 +1039,7 @@ add(1)(2); // Output: 3
 3. **Configuration**:
    - Curried functions can be used to create pre-configured versions of functions for specific use cases.
 
-By understanding currying, you can write more flexible and reusable JavaScript functions.
-
-## 19. Scope and Scope Chain in JavaScript
+## 19. Scope and Scope Chain
 
 In JavaScript, **scope** refers to the accessibility of variables, functions, and objects in a specific part of the code. The **scope chain** determines the order in which the JavaScript engine looks for variables when executing code.
 
@@ -1076,9 +1107,7 @@ outerFunction();
 3. **Avoid Polluting the Global Scope**:
     - Minimize the use of global variables to avoid conflicts and unexpected behavior.
 
-By understanding scope and the scope chain, you can write more predictable and maintainable JavaScript code.
-
-## 20. Closures in JavaScript
+## 20. Closures
 
 A **closure** is a feature in JavaScript where an inner function has access to the outer (enclosing) function's variables, even after the outer function has executed. Closures are created every time a function is defined, allowing the function to "remember" the scope in which it was created.
 
@@ -1158,9 +1187,7 @@ newFunction("inside");
 - They allow functions to retain access to their lexical scope, even when executed outside that scope.
 - Proper use of closures can lead to cleaner and more modular code.
 
-By understanding closures, you can leverage their power to write more efficient and flexible JavaScript code.
-
-## 21. What are Object Prototypes in JavaScript?
+## 21. What are Object Prototypes?
 
 In JavaScript, every object has an internal property called `[[Prototype]]`, which points to another object or `null`. This is the basis of prototypal inheritance, allowing objects to share properties and methods.
 
@@ -1219,7 +1246,7 @@ alice.sayHello(); // Output: Hello, my name is Alice
     - It is a cleaner and more modern approach compared to using constructors and manually setting `__proto__`.
 
 
-## 22. What are Callbacks in JavaScript?
+## 22. What are Callbacks?
 
 A **callback** is a function passed as an argument to another function, which is then executed inside the outer function to complete some kind of routine or action. Callbacks are a key feature of JavaScript and are often used for asynchronous operations.
 
@@ -1363,9 +1390,7 @@ fetchData(processData);
         .then(() => step("Step 3", 1000));
     ```
 
-By understanding and using callbacks effectively, you can handle asynchronous operations and write more efficient JavaScript code.
-
-## 23. What is Memoization in JavaScript?
+## 23. What is Memoization?
 
 Memoization is an optimization technique used to improve the performance of functions by caching their results. When a function is called with a specific set of arguments, its result is stored in a cache. If the function is called again with the same arguments, the cached result is returned instead of recomputing the result.
 
@@ -1454,9 +1479,7 @@ console.log(fibonacci(10)); // Output: 55 (fetched from cache)
 
 By using memoization, you can optimize your JavaScript code for better performance and efficiency.
 
-
-
-## 24. Constructor Functions in JavaScript
+## 24. Constructor Functions
 
 A **constructor function** in JavaScript is a special type of function used to create and initialize objects. It acts as a blueprint for creating multiple objects with similar properties and methods.
 
@@ -1893,8 +1916,6 @@ let num = 123;
 console.log(num.toString()); // Output: "123"
 ```
 
-By mastering these string methods, you can efficiently manipulate and process strings in JavaScript.
-
 ## 27. Must-Know JavaScript Object Methods
 
 JavaScript provides several built-in methods for working with objects. These methods are essential for manipulating and interacting with objects effectively.
@@ -2042,9 +2063,7 @@ const obj = {};
 console.log(obj.toString()); // Output: "[object Object]"
 ```
 
-By mastering these object methods, you can efficiently manipulate and interact with objects in JavaScript.
-
-## 28. What is an Arrow Function in JavaScript?
+## 28. What is an Arrow Function?
 
 Arrow functions are a concise syntax for writing functions in JavaScript. They were introduced in ES6 and provide a shorter way to write function expressions. Arrow functions are particularly useful for writing small, anonymous functions.
 
@@ -2119,7 +2138,7 @@ const add = (a, b) => a + b;
 
 By understanding and using arrow functions, you can write cleaner and more concise JavaScript code.
 
-## 29. Rest Parameter and Spread Operator in JavaScript
+## 29. Rest Parameter and Spread Operator
 
 The **rest parameter** and **spread operator** are two powerful features introduced in ES6 that simplify working with arrays, objects, and function arguments.
 
@@ -2240,7 +2259,7 @@ deepCopy.b.c = 42;
 console.log(original.b.c); // Output: 2
 ```
 
-## 31. Shallow Copy vs Deep Copy in JavaScript
+## 31. Shallow Copy vs Deep Copy
 
 When working with objects and arrays in JavaScript, it's important to understand the difference between **shallow copy** and **deep copy**.
 
@@ -2297,7 +2316,7 @@ console.log(original.b.c); // Output: 2 (nested object is not shared)
 
 By understanding the difference between shallow and deep copies, you can choose the appropriate method for your use case and avoid unintended side effects in your JavaScript code.
 
-## 32. Object Destructuring in JavaScript
+## 32. Object Destructuring
 
 Object destructuring is a convenient way to extract values from objects and assign them to variables. It allows you to unpack properties from an object into distinct variables in a concise and readable manner.
 
@@ -2377,9 +2396,7 @@ console.log(rest); // Output: { age: 25, city: "New York" }
     console.log(name); // Output: Alice
     ```
 
-By mastering object destructuring, you can write cleaner and more concise JavaScript code.
-
-## 33. Array Destructuring in JavaScript
+## 33. Array Destructuring
 
 Array destructuring is a concise way to extract values from arrays and assign them to variables. It allows you to unpack elements from an array into distinct variables in a single statement.
 
@@ -2470,10 +2487,7 @@ console.log(rest); // Output: [2, 3, 4]
     console.log(x, y); // Output: 10 20
     ```
 
-By mastering array destructuring, you can write more concise and readable JavaScript code.
-
-
-## 34. WeakMap in JavaScript
+## 34. WeakMap
 
 A **WeakMap** is a special type of `Map` in JavaScript where keys must be objects, and the references to these keys are weak. This means that if there are no other references to a key object, it can be garbage-collected, even if it is still in the `WeakMap`.
 
@@ -2550,7 +2564,7 @@ obj = null; // The object is garbage-collected, and the entry is removed from th
 
 By understanding `WeakMap`, you can manage memory more effectively and write cleaner, more efficient JavaScript code.
 
-## 35. Map and Set in JavaScript
+## 35. Map and Set
 
 JavaScript provides two powerful data structures, `Map` and `Set`, introduced in ES6, which offer unique features for managing collections of data.
 
@@ -2641,7 +2655,7 @@ console.log(set.size); // Output: 1
 
 By understanding `Map` and `Set`, you can choose the appropriate data structure for your specific use case and write more efficient JavaScript code.
 
-## 36. Generator Functions in JavaScript
+## 36. Generator Functions
 
 A **generator function** in JavaScript is a special type of function that can pause its execution and resume later. It is defined using the `function*` syntax and produces an **iterator** when invoked.
 
@@ -2736,10 +2750,7 @@ console.log(generator.next().value); // Output: 2
 - Provides a clean way to handle asynchronous workflows.
 - Enables lazy evaluation for performance optimization.
 
-By understanding generator functions, you can write more efficient and flexible JavaScript code.
-
-
-## 37. Set and WeakSet in JavaScript
+## 37. Set and WeakSet
 
 JavaScript provides two special data structures, `Set` and `WeakSet`, for managing collections of unique values.
 
@@ -2818,9 +2829,7 @@ obj = null; // The object is garbage-collected, and the entry is removed from th
 - **WeakSet**:
   - Storing metadata or tracking objects without preventing their garbage collection.
 
-By understanding `Set` and `WeakSet`, you can choose the appropriate data structure for your specific use case and write more efficient JavaScript code.
-
-## 38. Promises in JavaScript
+## 38. Promises
 
 A **Promise** in JavaScript is an object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value. Promises provide a cleaner and more manageable way to handle asynchronous code compared to traditional callback functions.
 
@@ -2919,10 +2928,7 @@ fetchData
 - Provides better error handling with `.catch()`.
 - Makes asynchronous code easier to read and maintain.
 
-By understanding promises, you can write more robust and readable asynchronous JavaScript code.
-
-
-## 39. Async/Await in JavaScript
+## 39. Async/Await
 
 **Async/Await** is a modern way to handle asynchronous operations in JavaScript. It is built on top of Promises and provides a more readable and synchronous-looking syntax for writing asynchronous code.
 
@@ -3014,7 +3020,7 @@ fetchMultipleData();
 
 By understanding and using Async/Await, you can write cleaner and more maintainable asynchronous JavaScript code.
 
-## 40. What are Pure Functions in JavaScript?
+## 40. What are Pure Functions?
 
 A **pure function** is a function that adheres to the following principles:
 1. **Deterministic**: For the same input, it always produces the same output.
@@ -3161,7 +3167,7 @@ Functional programming (FP) is a programming paradigm that treats computation as
 - **Asynchronous Programming**:
   - Functional programming works well with promises and async/await for handling asynchronous operations.
 
-## 42. Function Composition in JavaScript
+## 42. Function Composition
 
 Function composition is a technique in functional programming where multiple functions are combined to produce a new function. The output of one function becomes the input of the next, allowing you to build complex operations from simpler ones.
 
@@ -3211,7 +3217,7 @@ console.log(transform("  hello world  ")); // Output: "HELLO WORLD!"
 
 By mastering function composition, you can write cleaner, more modular, and maintainable JavaScript code.
 
-## 43. Object Prototypes in JavaScript
+## 43. Object Prototypes
 
 In JavaScript, every object has an internal property called `[[Prototype]]`, which points to another object or `null`. This is the basis of prototypal inheritance, allowing objects to share properties and methods.
 
@@ -3271,7 +3277,7 @@ alice.sayHello(); // Output: Hello, my name is Alice
 
 By understanding object prototypes, you can leverage JavaScript's prototypal inheritance to write more efficient and reusable code.
 
-## 44. Classes in JavaScript
+## 44. Classes
 
 Classes in JavaScript are a blueprint for creating objects. They were introduced in ES6 and provide a cleaner and more structured way to implement object-oriented programming compared to traditional constructor functions and prototypes.
 
@@ -3380,7 +3386,7 @@ console.log(rect.area); // Output: 375
 
 By understanding classes, you can write more structured and maintainable JavaScript code.
 
-## 45. Currying and Partial Application in JavaScript
+## 45. Currying and Partial Application
 
 #### Currying:
 Currying is a functional programming technique where a function is transformed into a sequence of functions, each taking a single argument. Instead of taking all arguments at once, the curried function takes them one at a time.
@@ -3466,7 +3472,7 @@ console.log(sayHello("Alice")); // Output: Hello, Alice!
 | Arguments Handling     | Takes one argument at a time | Takes multiple arguments at once |
 | Use Case               | Function composition         | Simplifying function calls  |
 
-## 46. Truthy and Falsy Values in JavaScript
+## 46. Truthy and Falsy Values
 
 In JavaScript, values are categorized as either **truthy** or **falsy** based on how they are evaluated in a boolean context (e.g., in an `if` statement). 
 
@@ -3524,5 +3530,3 @@ if (function() {}) console.log("Truthy"); // Output: Truthy
     const name = "" || "Default Name"; // Output: "Default Name"
     const isValid = true && "Valid";   // Output: "Valid"
     ```
-
-By understanding truthy and falsy values, you can write more concise and effective conditional logic in JavaScript.

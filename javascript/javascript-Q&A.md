@@ -3530,3 +3530,11 @@ if (function() {}) console.log("Truthy"); // Output: Truthy
     const name = "" || "Default Name"; // Output: "Default Name"
     const isValid = true && "Valid";   // Output: "Valid"
     ```
+
+
+
+## End of File
+
+This document provides a comprehensive guide to JavaScript interview questions and answers. It covers fundamental concepts, advanced topics, and practical examples to help you prepare effectively. If you have any suggestions or additional topics you'd like to see included, feel free to contribute!
+
+Happy coding! 🚀

@@ -77,6 +77,29 @@
 - [73. What is association and aggregation?](#73-what-is-association-and-aggregation)
 - [74. What is Composition in Java?](#74-what-is-composition-in-java)
 - [75. What is the difference between Composition and Aggregation?](#75-what-is-the-difference-between-composition-and-aggregation)
+- [76. Can the constructor be inherited?](#76-can-the-constructor-be-inherited)
+- [77. What is Polymorphism? What is runtime polymorphism or dynamic method dispatch?](#77-what-is-polymorphism-what-is-runtime-polymorphism-or-dynamic-method-dispatch)
+- [78. Can we override the static method?](#78-can-we-override-the-static-method)
+- [79. Can we override the overloaded method?](#79-can-we-override-the-overloaded-method)
+- [80. Can we overload the main() method?](#80-can-we-overload-the-main-method)
+- [81. What is the difference between method overloading and method overriding?](#81-what-is-the-difference-between-method-overloading-and-method-overriding)
+- [82. Can we override the private methods?](#82-can-we-override-the-private-methods)
+- [83. Can we change the scope of the overridden method in the subclass?](#83-can-we-change-the-scope-of-the-overridden-method-in-the-subclass)
+- [84. Can we modify the throws clause of the superclass method while overriding it in the subclass?](#84-can-we-modify-the-throws-clause-of-the-superclass-method-while-overriding-it-in-the-subclass)
+- [85. Can you have virtual functions in Java?](#85-can-you-have-virtual-functions-in-java)
+- [86. What is Abstraction? What is Abstract class? When Abstract methods are used?](#86-what-is-abstraction-what-is-abstract-class-when-abstract-methods-are-used)
+- [87. What is Serialization? Why? How? When?](#87-what-is-serialization-why-how-when)
+- [88. How can you avoid serialization in the child class if the base class is implementing the Serializable interface?](#88-how-can-you-avoid-serialization-in-the-child-class-if-the-base-class-is-implementing-the-serializable-interface)
+- [89. Explain Exception. What? How? When? Why?](#89-explain-exception-what-how-when-why)
+- [90. What is a User-Defined Exception in Java?](#90-what-is-a-user-defined-exception-in-java)
+- [91. Explain the Hierarchy of Java Exception Classes](#91-explain-the-hierarchy-of-java-exception-classes)
+- [92. Difference Between an Error and an Exception](#92-difference-between-an-error-and-an-exception)
+- [93. Explain Runtime Exceptions](#93-explain-runtime-exceptions)
+- [94. What is the Difference Between Checked Exception and Unchecked Exception?](#94-what-is-the-difference-between-checked-exception-and-unchecked-exception)
+- [95. What is the Base Class for Error and Exception?](#95-what-is-the-base-class-for-error-and-exception)
+- [96. Is it Necessary That Each Try Block Must Be Followed by a Catch Block?](#96-is-it-necessary-that-each-try-block-must-be-followed-by-a-catch-block)
+
+
 
 # Q&A
 
@@ -4356,6 +4379,2318 @@ class Employee {
 - Use **aggregation** when the contained object can exist independently of the container object.
 
 
-https://www.geeksforgeeks.org/java-interview-questions/ 
+## 76. Can the constructor be inherited?
 
-100
+No, constructors cannot be inherited in Java. A constructor is a special method that is used to initialize an object of a class, and it is always specific to the class in which it is defined. However, a subclass can call the constructor of its parent class using the `super` keyword.
+
+### Key Points:
+
+1. **Not Inherited**:
+    - Constructors are not inherited because they are not considered members of the class. They are invoked only during object creation.
+
+2. **Calling Parent Constructor**:
+    - A subclass can call the constructor of its parent class using the `super` keyword, but it must do so explicitly in the first line of its own constructor.
+    - Example:
+      ```java
+      class Parent {
+          Parent() {
+              System.out.println("Parent constructor called");
+          }
+      }
+
+      class Child extends Parent {
+          Child() {
+              super(); // Calls the parent class constructor
+              System.out.println("Child constructor called");
+          }
+      }
+
+      public class Main {
+          public static void main(String[] args) {
+              Child child = new Child();
+          }
+      }
+      ```
+
+      **Output**:
+      ```
+      Parent constructor called
+      Child constructor called
+      ```
+
+3. **Overloading Instead of Inheritance**:
+    - While constructors cannot be inherited, they can be overloaded within the same class to provide multiple ways to initialize an object.
+
+4. **Default Constructor**:
+    - If a subclass does not explicitly call a parent class constructor using `super()`, the default no-argument constructor of the parent class is called automatically (if it exists).
+
+### Summary:
+Constructors are not inherited in Java, but a subclass can invoke a parent class constructor using the `super` keyword. This ensures proper initialization of the parent class before the subclass's own initialization logic is executed.
+
+## 77. What is Polymorphism? What is runtime polymorphism or dynamic method dispatch?
+
+### What is Polymorphism?
+
+Polymorphism in Java is one of the core principles of object-oriented programming (OOP). It allows objects to take on multiple forms. In simpler terms, polymorphism enables a single interface to represent different underlying forms (data types or classes). 
+
+### Types of Polymorphism:
+
+1. **Compile-Time Polymorphism (Method Overloading)**:
+    - Achieved by defining multiple methods with the same name but different parameter lists in the same class.
+    - The method to be called is determined at compile time.
+    - Example:
+      ```java
+      class Calculator {
+          int add(int a, int b) {
+              return a + b;
+          }
+
+          double add(double a, double b) {
+              return a + b;
+          }
+      }
+
+      public class Main {
+          public static void main(String[] args) {
+              Calculator calc = new Calculator();
+              System.out.println(calc.add(5, 10)); // Output: 15
+              System.out.println(calc.add(5.5, 10.5)); // Output: 16.0
+          }
+      }
+      ```
+
+2. **Runtime Polymorphism (Method Overriding)**:
+    - Achieved by overriding a method in a subclass.
+    - The method to be called is determined at runtime based on the object's actual type.
+    - Example:
+      ```java
+      class Animal {
+          void sound() {
+              System.out.println("This animal makes a sound.");
+          }
+      }
+
+      class Dog extends Animal {
+          @Override
+          void sound() {
+              System.out.println("The dog barks.");
+          }
+      }
+
+      public class Main {
+          public static void main(String[] args) {
+              Animal animal = new Dog(); // Upcasting
+              animal.sound(); // Output: The dog barks.
+          }
+      }
+      ```
+
+---
+
+### What is Runtime Polymorphism or Dynamic Method Dispatch?
+
+Runtime polymorphism, also known as **dynamic method dispatch**, is a process in which a call to an overridden method is resolved at runtime rather than compile time. It is achieved through method overriding and is a key feature of Java's runtime system.
+
+### Key Features of Runtime Polymorphism:
+
+1. **Method Overriding**:
+    - A subclass provides a specific implementation for a method already defined in its parent class.
+
+2. **Upcasting**:
+    - The reference variable of the parent class is used to refer to an object of the subclass.
+
+3. **Dynamic Binding**:
+    - The method to be executed is determined at runtime based on the actual object type, not the reference type.
+
+### Example of Runtime Polymorphism:
+
+```java
+class Shape {
+    void draw() {
+        System.out.println("Drawing a shape.");
+    }
+}
+
+class Circle extends Shape {
+    @Override
+    void draw() {
+        System.out.println("Drawing a circle.");
+    }
+}
+
+class Rectangle extends Shape {
+    @Override
+    void draw() {
+        System.out.println("Drawing a rectangle.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape shape;
+
+        shape = new Circle();
+        shape.draw(); // Output: Drawing a circle.
+
+        shape = new Rectangle();
+        shape.draw(); // Output: Drawing a rectangle.
+    }
+}
+```
+
+---
+
+### Advantages of Runtime Polymorphism:
+
+1. **Flexibility**:
+    - Allows a single interface to represent multiple implementations.
+
+2. **Extensibility**:
+    - Makes it easier to add new functionality by introducing new subclasses without modifying existing code.
+
+3. **Code Reusability**:
+    - Promotes code reuse by allowing the same code to work with different types of objects.
+
+---
+
+### Key Points:
+- Polymorphism enables dynamic method invocation at runtime.
+- It is implemented through method overriding and upcasting.
+- Runtime polymorphism is a cornerstone of Java's object-oriented design, enabling flexibility and extensibility in applications.
+
+
+## 78. Can we override the static method?
+
+No, static methods in Java cannot be overridden. Static methods belong to the class rather than any specific instance, and they are resolved at compile time using the reference type, not the object type. This behavior is known as **method hiding**, not overriding.
+
+### Key Points:
+
+1. **Method Hiding**:
+    - If a subclass defines a static method with the same name and parameters as a static method in the parent class, the subclass's method hides the parent class's method.
+    - The method to be called is determined by the reference type, not the object type.
+
+2. **Compile-Time Resolution**:
+    - Static methods are resolved at compile time, whereas overridden methods are resolved at runtime.
+
+3. **No Polymorphism**:
+    - Static methods do not participate in runtime polymorphism.
+
+### Example:
+
+```java
+class Parent {
+    static void display() {
+        System.out.println("Static method in Parent class");
+    }
+}
+
+class Child extends Parent {
+    static void display() {
+        System.out.println("Static method in Child class");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent parent = new Parent();
+        Parent child = new Child();
+
+        parent.display(); // Output: Static method in Parent class
+        child.display();  // Output: Static method in Parent class
+    }
+}
+```
+
+### Explanation:
+- In the example above, the `display` method in the `Child` class hides the `display` method in the `Parent` class.
+- The method called depends on the reference type (`Parent`), not the actual object type (`Child`).
+
+### Summary:
+- Static methods cannot be overridden but can be hidden.
+- The behavior of static methods is determined at compile time based on the reference type.
+
+
+
+## 79. Can we override the overloaded method?
+
+No, overloaded methods cannot be overridden because method overloading and method overriding are two distinct concepts in Java.
+
+### Key Differences:
+
+1. **Method Overloading**:
+    - Occurs within the same class.
+    - Methods have the same name but different parameter lists (number, type, or order of parameters).
+    - Resolved at **compile time** (compile-time polymorphism).
+
+2. **Method Overriding**:
+    - Occurs in a subclass.
+    - A subclass provides a specific implementation for a method already defined in its parent class.
+    - Resolved at **runtime** (runtime polymorphism).
+
+### Example:
+
+#### Overloading:
+```java
+class Example {
+    void display(int a) {
+        System.out.println("Display with int: " + a);
+    }
+
+    void display(String s) {
+        System.out.println("Display with String: " + s);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Example obj = new Example();
+        obj.display(10);       // Output: Display with int: 10
+        obj.display("Hello");  // Output: Display with String: Hello
+    }
+}
+```
+
+#### Overriding:
+```java
+class Parent {
+    void display() {
+        System.out.println("Display in Parent");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void display() {
+        System.out.println("Display in Child");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent obj = new Child();
+        obj.display(); // Output: Display in Child
+    }
+}
+```
+
+### Why Overloaded Methods Cannot Be Overridden:
+- Overloading is resolved at compile time based on the method signature (number and type of parameters).
+- Overriding is resolved at runtime based on the actual object type.
+- Since overloaded methods are bound at compile time, they do not participate in runtime polymorphism and cannot be overridden.
+
+### Summary:
+- Overloaded methods are resolved at compile time and cannot be overridden.
+- Overriding applies only to methods with the same signature in a parent-child class relationship.
+
+
+## 80. Can we overload the main() method?
+
+Yes, the `main()` method in Java can be overloaded like any other method. Overloading the `main()` method means defining multiple `main()` methods with different parameter lists in the same class.
+
+### Key Points:
+
+1. **Overloading**:
+    - Overloading allows multiple `main()` methods with different parameter lists.
+    - The JVM always looks for the `main(String[] args)` method as the entry point of the program.
+
+2. **Execution**:
+    - Only the `main(String[] args)` method is called by the JVM to start the program.
+    - Other overloaded `main()` methods can be called explicitly from the `main(String[] args)` method or other methods.
+
+### Example:
+
+```java
+public class MainOverloadExample {
+    // Standard main method
+    public static void main(String[] args) {
+        System.out.println("Main method with String[] args");
+        main(10); // Calling overloaded main method
+        main("Hello"); // Calling another overloaded main method
+    }
+
+    // Overloaded main method with an int parameter
+    public static void main(int number) {
+        System.out.println("Main method with int: " + number);
+    }
+
+    // Overloaded main method with a String parameter
+    public static void main(String message) {
+        System.out.println("Main method with String: " + message);
+    }
+}
+```
+
+### Output:
+
+```
+Main method with String[] args
+Main method with int: 10
+Main method with String: Hello
+```
+
+### Key Notes:
+- Overloading the `main()` method does not affect the program's entry point.
+- The JVM always calls the `main(String[] args)` method to start the program.
+- Overloaded `main()` methods are treated like regular methods and must be invoked explicitly.
+
+Overloading the `main()` method can be useful for testing or providing additional functionality, but it does not change the behavior of the program's entry point.
+
+
+## 81. What is the difference between method overloading and method overriding?
+
+### Method Overloading
+
+1. **Definition**: 
+    - Method overloading occurs when two or more methods in the same class have the same name but different parameter lists (number, type, or order of parameters).
+
+2. **Purpose**:
+    - Provides multiple ways to perform similar operations.
+
+3. **Binding**:
+    - Resolved at **compile time** (compile-time polymorphism).
+
+4. **Inheritance**:
+    - Does not require inheritance; occurs within the same class.
+
+5. **Return Type**:
+    - Can have different return types, but the parameter list must differ.
+
+6. **Example**:
+    ```java
+    class Calculator {
+         int add(int a, int b) {
+              return a + b;
+         }
+
+         double add(double a, double b) {
+              return a + b;
+         }
+    }
+
+    public class Main {
+         public static void main(String[] args) {
+              Calculator calc = new Calculator();
+              System.out.println(calc.add(5, 10));       // Output: 15
+              System.out.println(calc.add(5.5, 10.5));  // Output: 16.0
+         }
+    }
+    ```
+
+---
+
+### Method Overriding
+
+1. **Definition**:
+    - Method overriding occurs when a subclass provides a specific implementation for a method already defined in its parent class.
+
+2. **Purpose**:
+    - Provides specific behavior for a method in the subclass.
+
+3. **Binding**:
+    - Resolved at **runtime** (runtime polymorphism).
+
+4. **Inheritance**:
+    - Requires inheritance; occurs between a parent class and a subclass.
+
+5. **Return Type**:
+    - Must have the same return type (or a covariant return type).
+
+6. **Example**:
+    ```java
+    class Animal {
+         void sound() {
+              System.out.println("This animal makes a sound.");
+         }
+    }
+
+    class Dog extends Animal {
+         @Override
+         void sound() {
+              System.out.println("The dog barks.");
+         }
+    }
+
+    public class Main {
+         public static void main(String[] args) {
+              Animal animal = new Dog(); // Upcasting
+              animal.sound(); // Output: The dog barks.
+         }
+    }
+    ```
+
+---
+
+### Key Differences:
+
+| Feature                | Method Overloading                  | Method Overriding                  |
+|------------------------|--------------------------------------|------------------------------------|
+| **Definition**         | Same method name, different parameters. | Same method name and parameters, but different implementation. |
+| **Binding**            | Compile-time (static binding).      | Runtime (dynamic binding).         |
+| **Inheritance**        | Not required.                      | Requires inheritance.              |
+| **Return Type**        | Can differ.                        | Must be the same or covariant.     |
+| **Access Modifier**    | No restrictions.                   | Cannot reduce visibility.          |
+| **Use Case**           | Provides multiple ways to perform similar tasks. | Provides specific behavior in a subclass. |
+
+Method overloading and overriding are essential features of Java, enabling flexibility and extensibility in object-oriented programming.
+
+
+## 82. Can we override the private methods?
+
+No, private methods in Java cannot be overridden. This is because private methods are not accessible outside the class in which they are defined. Overriding requires a method in a subclass to have the same name, parameters, and access level as a method in its superclass, but private methods are not visible to subclasses.
+
+### Key Points:
+
+1. **Access Modifier**:
+    - Private methods are only accessible within the class where they are defined. They are not inherited by subclasses, so overriding is not possible.
+
+2. **Method Hiding**:
+    - If a subclass defines a method with the same name and parameters as a private method in the parent class, it is treated as a new method in the subclass, not an overridden method.
+
+3. **Example**:
+
+```java
+class Parent {
+    private void display() {
+        System.out.println("Private method in Parent class");
+    }
+}
+
+class Child extends Parent {
+    private void display() {
+        System.out.println("Private method in Child class");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent parent = new Parent();
+        // parent.display(); // Compilation error: display() has private access in Parent
+
+        Child child = new Child();
+        // child.display(); // Compilation error: display() has private access in Child
+    }
+}
+```
+
+### Explanation:
+- In the example above, the `display` method in the `Child` class does not override the `display` method in the `Parent` class. Instead, it is a completely separate method that is private to the `Child` class.
+
+### Summary:
+- Private methods cannot be overridden because they are not visible to subclasses.
+- If a method with the same name is defined in the subclass, it is treated as a new method, not an overridden one.
+
+
+
+## 83. Can we change the scope of the overridden method in the subclass?
+
+No, we cannot reduce the scope of an overridden method in the subclass. However, we can increase the scope of the overridden method. This is because overriding in Java follows the principle of substitutability, which ensures that a subclass object can always be used in place of a superclass object.
+
+### Rules for Changing Scope in Overridden Methods:
+
+1. **Cannot Reduce Scope**:
+    - The access modifier of the overridden method in the subclass cannot be more restrictive than the method in the superclass.
+    - For example, if the superclass method is `protected`, the overridden method cannot be `private`.
+
+2. **Can Increase Scope**:
+    - The access modifier of the overridden method in the subclass can be less restrictive than the method in the superclass.
+    - For example, if the superclass method is `protected`, the overridden method can be `public`.
+
+### Example:
+
+```java
+class Parent {
+    protected void display() {
+        System.out.println("Protected method in Parent class");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    public void display() { // Scope increased to public
+        System.out.println("Public method in Child class");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent obj = new Child();
+        obj.display(); // Output: Public method in Child class
+    }
+}
+```
+
+### Key Points:
+- The overridden method in the subclass must have the same or a broader access level than the method in the superclass.
+- This ensures that the overridden method is accessible wherever the superclass method is accessible.
+
+### Summary:
+- **Allowed**: Increasing the scope of the overridden method.
+- **Not Allowed**: Reducing the scope of the overridden method.
+
+
+
+## 84. Can we modify the throws clause of the superclass method while overriding it in the subclass?
+
+Yes, we can modify the `throws` clause of the superclass method while overriding it in the subclass, but there are specific rules that must be followed:
+
+### Rules for Modifying the `throws` Clause:
+
+1. **Same or Subset of Exceptions**:
+    - The overriding method in the subclass can declare the same exceptions as the superclass method or a subset of those exceptions.
+    - Example:
+      ```java
+      class Parent {
+          void display() throws IOException {
+              System.out.println("Parent method");
+          }
+      }
+
+      class Child extends Parent {
+          @Override
+          void display() throws FileNotFoundException { // Subset of IOException
+              System.out.println("Child method");
+          }
+      }
+      ```
+
+2. **Unchecked Exceptions**:
+    - The overriding method can declare additional unchecked exceptions (subclasses of `RuntimeException`), as they are not checked at compile time.
+    - Example:
+      ```java
+      class Parent {
+          void display() {
+              System.out.println("Parent method");
+          }
+      }
+
+      class Child extends Parent {
+          @Override
+          void display() throws ArithmeticException { // Unchecked exception
+              System.out.println("Child method");
+          }
+      }
+      ```
+
+3. **Cannot Declare New Checked Exceptions**:
+    - The overriding method cannot declare new checked exceptions that are not declared in the superclass method.
+    - Example:
+      ```java
+      class Parent {
+          void display() throws IOException {
+              System.out.println("Parent method");
+          }
+      }
+
+      class Child extends Parent {
+          @Override
+          void display() throws SQLException { // Compilation error
+              System.out.println("Child method");
+          }
+      }
+      ```
+
+### Key Points:
+- The overriding method can reduce the scope of exceptions but cannot expand it to include new checked exceptions.
+- Unchecked exceptions can be added freely in the overriding method.
+
+### Summary:
+- **Allowed**: Declaring the same exceptions, a subset of exceptions, or additional unchecked exceptions.
+- **Not Allowed**: Declaring new checked exceptions not present in the superclass method.
+
+## 85. Can you have virtual functions in Java?
+
+In Java, all non-static methods are by default **virtual functions**. A virtual function is a method that is resolved at runtime rather than compile time, enabling runtime polymorphism. This behavior is achieved through method overriding.
+
+### Key Features of Virtual Functions in Java:
+
+1. **Default Behavior**:
+    - All non-static, non-final methods in Java are virtual by default.
+    - The method to be executed is determined at runtime based on the actual object type, not the reference type.
+
+2. **Dynamic Method Dispatch**:
+    - Virtual functions enable dynamic method dispatch, where the JVM determines the method to invoke at runtime.
+
+3. **Overriding**:
+    - Virtual functions are typically overridden in subclasses to provide specific behavior.
+
+4. **Static and Final Methods**:
+    - Static methods are not virtual because they are resolved at compile time.
+    - Final methods cannot be overridden, so they are not virtual.
+
+### Example:
+
+```java
+class Parent {
+    void display() {
+        System.out.println("Display method in Parent class");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void display() {
+        System.out.println("Display method in Child class");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent obj = new Child(); // Upcasting
+        obj.display(); // Output: Display method in Child class
+    }
+}
+```
+
+### Key Points:
+- Virtual functions are a cornerstone of Java's object-oriented programming model, enabling polymorphism.
+- The `final` keyword can be used to prevent a method from being virtual.
+
+In summary, Java inherently supports virtual functions for all non-static, non-final methods, allowing dynamic behavior through method overriding.
+
+
+
+## 86. What is Abstraction? What is Abstract class? When Abstract methods are used?
+
+### What is Abstraction?
+
+Abstraction in Java is the process of hiding implementation details and exposing only the essential features of an object. It focuses on "what" an object does rather than "how" it does it. Abstraction is achieved in Java using **abstract classes** and **interfaces**.
+
+### Key Features of Abstraction:
+1. **Hides Complexity**:
+    - Abstraction hides the internal implementation details and shows only the functionality to the user.
+2. **Achieved Using**:
+    - Abstract classes and interfaces.
+3. **Improves Modularity**:
+    - By separating the implementation from the interface, abstraction promotes modularity and flexibility.
+
+---
+
+### What is an Abstract Class?
+
+An abstract class in Java is a class that is declared with the `abstract` keyword. It cannot be instantiated directly and is meant to be extended by subclasses. Abstract classes can have both abstract methods (without implementation) and concrete methods (with implementation).
+
+### Key Features of Abstract Classes:
+1. **Cannot Be Instantiated**:
+    - Abstract classes cannot be used to create objects directly.
+2. **Can Have Both Abstract and Concrete Methods**:
+    - Abstract methods must be implemented by subclasses.
+    - Concrete methods can provide default behavior.
+3. **Can Have Fields**:
+    - Abstract classes can have instance variables and constructors.
+4. **Supports Partial Abstraction**:
+    - Abstract classes allow partial abstraction, meaning they can have both abstract and non-abstract methods.
+
+---
+
+### When Are Abstract Methods Used?
+
+Abstract methods are used when a class wants to enforce that its subclasses provide specific implementations for certain behaviors. An abstract method is declared without a body and must be implemented by any concrete subclass.
+
+### Key Features of Abstract Methods:
+1. **No Implementation**:
+    - Abstract methods do not have a body and are declared with the `abstract` keyword.
+2. **Must Be Overridden**:
+    - Subclasses must provide an implementation for all abstract methods of the parent class.
+3. **Defined in Abstract Classes**:
+    - Abstract methods can only exist in abstract classes.
+
+---
+
+### Example:
+
+#### Abstract Class and Abstract Method:
+```java
+abstract class Animal {
+     abstract void sound(); // Abstract method
+
+     void eat() { // Concrete method
+          System.out.println("This animal eats food.");
+     }
+}
+
+class Dog extends Animal {
+     @Override
+     void sound() {
+          System.out.println("The dog barks.");
+     }
+}
+
+public class Main {
+     public static void main(String[] args) {
+          Animal animal = new Dog(); // Upcasting
+          animal.sound(); // Output: The dog barks.
+          animal.eat();   // Output: This animal eats food.
+     }
+}
+```
+
+---
+
+### Key Differences Between Abstract Classes and Interfaces:
+
+| Feature                  | Abstract Class                     | Interface                          |
+|--------------------------|-------------------------------------|------------------------------------|
+| **Methods**              | Can have both abstract and concrete methods. | All methods are abstract (until Java 8). |
+| **Fields**               | Can have instance variables.       | Can only have `public static final` constants. |
+| **Inheritance**          | A class can extend only one abstract class. | A class can implement multiple interfaces. |
+
+---
+
+### Use Cases:
+- Use **abstract classes** when you want to provide a common base with some shared implementation.
+- Use **abstract methods** to enforce that subclasses must implement specific behaviors.
+
+Abstraction is a powerful concept in Java that simplifies complex systems by focusing on essential details while hiding unnecessary implementation specifics.
+
+## 87. What is Serialization? Why? How? When?
+
+### What is Serialization?
+
+Serialization in Java is the process of converting an object into a byte stream so that it can be stored in a file, transmitted over a network, or saved in a database. The byte stream contains the object's state, which can later be reconstructed into the original object through deserialization.
+
+### Why is Serialization Used?
+
+1. **Persistence**:
+    - Serialization allows objects to be saved to a file or database for later use.
+
+2. **Communication**:
+    - Enables objects to be transmitted over a network between different systems or applications.
+
+3. **Caching**:
+    - Serialized objects can be cached to improve performance by avoiding repeated computations.
+
+4. **Deep Copy**:
+    - Serialization can be used to create a deep copy of an object.
+
+### How is Serialization Done?
+
+1. **Implementing `Serializable` Interface**:
+    - A class must implement the `java.io.Serializable` interface to enable serialization. This is a marker interface with no methods.
+
+2. **Using `ObjectOutputStream`**:
+    - The `ObjectOutputStream` class is used to write the object to a file or output stream.
+
+3. **Using `ObjectInputStream`**:
+    - The `ObjectInputStream` class is used to read the object from a file or input stream.
+
+### Example:
+
+#### Serialization:
+```java
+import java.io.*;
+
+class Person implements Serializable {
+     private static final long serialVersionUID = 1L; // Recommended for Serializable classes
+     String name;
+     int age;
+
+     Person(String name, int age) {
+          this.name = name;
+          this.age = age;
+     }
+}
+
+public class SerializationExample {
+     public static void main(String[] args) {
+          Person person = new Person("Alice", 30);
+
+          try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.ser"))) {
+                oos.writeObject(person); // Serialize the object
+                System.out.println("Object serialized successfully.");
+          } catch (IOException e) {
+                e.printStackTrace();
+          }
+     }
+}
+```
+
+#### Deserialization:
+```java
+import java.io.*;
+
+public class DeserializationExample {
+     public static void main(String[] args) {
+          try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.ser"))) {
+                Person person = (Person) ois.readObject(); // Deserialize the object
+                System.out.println("Name: " + person.name);
+                System.out.println("Age: " + person.age);
+          } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+          }
+     }
+}
+```
+
+### When is Serialization Used?
+
+1. **Distributed Systems**:
+    - Serialization is used in distributed systems like RMI (Remote Method Invocation) to send objects between JVMs.
+
+2. **File Storage**:
+    - To save the state of an object to a file for later retrieval.
+
+3. **Network Communication**:
+    - To send objects over a network in applications like web services or messaging systems.
+
+4. **Caching**:
+    - To store serialized objects in memory or disk for faster access.
+
+### Key Points:
+- **Transient Fields**: Fields marked as `transient` are not serialized.
+- **serialVersionUID**: Used to ensure compatibility during deserialization.
+- **Not Serializable**: Classes that do not implement `Serializable` cannot be serialized.
+
+Serialization is a powerful mechanism in Java for persisting and transmitting objects, making it essential for building robust and scalable applications.
+
+
+## 88. How can you avoid serialization in the child class if the base class is implementing the Serializable interface?
+
+If the base class implements the `Serializable` interface, the child class will also be serializable by default. However, you can prevent the child class from being serialized by overriding the `writeObject()` and `readObject()` methods in the child class and throwing a `NotSerializableException`.
+
+### Example:
+
+```java
+import java.io.*;
+
+class BaseClass implements Serializable {
+    private static final long serialVersionUID = 1L;
+    String baseField;
+
+    BaseClass(String baseField) {
+        this.baseField = baseField;
+    }
+}
+
+class ChildClass extends BaseClass {
+    private static final long serialVersionUID = 1L;
+    String childField;
+
+    ChildClass(String baseField, String childField) {
+        super(baseField);
+        this.childField = childField;
+    }
+
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        throw new NotSerializableException("ChildClass cannot be serialized");
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException {
+        throw new NotSerializableException("ChildClass cannot be deserialized");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ChildClass child = new ChildClass("Base Data", "Child Data");
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data.ser"))) {
+            oos.writeObject(child); // This will throw NotSerializableException
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+```
+
+### Output:
+
+```
+ChildClass cannot be serialized
+```
+
+### Key Points:
+1. **Override `writeObject()` and `readObject()`**:
+    - By overriding these methods in the child class and throwing a `NotSerializableException`, you can prevent the child class from being serialized or deserialized.
+
+2. **Use Case**:
+    - This approach is useful when you want to ensure that certain subclasses of a serializable base class are not serializable.
+
+By explicitly handling serialization in the child class, you can control its behavior and prevent unintended serialization. 
+
+
+
+## 89. Explain Exception. What? How? When? Why?
+
+### What is an Exception?
+An **exception** in Java is an event that disrupts the normal flow of a program's execution. It is an object that represents an error or an unexpected condition that occurs during runtime.
+
+### How Does Exception Handling Work?
+Java provides a robust mechanism for handling exceptions using the `try`, `catch`, `finally`, `throw`, and `throws` keywords. The process involves:
+1. **Try Block**: Code that might throw an exception is placed inside a `try` block.
+2. **Catch Block**: Handles the exception if it occurs.
+3. **Finally Block**: Executes code (optional) regardless of whether an exception occurred or not.
+4. **Throw Statement**: Used to explicitly throw an exception.
+5. **Throws Clause**: Declares exceptions that a method might throw.
+
+#### Example:
+```java
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0; // This will throw an ArithmeticException
+        } catch (ArithmeticException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        } finally {
+            System.out.println("Execution completed.");
+        }
+    }
+}
+```
+
+### When Do Exceptions Occur?
+Exceptions occur during runtime when the program encounters an error or an unexpected condition. Common scenarios include:
+- Dividing by zero (`ArithmeticException`).
+- Accessing an invalid array index (`ArrayIndexOutOfBoundsException`).
+- Attempting to access a `null` object reference (`NullPointerException`).
+- File not found during file operations (`FileNotFoundException`).
+
+### Why Use Exception Handling?
+1. **Error Recovery**: Allows the program to recover gracefully from errors.
+2. **Code Clarity**: Separates error-handling code from regular logic.
+3. **Program Stability**: Prevents abrupt termination of the program.
+4. **Debugging**: Provides detailed information about the error through stack traces.
+
+### Types of Exceptions:
+1. **Checked Exceptions**:
+   - Must be declared in the `throws` clause or handled using `try-catch`.
+   - Example: `IOException`, `SQLException`.
+
+2. **Unchecked Exceptions**:
+   - Do not need to be declared or handled explicitly.
+   - Example: `NullPointerException`, `ArithmeticException`.
+
+3. **Errors**:
+   - Represent serious issues that applications should not try to handle.
+   - Example: `OutOfMemoryError`, `StackOverflowError`.
+
+### Key Points:
+- Use `try-catch` to handle exceptions and ensure program stability.
+- Always clean up resources (e.g., files, database connections) in the `finally` block or use try-with-resources.
+- Avoid catching generic exceptions like `Exception` or `Throwable` unless necessary.
+
+### Summary:
+Exceptions are a critical part of Java's error-handling mechanism, enabling developers to write robust and fault-tolerant programs. Proper exception handling ensures that errors are managed gracefully without crashing the application.
+
+
+
+## 90. What is a User-Defined Exception in Java?
+
+A **user-defined exception** in Java is a custom exception class created by the programmer to handle specific application-level errors. It extends the `Exception` class (for checked exceptions) or the `RuntimeException` class (for unchecked exceptions).
+
+### Why Use User-Defined Exceptions?
+1. **Custom Error Handling**: Provides meaningful error messages specific to the application.
+2. **Improved Readability**: Makes the code easier to understand by defining domain-specific exceptions.
+3. **Separation of Concerns**: Allows better separation of error-handling logic from the main application logic.
+
+---
+
+### How to Create a User-Defined Exception?
+
+1. **Extend the `Exception` Class**:
+    - For checked exceptions, extend the `Exception` class.
+    - Example:
+      ```java
+      class MyCheckedException extends Exception {
+            public MyCheckedException(String message) {
+                 super(message);
+            }
+      }
+      ```
+
+2. **Extend the `RuntimeException` Class**:
+    - For unchecked exceptions, extend the `RuntimeException` class.
+    - Example:
+      ```java
+      class MyUncheckedException extends RuntimeException {
+            public MyUncheckedException(String message) {
+                 super(message);
+            }
+      }
+      ```
+
+---
+
+### Example of a User-Defined Checked Exception:
+
+```java
+class InvalidAgeException extends Exception {
+     public InvalidAgeException(String message) {
+          super(message);
+     }
+}
+
+public class Main {
+     public static void validateAge(int age) throws InvalidAgeException {
+          if (age < 18) {
+                throw new InvalidAgeException("Age must be 18 or above.");
+          }
+          System.out.println("Age is valid.");
+     }
+
+     public static void main(String[] args) {
+          try {
+                validateAge(16);
+          } catch (InvalidAgeException e) {
+                System.out.println("Exception caught: " + e.getMessage());
+          }
+     }
+}
+```
+
+---
+
+### Example of a User-Defined Unchecked Exception:
+
+```java
+class NegativeNumberException extends RuntimeException {
+     public NegativeNumberException(String message) {
+          super(message);
+     }
+}
+
+public class Main {
+     public static int square(int number) {
+          if (number < 0) {
+                throw new NegativeNumberException("Number must be non-negative.");
+          }
+          return number * number;
+     }
+
+     public static void main(String[] args) {
+          try {
+                System.out.println(square(-5));
+          } catch (NegativeNumberException e) {
+                System.out.println("Exception caught: " + e.getMessage());
+          }
+     }
+}
+```
+
+---
+
+### Key Points:
+1. **Checked vs. Unchecked**:
+    - Use checked exceptions for recoverable errors.
+    - Use unchecked exceptions for programming errors or invalid states.
+
+2. **Best Practices**:
+    - Provide meaningful error messages.
+    - Avoid overusing custom exceptions; use standard exceptions when applicable.
+
+3. **Hierarchy**:
+    - Custom exceptions should follow the standard exception hierarchy for consistency.
+
+---
+
+### Summary:
+User-defined exceptions allow developers to create application-specific error-handling mechanisms. By extending `Exception` or `RuntimeException`, you can define meaningful exceptions that improve code clarity and robustness.
+
+
+
+## 91. Explain the Hierarchy of Java Exception Classes
+
+The Java Exception class hierarchy is part of the `java.lang` package and is rooted at the `Throwable` class. It is divided into two main branches: **Error** and **Exception**.
+
+### 1. **`Throwable` Class**
+- The root class of the exception hierarchy.
+- Only objects of type `Throwable` or its subclasses can be thrown or caught.
+- Divided into two main subclasses:
+    - **`Error`**
+    - **`Exception`**
+
+---
+
+### 2. **`Error` Class**
+- Represents serious issues that applications should not try to handle.
+- Typically caused by the environment or JVM (e.g., memory issues).
+- Examples:
+    - `OutOfMemoryError`
+    - `StackOverflowError`
+    - `VirtualMachineError`
+
+---
+
+### 3. **`Exception` Class**
+- Represents conditions that applications might want to catch and handle.
+- Divided into two categories:
+    - **Checked Exceptions**
+    - **Unchecked Exceptions**
+
+---
+
+#### **Checked Exceptions**
+- Must be declared in the `throws` clause or handled using `try-catch`.
+- Represent recoverable conditions.
+- Examples:
+    - `IOException`
+    - `SQLException`
+    - `ClassNotFoundException`
+
+---
+
+#### **Unchecked Exceptions**
+- Do not need to be declared or handled explicitly.
+- Represent programming errors or invalid states.
+- Subclassed from `RuntimeException`.
+- Examples:
+    - `NullPointerException`
+    - `ArrayIndexOutOfBoundsException`
+    - `IllegalArgumentException`
+
+---
+
+### Exception Hierarchy Diagram
+
+```
+Throwable
+├── Error
+│   ├── OutOfMemoryError
+│   ├── StackOverflowError
+│   └── VirtualMachineError
+└── Exception
+        ├── IOException (Checked)
+        │   ├── FileNotFoundException
+        │   └── EOFException
+        ├── SQLException (Checked)
+        ├── RuntimeException (Unchecked)
+        │   ├── NullPointerException
+        │   ├── ArrayIndexOutOfBoundsException
+        │   ├── IllegalArgumentException
+        │   └── ArithmeticException
+        └── ClassNotFoundException (Checked)
+```
+
+---
+
+### Key Points:
+1. **`Throwable`**:
+     - Root of the hierarchy.
+     - Divided into `Error` and `Exception`.
+
+2. **`Error`**:
+     - Represents critical issues that are not meant to be handled by applications.
+
+3. **`Exception`**:
+     - Represents conditions that can be handled.
+     - Further divided into checked and unchecked exceptions.
+
+4. **Best Practices**:
+     - Handle checked exceptions to ensure program stability.
+     - Avoid catching `Error` or `Throwable` unless absolutely necessary.
+
+---
+
+### Summary:
+The Java Exception hierarchy is rooted at the `Throwable` class and is divided into `Error` (critical issues) and `Exception` (recoverable conditions). Understanding this hierarchy helps in writing robust and maintainable error-handling code.
+
+
+
+## 92. Difference Between an Error and an Exception
+
+In Java, both **Error** and **Exception** are subclasses of the `Throwable` class, but they represent different types of issues that can occur during the execution of a program.
+
+### Key Differences:
+
+| Feature                  | Error                              | Exception                          |
+|--------------------------|-------------------------------------|------------------------------------|
+| **Definition**           | Represents serious issues that applications should not try to handle. | Represents conditions that applications might want to catch and handle. |
+| **Recoverability**       | Generally not recoverable.         | Can often be recovered by handling the exception. |
+| **Examples**             | `OutOfMemoryError`, `StackOverflowError`, `VirtualMachineError` | `IOException`, `SQLException`, `NullPointerException`, `ArithmeticException` |
+| **Cause**                | Typically caused by the environment or JVM. | Typically caused by application-level issues or invalid input. |
+| **Handling**             | Should not be caught or handled by the application. | Should be caught and handled using `try-catch` blocks. |
+| **Hierarchy**            | Subclass of `Throwable`.           | Subclass of `Throwable`. Further divided into checked and unchecked exceptions. |
+
+---
+
+### Example of an Error:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // Example of StackOverflowError
+        recursiveMethod();
+    }
+
+    public static void recursiveMethod() {
+        recursiveMethod(); // Causes StackOverflowError
+    }
+}
+```
+
+---
+
+### Example of an Exception:
+
+```java
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Example of FileNotFoundException
+            File file = new File("nonexistent.txt");
+            Scanner scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+}
+```
+
+---
+
+### Key Points:
+1. **Error**:
+   - Represents critical issues that are beyond the application's control.
+   - Examples: `OutOfMemoryError`, `StackOverflowError`.
+
+2. **Exception**:
+   - Represents issues that can be handled by the application.
+   - Examples: `IOException`, `NullPointerException`.
+
+3. **Best Practices**:
+   - Do not catch `Error` or `Throwable` unless absolutely necessary.
+   - Handle exceptions gracefully to ensure program stability.
+
+---
+
+### Summary:
+Errors represent critical issues that are typically not recoverable, while exceptions represent conditions that can often be handled by the application. Proper exception handling ensures robust and fault-tolerant programs.
+
+
+
+## 93. Explain Runtime Exceptions
+
+### What Are Runtime Exceptions?
+
+Runtime exceptions in Java are a type of unchecked exception that occur during the execution of a program. They are subclasses of the `RuntimeException` class and do not need to be declared in the `throws` clause or explicitly handled using `try-catch` blocks.
+
+### Key Features of Runtime Exceptions:
+1. **Unchecked Exceptions**:
+    - Runtime exceptions are unchecked, meaning the compiler does not enforce handling or declaration.
+2. **Programming Errors**:
+    - Typically caused by logical errors or invalid operations in the program.
+3. **Subclasses of `RuntimeException`**:
+    - Examples include `NullPointerException`, `ArrayIndexOutOfBoundsException`, and `ArithmeticException`.
+
+---
+
+### Common Examples of Runtime Exceptions:
+
+1. **`NullPointerException`**:
+    - Occurs when attempting to access a method or field on a `null` object reference.
+    - Example:
+      ```java
+      String str = null;
+      System.out.println(str.length()); // Throws NullPointerException
+      ```
+
+2. **`ArrayIndexOutOfBoundsException`**:
+    - Occurs when accessing an array with an invalid index.
+    - Example:
+      ```java
+      int[] arr = {1, 2, 3};
+      System.out.println(arr[5]); // Throws ArrayIndexOutOfBoundsException
+      ```
+
+3. **`ArithmeticException`**:
+    - Occurs during invalid arithmetic operations, such as division by zero.
+    - Example:
+      ```java
+      int result = 10 / 0; // Throws ArithmeticException
+      ```
+
+4. **`ClassCastException`**:
+    - Occurs when attempting to cast an object to a subclass it does not belong to.
+    - Example:
+      ```java
+      Object obj = "Java";
+      Integer num = (Integer) obj; // Throws ClassCastException
+      ```
+
+5. **`IllegalArgumentException`**:
+    - Occurs when a method receives an invalid argument.
+    - Example:
+      ```java
+      Thread thread = new Thread();
+      thread.setPriority(11); // Throws IllegalArgumentException
+      ```
+
+---
+
+### When to Handle Runtime Exceptions:
+1. **Avoid Handling**:
+    - Runtime exceptions often indicate programming errors that should be fixed rather than handled.
+2. **Handle When Necessary**:
+    - Handle runtime exceptions only when they are expected and can be recovered from, such as user input validation.
+
+---
+
+### Best Practices:
+1. **Prevent Instead of Handle**:
+    - Write robust code to prevent runtime exceptions, such as checking for `null` values or validating inputs.
+2. **Avoid Catching `RuntimeException`**:
+    - Do not catch `RuntimeException` or its subclasses unless absolutely necessary, as it can mask programming errors.
+3. **Use Defensive Programming**:
+    - Validate inputs and handle edge cases to minimize the occurrence of runtime exceptions.
+
+---
+
+### Summary:
+Runtime exceptions are unchecked exceptions that occur during program execution due to logical errors or invalid operations. While they do not require explicit handling, writing robust and defensive code can help prevent them, ensuring a more stable and reliable application.
+
+
+
+## 94. What is the Difference Between Checked Exception and Unchecked Exception?
+
+### Checked Exception
+Checked exceptions are exceptions that are checked at compile time. The compiler ensures that these exceptions are either handled using a `try-catch` block or declared in the `throws` clause of the method.
+
+#### Key Features:
+1. **Compile-Time Checking**:
+    - The compiler enforces handling or declaration of checked exceptions.
+2. **Recoverable Conditions**:
+    - Represent conditions that the application can recover from, such as file not found or database connection issues.
+3. **Examples**:
+    - `IOException`
+    - `SQLException`
+    - `ClassNotFoundException`
+
+#### Example:
+```java
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main {
+     public static void main(String[] args) {
+          try {
+                Scanner scanner = new Scanner(new File("nonexistent.txt")); // Checked exception
+          } catch (FileNotFoundException e) {
+                System.out.println("File not found: " + e.getMessage());
+          }
+     }
+}
+```
+
+---
+
+### Unchecked Exception
+Unchecked exceptions are exceptions that are not checked at compile time. These exceptions occur due to programming errors and do not require explicit handling or declaration.
+
+#### Key Features:
+1. **Runtime Checking**:
+    - The compiler does not enforce handling or declaration of unchecked exceptions.
+2. **Programming Errors**:
+    - Represent issues like logical errors or invalid operations, such as dividing by zero or accessing a null reference.
+3. **Examples**:
+    - `NullPointerException`
+    - `ArrayIndexOutOfBoundsException`
+    - `ArithmeticException`
+
+#### Example:
+```java
+public class Main {
+     public static void main(String[] args) {
+          int[] arr = {1, 2, 3};
+          System.out.println(arr[5]); // Unchecked exception
+     }
+}
+```
+
+---
+
+### Key Differences:
+
+| Feature                  | Checked Exception                  | Unchecked Exception                |
+|--------------------------|-------------------------------------|------------------------------------|
+| **Compile-Time Checking**| Checked at compile time            | Not checked at compile time        |
+| **Declaration**          | Must be declared in the `throws` clause or handled using `try-catch` | No need to declare or handle explicitly |
+| **Cause**                | External conditions (e.g., file not found, database issues) | Programming errors (e.g., null references, invalid array indices) |
+| **Examples**             | `IOException`, `SQLException`      | `NullPointerException`, `ArithmeticException` |
+
+---
+
+### When to Use:
+- **Checked Exceptions**:
+  - Use for recoverable conditions where the application can take corrective action.
+- **Unchecked Exceptions**:
+  - Use for programming errors that should be fixed rather than handled.
+
+---
+
+### Summary:
+Checked exceptions are enforced by the compiler and represent recoverable conditions, while unchecked exceptions occur at runtime and typically indicate programming errors. Proper handling of checked exceptions ensures robust error management, while unchecked exceptions should be prevented through defensive programming.
+
+
+## 95. What is the Base Class for Error and Exception?
+
+The base class for both `Error` and `Exception` in Java is the `Throwable` class. It is the root class of the exception hierarchy in Java and is part of the `java.lang` package.
+
+### Key Features of `Throwable`:
+1. **Root Class**:
+    - `Throwable` is the superclass of all errors and exceptions in Java.
+2. **Two Main Subclasses**:
+    - `Error`: Represents serious issues that applications should not try to handle (e.g., `OutOfMemoryError`).
+    - `Exception`: Represents conditions that applications might want to catch and handle (e.g., `IOException`).
+3. **Methods**:
+    - Provides methods like `getMessage()`, `printStackTrace()`, and `getCause()` to retrieve details about the error or exception.
+
+### Hierarchy:
+```
+Throwable
+├── Error
+│   ├── OutOfMemoryError
+│   ├── StackOverflowError
+│   └── VirtualMachineError
+└── Exception
+     ├── IOException
+     ├── SQLException
+     ├── RuntimeException
+     │   ├── NullPointerException
+     │   ├── ArrayIndexOutOfBoundsException
+     │   └── ArithmeticException
+     └── ClassNotFoundException
+```
+
+### Example:
+```java
+public class Main {
+     public static void main(String[] args) {
+          try {
+                throw new Exception("This is an exception");
+          } catch (Throwable t) { // Catching Throwable
+                System.out.println("Caught: " + t.getClass().getName());
+                System.out.println("Message: " + t.getMessage());
+          }
+     }
+}
+```
+
+### Key Points:
+- `Throwable` is the root class for all errors and exceptions.
+- It is rarely used directly; instead, its subclasses (`Error` and `Exception`) are used for error handling.
+- Avoid catching `Throwable` unless absolutely necessary, as it includes both recoverable exceptions and critical errors.
+
+### Summary:
+The `Throwable` class is the base class for both `Error` and `Exception` in Java, providing the foundation for Java's error and exception handling mechanism.
+
+
+
+## 96. Is it Necessary That Each Try Block Must Be Followed by a Catch Block?
+
+No, it is not necessary for every `try` block to be followed by a `catch` block. A `try` block can also be followed by a `finally` block, or it can have both `catch` and `finally` blocks.
+
+### Key Points:
+1. **`try` with `catch`**:
+    - Use a `catch` block to handle exceptions that may occur in the `try` block.
+    - Example:
+      ```java
+      try {
+            int result = 10 / 0;
+      } catch (ArithmeticException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+      }
+      ```
+
+2. **`try` with `finally`**:
+    - Use a `finally` block to execute code that must run regardless of whether an exception occurs or not.
+    - Example:
+      ```java
+      try {
+            int result = 10 / 0;
+      } finally {
+            System.out.println("Finally block executed.");
+      }
+      ```
+
+3. **`try` with Both `catch` and `finally`**:
+    - You can use both `catch` and `finally` blocks together.
+    - Example:
+      ```java
+      try {
+            int result = 10 / 0;
+      } catch (ArithmeticException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+      } finally {
+            System.out.println("Finally block executed.");
+      }
+      ```
+
+4. **`try` Without `catch` or `finally`**:
+    - This is not allowed. A `try` block must be followed by at least one `catch` or `finally` block.
+
+### Summary:
+- A `try` block must be followed by either a `catch` block, a `finally` block, or both.
+- The `catch` block is used for exception handling, while the `finally` block is used for cleanup operations that must execute regardless of exceptions.
+
+
+
+## 97. What is Exception Propagation?
+
+Exception propagation in Java refers to the process by which an exception is passed up the call stack until it is caught by an appropriate `catch` block or causes the program to terminate. If a method does not handle an exception using a `try-catch` block, the exception is propagated to the calling method.
+
+### How Does Exception Propagation Work?
+
+1. **Unchecked Exceptions**:
+    - For unchecked exceptions (subclasses of `RuntimeException`), propagation happens automatically. If a method does not handle the exception, it is passed to the caller.
+
+2. **Checked Exceptions**:
+    - For checked exceptions, the method must either handle the exception using a `try-catch` block or declare it using the `throws` keyword. If not handled, the exception is propagated to the caller.
+
+### Example of Exception Propagation:
+
+```java
+public class Main {
+     public static void methodA() {
+          int result = 10 / 0; // Throws ArithmeticException
+     }
+
+     public static void methodB() {
+          methodA(); // Propagates exception to methodB
+     }
+
+     public static void main(String[] args) {
+          try {
+                methodB(); // Propagates exception to main
+          } catch (ArithmeticException e) {
+                System.out.println("Exception caught in main: " + e.getMessage());
+          }
+     }
+}
+```
+
+**Output**:
+```
+Exception caught in main: / by zero
+```
+
+### Key Points:
+1. **Automatic for Unchecked Exceptions**:
+    - Unchecked exceptions are automatically propagated up the call stack.
+
+2. **Declaration for Checked Exceptions**:
+    - Checked exceptions must be declared using `throws` or handled explicitly.
+
+3. **Call Stack**:
+    - The exception is propagated up the call stack until it is caught or reaches the `main` method, where it terminates the program if uncaught.
+
+### When to Use Exception Propagation:
+- Use exception propagation to delegate error handling to higher-level methods, especially when the current method cannot resolve the issue.
+
+### Summary:
+Exception propagation allows exceptions to move up the call stack until they are handled. It simplifies error handling by enabling methods to delegate exception handling to their callers.
+
+
+
+## 98. What Will Happen if You Put `System.exit(0)` in the `try` or `catch` Block? Will the `finally` Block Execute?
+
+If you call `System.exit(0)` in the `try` or `catch` block, the `finally` block will **not execute**. This is because `System.exit(0)` terminates the JVM immediately, skipping any remaining code, including the `finally` block.
+
+### Explanation:
+1. **`System.exit(0)`**:
+    - Terminates the JVM and halts the program.
+    - The `0` indicates normal termination, while non-zero values indicate abnormal termination.
+
+2. **`finally` Block**:
+    - Normally, the `finally` block is guaranteed to execute after the `try` or `catch` block, regardless of whether an exception occurs.
+    - However, if the JVM is terminated (e.g., via `System.exit()`), the `finally` block is skipped.
+
+### Example:
+
+```java
+public class Main {
+     public static void main(String[] args) {
+          try {
+                System.out.println("In try block");
+                System.exit(0); // Terminates the JVM
+          } catch (Exception e) {
+                System.out.println("In catch block");
+          } finally {
+                System.out.println("In finally block"); // Will not execute
+          }
+     }
+}
+```
+
+**Output**:
+```
+In try block
+```
+
+### Key Points:
+- The `finally` block is skipped if `System.exit()` is called in the `try` or `catch` block.
+- This behavior occurs because `System.exit()` halts the JVM, preventing further code execution.
+
+### When to Avoid:
+- Avoid using `System.exit()` in scenarios where cleanup operations in the `finally` block are critical (e.g., closing resources, releasing locks).
+
+### Summary:
+If `System.exit(0)` is called in the `try` or `catch` block, the `finally` block will not execute because the JVM terminates immediately. Use `System.exit()` cautiously to avoid skipping important cleanup operations.
+
+
+
+## 99. What Do You Understand by Object Cloning and How Do You Achieve It in Java?
+
+### What is Object Cloning?
+Object cloning in Java is the process of creating an exact copy of an object. The new object is a duplicate of the original object, with the same values for its fields. Cloning is typically used when you need to create a copy of an object without modifying the original.
+
+### How to Achieve Object Cloning in Java?
+Java provides the `clone()` method in the `Object` class to support cloning. To enable cloning for a class, the following steps are required:
+
+1. **Implement the `Cloneable` Interface**:
+    - The class must implement the `Cloneable` interface to indicate that it supports cloning.
+    - The `Cloneable` interface is a marker interface (it does not contain any methods).
+
+2. **Override the `clone()` Method**:
+    - The `clone()` method in the `Object` class is `protected` by default. You need to override it in your class and make it `public`.
+
+3. **Call `super.clone()`**:
+    - Use `super.clone()` to create a shallow copy of the object.
+
+---
+
+### Example of Object Cloning:
+
+```java
+class Person implements Cloneable {
+     private String name;
+     private int age;
+
+     public Person(String name, int age) {
+          this.name = name;
+          this.age = age;
+     }
+
+     // Getters and Setters
+     public String getName() {
+          return name;
+     }
+
+     public void setName(String name) {
+          this.name = name;
+     }
+
+     public int getAge() {
+          return age;
+     }
+
+     public void setAge(int age) {
+          this.age = age;
+     }
+
+     // Overriding the clone() method
+     @Override
+     public Object clone() throws CloneNotSupportedException {
+          return super.clone();
+     }
+
+     @Override
+     public String toString() {
+          return "Person{name='" + name + "', age=" + age + "}";
+     }
+}
+
+public class Main {
+     public static void main(String[] args) {
+          try {
+                Person person1 = new Person("Alice", 30);
+                Person person2 = (Person) person1.clone(); // Cloning person1
+
+                // Modifying the cloned object
+                person2.setName("Bob");
+
+                System.out.println("Original: " + person1); // Output: Person{name='Alice', age=30}
+                System.out.println("Cloned: " + person2);   // Output: Person{name='Bob', age=30}
+          } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+          }
+     }
+}
+```
+
+---
+
+### Types of Cloning:
+1. **Shallow Cloning**:
+    - Copies the fields of the object as-is.
+    - If the object contains references to other objects, only the references are copied, not the actual objects.
+    - Achieved using `super.clone()`.
+
+2. **Deep Cloning**:
+    - Creates a copy of the object and all the objects it references.
+    - Requires manual implementation by cloning each referenced object.
+
+---
+
+### Example of Deep Cloning:
+
+```java
+class Address implements Cloneable {
+     private String city;
+
+     public Address(String city) {
+          this.city = city;
+     }
+
+     public String getCity() {
+          return city;
+     }
+
+     public void setCity(String city) {
+          this.city = city;
+     }
+
+     @Override
+     public Object clone() throws CloneNotSupportedException {
+          return super.clone();
+     }
+
+     @Override
+     public String toString() {
+          return "Address{city='" + city + "'}";
+     }
+}
+
+class Employee implements Cloneable {
+     private String name;
+     private Address address;
+
+     public Employee(String name, Address address) {
+          this.name = name;
+          this.address = address;
+     }
+
+     public String getName() {
+          return name;
+     }
+
+     public void setName(String name) {
+          this.name = name;
+     }
+
+     public Address getAddress() {
+          return address;
+     }
+
+     public void setAddress(Address address) {
+          this.address = address;
+     }
+
+     @Override
+     public Object clone() throws CloneNotSupportedException {
+          Employee cloned = (Employee) super.clone();
+          cloned.address = (Address) address.clone(); // Deep cloning the Address object
+          return cloned;
+     }
+
+     @Override
+     public String toString() {
+          return "Employee{name='" + name + "', address=" + address + "}";
+     }
+}
+
+public class Main {
+     public static void main(String[] args) {
+          try {
+                Address address = new Address("New York");
+                Employee emp1 = new Employee("Alice", address);
+                Employee emp2 = (Employee) emp1.clone(); // Deep cloning emp1
+
+                // Modifying the cloned object's address
+                emp2.getAddress().setCity("Los Angeles");
+
+                System.out.println("Original: " + emp1); // Output: Employee{name='Alice', address=Address{city='New York'}}
+                System.out.println("Cloned: " + emp2);   // Output: Employee{name='Alice', address=Address{city='Los Angeles'}}
+          } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+          }
+     }
+}
+```
+
+---
+
+### Key Points:
+1. **`Cloneable` Interface**:
+    - Must be implemented to enable cloning.
+    - If not implemented, calling `clone()` will throw a `CloneNotSupportedException`.
+
+2. **Shallow vs. Deep Cloning**:
+    - Shallow cloning copies only the references, while deep cloning creates copies of referenced objects.
+
+3. **Best Practices**:
+    - Use cloning cautiously as it can lead to unexpected behavior if not implemented correctly.
+    - Consider alternatives like copy constructors or serialization for creating object copies.
+
+---
+
+### Summary:
+Object cloning in Java is a mechanism to create a duplicate of an object. It is achieved using the `clone()` method and the `Cloneable` interface. While shallow cloning is straightforward, deep cloning requires additional effort to copy referenced objects. Proper implementation ensures accurate and efficient object duplication.
+
+
+## 100. What is the `final` Keyword in Java? What? When? How? Why?
+
+The `final` keyword in Java is a modifier that can be applied to variables, methods, and classes to impose certain restrictions. It is used to define constants, prevent method overriding, and prevent inheritance.
+
+### What is the `final` Keyword?
+
+1. **Final Variable**:
+    - A variable declared as `final` cannot be reassigned after it is initialized.
+    - Example:
+      ```java
+      final int MAX_VALUE = 100;
+      MAX_VALUE = 200; // Compilation error
+      ```
+
+2. **Final Method**:
+    - A method declared as `final` cannot be overridden by subclasses.
+    - Example:
+      ```java
+      class Parent {
+            public final void display() {
+                 System.out.println("Final method");
+            }
+      }
+
+      class Child extends Parent {
+            // Cannot override display() method
+      }
+      ```
+
+3. **Final Class**:
+    - A class declared as `final` cannot be extended (inherited).
+    - Example:
+      ```java
+      final class FinalClass {
+            // Class cannot be extended
+      }
+
+      class SubClass extends FinalClass { // Compilation error
+      }
+      ```
+
+---
+
+### When to Use the `final` Keyword?
+
+1. **Final Variable**:
+    - Use for constants or values that should not change after initialization.
+    - Example: `final double PI = 3.14159;`
+
+2. **Final Method**:
+    - Use to prevent subclasses from modifying the behavior of a method.
+    - Example: Utility methods or methods critical to the class's functionality.
+
+3. **Final Class**:
+    - Use to prevent inheritance when the class's behavior should not be altered.
+    - Example: Security-related classes or utility classes like `java.lang.String`.
+
+---
+
+### How to Use the `final` Keyword?
+
+1. **Final Variable**:
+    - Must be initialized at the time of declaration or in the constructor.
+    - Example:
+      ```java
+      class Example {
+            final int value;
+
+            Example(int value) {
+                 this.value = value; // Initialized in the constructor
+            }
+      }
+      ```
+
+2. **Final Method**:
+    - Simply add the `final` keyword before the method declaration.
+    - Example:
+      ```java
+      public final void show() {
+            System.out.println("This is a final method.");
+      }
+      ```
+
+3. **Final Class**:
+    - Add the `final` keyword before the class declaration.
+    - Example:
+      ```java
+      public final class Utility {
+            public static void printMessage() {
+                 System.out.println("Utility class");
+            }
+      }
+      ```
+
+---
+
+### Why Use the `final` Keyword?
+
+1. **Immutability**:
+    - Ensures that variables or objects remain constant after initialization.
+
+2. **Security**:
+    - Prevents subclasses from overriding critical methods or altering the behavior of a class.
+
+3. **Performance**:
+    - The JVM can optimize `final` methods and variables for better performance.
+
+4. **Code Clarity**:
+    - Clearly indicates that a variable, method, or class is not meant to be modified.
+
+---
+
+### Key Points:
+- **Final Variables**:
+  - Must be initialized once and cannot be reassigned.
+- **Final Methods**:
+  - Cannot be overridden by subclasses.
+- **Final Classes**:
+  - Cannot be extended.
+- **Best Practices**:
+  - Use `final` for constants, utility methods, and classes that should not be modified.
+
+---
+
+### Summary:
+The `final` keyword in Java is a powerful modifier that enforces immutability and prevents modification of variables, methods, and classes. It is widely used for defining constants, securing methods, and creating immutable classes, ensuring better code stability and clarity.
+
+
+
+## 101. Difference Between `final`, `finally`, and `finalize`
+
+The keywords `final`, `finally`, and `finalize` in Java are often confused due to their similar names, but they serve entirely different purposes.
+
+### Key Differences:
+
+| Feature                  | `final`                           | `finally`                         | `finalize`                        |
+|--------------------------|------------------------------------|------------------------------------|------------------------------------|
+| **Definition**           | A keyword used to declare constants, prevent method overriding, or inheritance. | A block used for cleanup code in exception handling. | A method used by the garbage collector before destroying an object. |
+| **Purpose**              | Immutability or restriction.      | Ensures cleanup code is executed. | Provides a chance to clean up resources before garbage collection. |
+| **Usage Context**        | Variables, methods, and classes.  | Exception handling.               | Garbage collection.               |
+| **When It Executes**     | At compile time.                  | Always executes after `try-catch`. | Called by the garbage collector before object destruction. |
+| **Is It Mandatory?**     | No.                               | No, but recommended for cleanup.  | No, and it is rarely used.        |
+
+---
+
+### 1. **`final` Keyword**
+- **Purpose**: Used to declare constants, prevent method overriding, or inheritance.
+- **Usage**:
+    - **Final Variable**: Cannot be reassigned after initialization.
+    - **Final Method**: Cannot be overridden by subclasses.
+    - **Final Class**: Cannot be extended.
+- **Example**:
+    ```java
+    final int MAX_VALUE = 100; // Final variable
+    final class Utility {      // Final class
+            public final void display() { // Final method
+                    System.out.println("Final method");
+            }
+    }
+    ```
+
+---
+
+### 2. **`finally` Block**
+- **Purpose**: Ensures that cleanup code (e.g., closing resources) is executed regardless of whether an exception occurs.
+- **Usage**:
+    - Used with `try-catch` blocks.
+    - Executes after `try` or `catch`, even if an exception is thrown.
+- **Example**:
+    ```java
+    try {
+            int result = 10 / 0;
+    } catch (ArithmeticException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+    } finally {
+            System.out.println("Finally block executed.");
+    }
+    ```
+
+---
+
+### 3. **`finalize` Method**
+- **Purpose**: Used by the garbage collector to perform cleanup operations before an object is destroyed.
+- **Usage**:
+    - Defined in the `Object` class and can be overridden.
+    - Rarely used in modern Java due to better alternatives like `try-with-resources`.
+- **Example**:
+    ```java
+    class Resource {
+            @Override
+            protected void finalize() throws Throwable {
+                    System.out.println("Finalize method called.");
+            }
+    }
+
+    public class Main {
+            public static void main(String[] args) {
+                    Resource res = new Resource();
+                    res = null; // Eligible for garbage collection
+                    System.gc(); // Request garbage collection
+            }
+    }
+    ```
+
+---
+
+### Key Points:
+1. **`final`**:
+     - Used for immutability and restriction.
+     - Applied to variables, methods, and classes.
+2. **`finally`**:
+     - Ensures cleanup code is executed.
+     - Used in exception handling.
+3. **`finalize`**:
+     - Called by the garbage collector before object destruction.
+     - Rarely used in modern Java.
+
+---
+
+### Summary:
+- Use `final` for constants, securing methods, or preventing inheritance.
+- Use `finally` for cleanup operations in exception handling.
+- Avoid relying on `finalize` for resource management; prefer modern alternatives like `try-with-resources`.
+
+
+
+## 102. What is the Difference Between `this()` and `super()` in Java?
+
+### `this()` in Java
+- **Purpose**: Refers to the current class's constructor.
+- **Usage**: Used to call another constructor in the same class.
+- **Rules**:
+    - Must be the first statement in the constructor.
+    - Helps in constructor chaining within the same class.
+
+#### Example:
+```java
+class Example {
+        Example() {
+                System.out.println("Default constructor");
+        }
+
+        Example(String message) {
+                this(); // Calls the default constructor
+                System.out.println("Parameterized constructor: " + message);
+        }
+}
+
+public class Main {
+        public static void main(String[] args) {
+                Example obj = new Example("Hello");
+                // Output:
+                // Default constructor
+                // Parameterized constructor: Hello
+        }
+}
+```
+
+---
+
+### `super()` in Java
+- **Purpose**: Refers to the parent class's constructor.
+- **Usage**: Used to call a constructor of the immediate superclass.
+- **Rules**:
+    - Must be the first statement in the constructor.
+    - Helps in constructor chaining between parent and child classes.
+
+#### Example:
+```java
+class Parent {
+        Parent() {
+                System.out.println("Parent constructor");
+        }
+}
+
+class Child extends Parent {
+        Child() {
+                super(); // Calls the parent class constructor
+                System.out.println("Child constructor");
+        }
+}
+
+public class Main {
+        public static void main(String[] args) {
+                Child obj = new Child();
+                // Output:
+                // Parent constructor
+                // Child constructor
+        }
+}
+```
+
+---
+
+### Key Differences:
+
+| Feature                  | `this()`                           | `super()`                          |
+|--------------------------|-------------------------------------|------------------------------------|
+| **Purpose**              | Calls a constructor in the same class. | Calls a constructor in the parent class. |
+| **Usage Context**        | Used for constructor chaining within the same class. | Used for constructor chaining between parent and child classes. |
+| **Placement**            | Must be the first statement in the constructor. | Must be the first statement in the constructor. |
+| **Relationship**         | Refers to the current class.        | Refers to the immediate superclass. |
+
+---
+
+### Summary:
+- Use `this()` to call another constructor in the same class.
+- Use `super()` to call a constructor in the parent class.
+- Both must be the first statement in the constructor and are essential for constructor chaining.
+
+
+
+## 103. Crip Notes on Java Keywords
+
+### 1. `abstract`
+- Used to declare a class or method as abstract.
+- Abstract classes cannot be instantiated.
+- Abstract methods must be implemented by subclasses.
+
+### 2. `assert`
+- Used for debugging purposes.
+- Tests assumptions in the code and throws an `AssertionError` if the condition is false.
+
+### 3. `break`
+- Terminates the nearest enclosing loop or `switch` statement.
+
+### 4. `case`
+- Defines a branch in a `switch` statement.
+
+### 5. `catch`
+- Handles exceptions thrown in the `try` block.
+
+### 6. `class`
+- Declares a class.
+
+### 7. `const`
+- Reserved but not used in Java.
+
+### 8. `continue`
+- Skips the current iteration of a loop and proceeds to the next iteration.
+
+### 9. `default`
+- Specifies the default branch in a `switch` statement.
+- Can also define default methods in interfaces (Java 8+).
+
+### 10. `do`
+- Executes a block of code at least once before checking the loop condition.
+
+### 11. `else`
+- Specifies the block of code to execute if the `if` condition is false.
+
+### 12. `enum`
+- Declares an enumerated type, a fixed set of constants.
+
+### 13. `extends`
+- Indicates that a class is inheriting from a superclass.
+
+### 14. `final`
+- Used to declare constants, prevent method overriding, or prevent inheritance of a class.
+
+### 15. `finally`
+- Ensures a block of code is executed after a `try-catch` block, regardless of exceptions.
+
+### 16. `float`
+- Declares a variable as a 32-bit floating-point number.
+
+### 17. `for`
+- A control flow statement for iterating over a range or collection.
+
+### 18. `goto`
+- Reserved but not used in Java.
+
+### 19. `if`
+- Executes a block of code if a specified condition is true.
+
+### 20. `implements`
+- Indicates that a class is implementing an interface.
+
+### 21. `import`
+- Allows the use of classes from other packages.
+
+### 22. `instanceof`
+- Tests whether an object is an instance of a specific class or subclass.
+
+### 23. `int`
+- Declares a variable as a 32-bit integer.
+
+### 24. `interface`
+- Declares an interface, a contract for classes to implement.
+
+### 25. `long`
+- Declares a variable as a 64-bit integer.
+
+### 26. `native`
+- Indicates that a method is implemented in native code (e.g., C/C++).
+
+### 27. `new`
+- Creates new objects.
+
+### 28. `null`
+- Represents the null reference.
+
+### 29. `package`
+- Declares a package, a namespace for organizing classes.
+
+### 30. `private`
+- Specifies that a member is accessible only within its own class.
+
+### 31. `protected`
+- Specifies that a member is accessible within its package and by subclasses.
+
+### 32. `public`
+- Specifies that a member is accessible from any other class.
+
+### 33. `return`
+- Exits from a method and optionally returns a value.
+
+### 34. `short`
+- Declares a variable as a 16-bit integer.
+
+### 35. `static`
+- Declares a member as belonging to the class rather than instances of the class.
+
+### 36. `strictfp`
+- Ensures consistent floating-point calculations across platforms.
+
+### 37. `super`
+- Refers to the immediate superclass of the current object.
+
+### 38. `switch`
+- A control flow statement for multi-way branching.
+
+### 39. `synchronized`
+- Ensures that a block of code or method is thread-safe.
+
+### 40. `this`
+- Refers to the current instance of the class.
+
+### 41. `throw`
+- Used to explicitly throw an exception.
+
+### 42. `throws`
+- Declares exceptions that a method might throw.
+
+### 43. `transient`
+- Prevents a field from being serialized.
+
+### 44. `try`
+- Defines a block of code to test for exceptions.
+
+### 45. `void`
+- Specifies that a method does not return a value.
+
+### 46. `volatile`
+- Indicates that a variable's value may be changed by multiple threads.
+
+### 47. `while`
+- A control flow statement for looping as long as a condition is true.
+
+
+## End of File
+
+This document provides a comprehensive overview of core Java concepts, including object-oriented programming principles, exception handling, and advanced topics like serialization and cloning. It serves as a valuable resource for interview preparation and deepening your understanding of Java fundamentals.

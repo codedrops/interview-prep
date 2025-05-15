@@ -55,6 +55,26 @@ Java Collection interview questions and answers.
 47. [What is the Diamond Operator in Java?](#47-what-is-the-diamond-operator-in-java)
 48. [What is Covariant Method Overriding?](#48-what-is-covariant-method-overriding)
 49. [Difference Between Bounded and Unbounded Wildcards in Generics](#49-difference-between-bounded-and-unbounded-wildcards-in-generics)
+50. [Explain Various Interfaces Used in the Collection Framework](#50-explain-various-interfaces-used-in-the-collection-framework)  
+51. [How Can You Synchronize an ArrayList in Java?](#51-how-can-you-synchronize-an-arraylist-in-java)  
+52. [Why Do We Need a Synchronized ArrayList When We Have Vectors (Which Are Synchronized) in Java?](#52-why-do-we-need-a-synchronized-arraylist-when-we-have-vectors-which-are-synchronized-in-java)  
+53. [Why Can’t We Create a Generic Array?](#53-why-cant-we-create-a-generic-array)  
+54. [How Are Elements Stored in Memory for Regular Arrays and ArrayLists in Java?](#54-how-are-elements-stored-in-memory-for-regular-arrays-and-arraylists-in-java)  
+55. [Explain the Method to Convert ArrayList to Array and Array to ArrayList](#55-explain-the-method-to-convert-arraylist-to-array-and-array-to-arraylist)  
+56. [How Does the Size of ArrayList Grow Dynamically?](#56-how-does-the-size-of-arraylist-grow-dynamically)  
+57. [What is a Vector in Java?](#57-what-is-a-vector-in-java)  
+58. [How to Make Java ArrayList Read-Only?](#58-how-to-make-java-arraylist-read-only)  
+59. [What is a Priority Queue in Java?](#59-what-is-a-priority-queue-in-java)  
+60. [Explain the LinkedList Class](#60-explain-the-linkedlist-class)  
+61. [What is the Stack Class in Java and What Are the Various Methods Provided by It?](#61-what-is-the-stack-class-in-java-and-what-are-the-various-methods-provided-by-it)  
+62. [What is the HashSet Class in Java and How Does It Store Elements?](#62-what-is-the-hashset-class-in-java-and-how-does-it-store-elements)  
+63. [What is LinkedHashSet in Java?](#63-what-is-linkedhashset-in-java)  
+64. [What is a Map Interface?](#64-what-is-a-map-interface)  
+65. [Explain TreeMap](#65-explain-treemap)  
+66. [Can You Use Any Class as a Map Key?](#66-can-you-use-any-class-as-a-map-key)  
+67. [Difference Between `Collection` and `Collections`](#67-difference-between-collection-and-collections)  
+68. [Difference Between Set and Map](#68-difference-between-set-and-map)  
+69. [Explain the FailFast Iterator and FailSafe Iterator](#69-explain-the-failfast-iterator-and-failsafe-iterator)  
 
 
 
@@ -3602,3 +3622,1676 @@ public class Main {
 - **Bounded Wildcards**: Restrict the type to a specific range (`? extends` or `? super`).
 - **Unbounded Wildcards**: Represent an unknown type with no restrictions (`?`).
 - Choose the appropriate wildcard based on whether you need to read, write, or both.
+
+
+# MISC
+
+
+## 50. Explain Various Interfaces Used in the Collection Framework
+
+The Java Collection Framework provides several interfaces that define the standard operations for different types of collections. These interfaces are the foundation of the framework and are implemented by various classes.
+
+### 1. **Collection Interface**
+- The root interface of the Collection Framework.
+- Defines basic operations like `add()`, `remove()`, `size()`, and `iterator()`.
+- Extended by other interfaces like `List`, `Set`, and `Queue`.
+
+#### Key Methods:
+```java
+boolean add(E e);
+boolean remove(Object o);
+int size();
+Iterator<E> iterator();
+```
+
+---
+
+### 2. **List Interface**
+- Represents an ordered collection (sequence) of elements.
+- Allows duplicate elements and provides positional access to elements.
+- Implemented by classes like `ArrayList`, `LinkedList`, and `Vector`.
+
+#### Key Methods:
+```java
+E get(int index);
+E set(int index, E element);
+void add(int index, E element);
+E remove(int index);
+```
+
+---
+
+### 3. **Set Interface**
+- Represents a collection of unique elements.
+- Does not allow duplicate elements.
+- Implemented by classes like `HashSet`, `LinkedHashSet`, and `TreeSet`.
+
+#### Key Methods:
+```java
+boolean add(E e);
+boolean remove(Object o);
+boolean contains(Object o);
+```
+
+---
+
+### 4. **SortedSet Interface**
+- Extends the `Set` interface.
+- Maintains elements in a sorted order (natural or custom).
+- Implemented by `TreeSet`.
+
+#### Key Methods:
+```java
+E first();
+E last();
+SortedSet<E> headSet(E toElement);
+SortedSet<E> tailSet(E fromElement);
+```
+
+---
+
+### 5. **Queue Interface**
+- Represents a collection designed for holding elements prior to processing.
+- Typically follows FIFO (First-In-First-Out) order.
+- Implemented by classes like `LinkedList`, `PriorityQueue`, and `ArrayDeque`.
+
+#### Key Methods:
+```java
+boolean offer(E e);
+E poll();
+E peek();
+```
+
+---
+
+### 6. **Deque Interface**
+- Extends the `Queue` interface.
+- Supports insertion and removal of elements from both ends (double-ended queue).
+- Implemented by `ArrayDeque` and `LinkedList`.
+
+#### Key Methods:
+```java
+void addFirst(E e);
+void addLast(E e);
+E removeFirst();
+E removeLast();
+```
+
+---
+
+### 7. **Map Interface**
+- Represents a collection of key-value pairs.
+- Keys are unique, but values can be duplicated.
+- Implemented by classes like `HashMap`, `LinkedHashMap`, and `TreeMap`.
+
+#### Key Methods:
+```java
+V put(K key, V value);
+V get(Object key);
+V remove(Object key);
+Set<K> keySet();
+Collection<V> values();
+```
+
+---
+
+### 8. **SortedMap Interface**
+- Extends the `Map` interface.
+- Maintains keys in a sorted order (natural or custom).
+- Implemented by `TreeMap`.
+
+#### Key Methods:
+```java
+K firstKey();
+K lastKey();
+SortedMap<K, V> headMap(K toKey);
+SortedMap<K, V> tailMap(K fromKey);
+```
+
+---
+
+### 9. **NavigableSet Interface**
+- Extends `SortedSet`.
+- Provides methods for navigation like finding the closest matches.
+- Implemented by `TreeSet`.
+
+#### Key Methods:
+```java
+E lower(E e);
+E floor(E e);
+E ceiling(E e);
+E higher(E e);
+```
+
+---
+
+### 10. **NavigableMap Interface**
+- Extends `SortedMap`.
+- Provides navigation methods for key-value pairs.
+- Implemented by `TreeMap`.
+
+#### Key Methods:
+```java
+Map.Entry<K, V> lowerEntry(K key);
+Map.Entry<K, V> floorEntry(K key);
+Map.Entry<K, V> ceilingEntry(K key);
+Map.Entry<K, V> higherEntry(K key);
+```
+
+---
+
+### Summary of Interfaces:
+| Interface       | Description                                   | Key Implementations               |
+|------------------|-----------------------------------------------|------------------------------------|
+| `Collection`    | Root interface for all collections            | `ArrayList`, `HashSet`, `LinkedList` |
+| `List`          | Ordered collection with duplicates            | `ArrayList`, `LinkedList`, `Vector` |
+| `Set`           | Collection of unique elements                 | `HashSet`, `TreeSet`, `LinkedHashSet` |
+| `Queue`         | FIFO collection                               | `PriorityQueue`, `ArrayDeque`     |
+| `Deque`         | Double-ended queue                            | `ArrayDeque`, `LinkedList`        |
+| `Map`           | Key-value pairs                               | `HashMap`, `TreeMap`, `LinkedHashMap` |
+| `SortedSet`     | Sorted collection of unique elements          | `TreeSet`                         |
+| `SortedMap`     | Sorted key-value pairs                        | `TreeMap`                         |
+| `NavigableSet`  | Navigable sorted set                          | `TreeSet`                         |
+| `NavigableMap`  | Navigable sorted map                          | `TreeMap`                         |
+
+These interfaces provide the foundation for the Java Collection Framework, enabling developers to work with various types of collections efficiently.
+
+
+
+## 51. How Can You Synchronize an ArrayList in Java?
+
+An `ArrayList` in Java is not thread-safe by default. To synchronize an `ArrayList` for use in a multi-threaded environment, you can use the `Collections.synchronizedList()` method. This method wraps the `ArrayList` in a thread-safe wrapper, ensuring that all operations on the list are synchronized.
+
+### Example:
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating a synchronized ArrayList
+        List<String> synchronizedList = Collections.synchronizedList(new ArrayList<>());
+
+        // Adding elements to the synchronized list
+        synchronizedList.add("Java");
+        synchronizedList.add("Thread-Safe");
+        synchronizedList.add("ArrayList");
+
+        // Iterating over the synchronized list
+        synchronized (synchronizedList) {
+            for (String item : synchronizedList) {
+                System.out.println(item);
+            }
+        }
+    }
+}
+```
+
+### Key Points:
+1. **Thread-Safe Wrapper**:
+   - The `Collections.synchronizedList()` method ensures that all operations on the list are synchronized.
+
+2. **External Synchronization for Iteration**:
+   - When iterating over a synchronized list, you must manually synchronize on the list to avoid `ConcurrentModificationException`.
+
+3. **Alternative**:
+   - Use `CopyOnWriteArrayList` from the `java.util.concurrent` package for better performance in scenarios with frequent reads and infrequent writes.
+
+### Example with `CopyOnWriteArrayList`:
+
+```java
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+        list.add("Java");
+        list.add("Thread-Safe");
+        list.add("ArrayList");
+
+        for (String item : list) {
+            System.out.println(item);
+        }
+    }
+}
+```
+
+### When to Use:
+- Use `Collections.synchronizedList()` when you need a thread-safe wrapper for an existing `ArrayList`.
+- Use `CopyOnWriteArrayList` for scenarios with frequent reads and minimal writes, as it avoids the need for external synchronization during iteration.
+
+
+
+## 52. Why Do We Need a Synchronized ArrayList When We Have Vectors (Which Are Synchronized) in Java?
+
+### Key Differences Between `ArrayList` and `Vector`:
+1. **Synchronization Granularity**:
+    - `Vector` synchronizes all its methods, which can lead to performance bottlenecks in multi-threaded environments.
+    - A synchronized `ArrayList` (using `Collections.synchronizedList`) allows more control over synchronization, enabling external synchronization only when needed (e.g., during iteration).
+
+2. **Performance**:
+    - `ArrayList` is generally faster than `Vector` because it does not have built-in synchronization overhead.
+    - Synchronizing an `ArrayList` only when required provides better performance compared to always-synchronized `Vector`.
+
+3. **Modern Design**:
+    - `ArrayList` is part of the Java Collections Framework introduced in Java 2, while `Vector` is a legacy class from Java 1.0.
+    - `ArrayList` supports features like `Iterator` (fail-fast) and `ListIterator`, making it more versatile.
+
+4. **Flexibility**:
+    - With `ArrayList`, you can choose between a non-synchronized or synchronized version based on your application's requirements.
+    - `Vector` does not provide this flexibility as it is always synchronized.
+
+### Why Prefer Synchronized `ArrayList` Over `Vector`?
+- **Better Performance**: Synchronizing only when necessary reduces contention and improves performance in multi-threaded environments.
+- **Modern Features**: `ArrayList` supports modern iteration mechanisms like `forEach` and `Stream`, which are not available in `Vector`.
+- **Backward Compatibility**: While `Vector` is still supported for legacy code, `ArrayList` is the recommended choice for new development.
+
+### Example:
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Main {
+     public static void main(String[] args) {
+          // Synchronized ArrayList
+          List<String> synchronizedList = Collections.synchronizedList(new ArrayList<>());
+
+          synchronizedList.add("Java");
+          synchronizedList.add("Thread-Safe");
+
+          synchronized (synchronizedList) {
+                for (String item : synchronizedList) {
+                     System.out.println(item);
+                }
+          }
+     }
+}
+```
+
+### Summary:
+While `Vector` is synchronized, it is less efficient and lacks modern features compared to `ArrayList`. A synchronized `ArrayList` provides better performance, flexibility, and compatibility with modern Java practices, making it the preferred choice in most scenarios.
+
+
+
+## 53. Why Can’t We Create a Generic Array?
+
+In Java, you cannot create a generic array due to type erasure and runtime type safety concerns. Generics in Java are implemented using type erasure, which means that generic type information is removed at runtime. This leads to the following issues:
+
+### Key Reasons:
+
+1. **Type Erasure**:
+    - At runtime, all generic type information is erased, and the generic type is replaced with its raw type or bounds. For example, `List<String>` and `List<Integer>` are treated as `List` at runtime.
+    - Arrays, however, retain their type information at runtime. This mismatch between generics and arrays can lead to type safety issues.
+
+2. **Heap Pollution**:
+    - Creating a generic array would allow unsafe operations that could corrupt the type safety of the program.
+    - Example:
+      ```java
+      Object[] array = new String[10];
+      array[0] = 42; // Compiles but throws ArrayStoreException at runtime
+      ```
+      If generic arrays were allowed, such issues would not be caught at runtime, leading to unpredictable behavior.
+
+3. **Type Safety**:
+    - Arrays are covariant, meaning `String[]` is a subtype of `Object[]`. Generics, on the other hand, are invariant, meaning `List<String>` is not a subtype of `List<Object>`.
+    - Allowing generic arrays would break this type safety.
+
+### Example of Why It’s Disallowed:
+
+```java
+// Hypothetical code (not allowed in Java)
+List<String>[] array = new List<String>[10]; // Compilation error
+
+// If allowed, it could lead to unsafe operations:
+Object[] objArray = array;
+objArray[0] = List.of(42); // Unsafe, as array expects List<String>
+String value = array[0].get(0); // ClassCastException at runtime
+```
+
+### Workaround:
+Instead of using generic arrays, you can use collections like `ArrayList` or create an array of `Object` and cast it safely.
+
+#### Example:
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+     public static void main(String[] args) {
+          List<String>[] array = (List<String>[]) new List[10]; // Suppress warning
+          array[0] = new ArrayList<>();
+          array[0].add("Java");
+          System.out.println(array[0].get(0)); // Output: Java
+     }
+}
+```
+
+### Key Points:
+- Generics and arrays have incompatible type systems due to type erasure and runtime type safety.
+- Use collections like `ArrayList` instead of generic arrays to achieve similar functionality.
+
+### Summary:
+Generic arrays are disallowed in Java to prevent type safety issues and heap pollution caused by the mismatch between generics and arrays. Collections like `ArrayList` are the recommended alternative for handling generic data structures.
+
+
+## 54. How Are Elements Stored in Memory for Regular Arrays and ArrayLists in Java?
+
+### Regular Arrays
+In Java, regular arrays are contiguous blocks of memory allocated on the heap. Each element in the array is stored sequentially, and the memory address of each element can be calculated using the base address of the array and the index of the element.
+
+#### Key Characteristics:
+1. **Fixed Size**:
+    - The size of an array is determined at the time of creation and cannot be changed.
+    - Example:
+      ```java
+      int[] array = new int[5]; // Allocates memory for 5 integers
+      ```
+
+2. **Contiguous Memory**:
+    - All elements are stored in contiguous memory locations, making access very fast (O(1) for indexing).
+
+3. **Primitive vs. Reference Types**:
+    - For primitive types (e.g., `int`, `double`), the actual values are stored in the array.
+    - For reference types (e.g., `String`, `Object`), the array stores references (pointers) to the objects, which are allocated elsewhere in the heap.
+
+#### Example:
+```java
+int[] array = {10, 20, 30};
+```
+- Memory layout:
+  ```
+  [10] [20] [30]
+  ```
+
+---
+
+### ArrayLists
+An `ArrayList` in Java is a resizable array-based data structure. Internally, it uses a regular array to store its elements, but it provides dynamic resizing and additional functionality.
+
+#### Key Characteristics:
+1. **Dynamic Resizing**:
+    - When the internal array becomes full, a new, larger array is created, and the elements are copied to the new array.
+    - The default growth policy increases the size of the array by 50% when it is resized.
+
+2. **Backing Array**:
+    - The elements of an `ArrayList` are stored in a regular array called the "backing array."
+    - Example:
+      ```java
+      ArrayList<Integer> list = new ArrayList<>();
+      list.add(10);
+      list.add(20);
+      ```
+
+3. **Reference Storage**:
+    - Like arrays, `ArrayList` stores references for objects and actual values for primitives (autoboxed into wrapper classes like `Integer`).
+
+4. **Memory Overhead**:
+    - `ArrayList` has additional memory overhead for managing its size, capacity, and other metadata.
+
+#### Example:
+```java
+ArrayList<Integer> list = new ArrayList<>();
+list.add(10);
+list.add(20);
+```
+- Memory layout:
+  ```
+  Backing array: [10, 20, null, null, null, ...] (default capacity is 10)
+  ```
+
+---
+
+### Comparison of Memory Storage
+
+| Feature                  | Regular Arrays                     | ArrayLists                         |
+|--------------------------|-------------------------------------|------------------------------------|
+| **Size**                 | Fixed                              | Dynamic (resizable)                |
+| **Memory Layout**        | Contiguous memory                  | Backing array with resizing        |
+| **Access Time**          | O(1)                               | O(1) for access, O(n) for resizing |
+| **Storage**              | Stores actual values for primitives, references for objects | Stores references for objects, primitives are autoboxed |
+| **Overhead**             | Minimal                            | Higher due to resizing and metadata |
+
+---
+
+### When to Use:
+- **Regular Arrays**:
+  - Use when the size is fixed and performance is critical.
+  - Example: Storing a fixed number of elements like days of the week.
+
+- **ArrayLists**:
+  - Use when the size is dynamic or unknown at compile time.
+  - Example: Managing a list of user inputs or dynamic datasets.
+
+---
+
+### Summary:
+- Regular arrays store elements in contiguous memory locations and have a fixed size.
+- ArrayLists use a backing array for storage, dynamically resizing as needed, and provide additional functionality at the cost of higher memory overhead.
+
+
+## 55. Explain the Method to Convert ArrayList to Array and Array to ArrayList
+
+### Converting `ArrayList` to Array
+
+To convert an `ArrayList` to an array, you can use the `toArray()` method provided by the `ArrayList` class. This method returns an array containing all the elements of the `ArrayList`.
+
+#### Example:
+```java
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Java");
+        list.add("Collections");
+        list.add("ArrayList");
+
+        // Convert ArrayList to Array
+        String[] array = list.toArray(new String[0]);
+
+        // Print the array
+        for (String item : array) {
+            System.out.println(item);
+        }
+    }
+}
+```
+
+#### Key Points:
+1. **`toArray()` Method**:
+   - `toArray(new T[0])`: Returns an array of the specified type.
+   - `toArray()`: Returns an `Object[]` array (not type-safe).
+
+2. **Performance**:
+   - Using `new String[0]` is preferred over pre-allocating the array size (e.g., `new String[list.size()]`) because modern JVMs optimize this pattern.
+
+---
+
+### Converting Array to `ArrayList`
+
+To convert an array to an `ArrayList`, you can use the `Arrays.asList()` method. This method returns a fixed-size list backed by the original array. If you need a resizable list, you can pass the result to the `ArrayList` constructor.
+
+#### Example:
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        String[] array = {"Java", "Collections", "ArrayList"};
+
+        // Convert Array to ArrayList
+        List<String> list = new ArrayList<>(Arrays.asList(array));
+
+        // Print the ArrayList
+        System.out.println(list);
+    }
+}
+```
+
+#### Key Points:
+1. **`Arrays.asList()`**:
+   - Returns a fixed-size list backed by the array.
+   - Modifications to the list reflect in the array and vice versa.
+
+2. **Creating a Resizable List**:
+   - Use `new ArrayList<>(Arrays.asList(array))` to create a resizable `ArrayList`.
+
+---
+
+### Summary:
+- **ArrayList to Array**: Use `toArray(new T[0])` for type-safe conversion.
+- **Array to ArrayList**: Use `Arrays.asList()` for a fixed-size list or wrap it in `new ArrayList<>()` for a resizable list.
+
+
+## 56. How Does the Size of ArrayList Grow Dynamically?
+
+An `ArrayList` in Java is a resizable array-based data structure. Its size grows dynamically when elements are added beyond its current capacity. This dynamic resizing is achieved by creating a new, larger array and copying the elements from the old array to the new one.
+
+### Key Points:
+1. **Initial Capacity**:
+    - When an `ArrayList` is created using the default constructor, its initial capacity is **10**.
+    - You can specify a custom initial capacity using the constructor `ArrayList(int initialCapacity)`.
+
+2. **Growth Policy**:
+    - When the number of elements exceeds the current capacity, the `ArrayList` increases its capacity by **50%** of the current size.
+    - For example, if the current capacity is 10, it will grow to 15, then 22, and so on.
+
+3. **Resizing**:
+    - Resizing involves creating a new array with a larger capacity and copying the elements from the old array to the new one.
+    - This operation is time-consuming (O(n)) but happens infrequently, making `ArrayList` efficient for most use cases.
+
+---
+
+### Internal Implementation:
+
+The dynamic resizing of `ArrayList` is implemented in the `ensureCapacityInternal()` and `grow()` methods of the `ArrayList` class.
+
+#### Key Methods:
+1. **`ensureCapacityInternal(int minCapacity)`**:
+    - Ensures that the `ArrayList` has enough capacity to accommodate the specified minimum capacity.
+    - If the current capacity is insufficient, it calls the `grow()` method.
+
+2. **`grow(int minCapacity)`**:
+    - Calculates the new capacity as `oldCapacity + (oldCapacity >> 1)` (i.e., 1.5 times the old capacity).
+    - Creates a new array with the new capacity and copies the elements from the old array to the new one.
+
+---
+
+### Example:
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+     public static void main(String[] args) {
+          ArrayList<Integer> list = new ArrayList<>();
+
+          // Adding elements to trigger resizing
+          for (int i = 1; i <= 15; i++) {
+                list.add(i);
+                System.out.println("Size: " + list.size() + ", Capacity: (internal array grows dynamically)");
+          }
+     }
+}
+```
+
+---
+
+### Advantages of Dynamic Resizing:
+1. **Flexibility**: No need to specify the size upfront.
+2. **Efficient Memory Usage**: Allocates memory only when needed.
+
+### Disadvantages:
+1. **Performance Overhead**: Resizing involves copying elements, which can be costly for large arrays.
+2. **Memory Overhead**: May allocate more memory than required due to the growth policy.
+
+---
+
+### Summary:
+The `ArrayList` grows dynamically by increasing its capacity by 50% when needed. This is implemented internally using the `ensureCapacityInternal()` and `grow()` methods, which create a new array and copy the elements from the old array to the new one. While this provides flexibility, it comes with a performance cost during resizing.
+
+
+
+## 57. What is a Vector in Java?
+
+A `Vector` in Java is a legacy class that implements the `List` interface and provides a dynamic array-like data structure. It is part of the `java.util` package and is synchronized, making it thread-safe for use in multi-threaded environments.
+
+### Key Features of `Vector`:
+1. **Dynamic Resizing**:
+    - Automatically resizes itself when elements are added beyond its current capacity.
+    - The capacity is doubled each time it needs to grow.
+
+2. **Thread-Safe**:
+    - All methods in `Vector` are synchronized, making it safe for use in multi-threaded environments.
+    - However, this synchronization can lead to performance bottlenecks.
+
+3. **Implements `List`**:
+    - Supports all operations defined by the `List` interface, such as random access, insertion, and removal.
+
+4. **Legacy Class**:
+    - Introduced in Java 1.0, before the Java Collections Framework.
+    - Retained for backward compatibility but generally replaced by `ArrayList` in modern applications.
+
+5. **Allows Nulls and Duplicates**:
+    - Can store `null` values and duplicate elements.
+
+---
+
+### Example:
+
+```java
+import java.util.Vector;
+
+public class Main {
+     public static void main(String[] args) {
+          Vector<String> vector = new Vector<>();
+
+          // Adding elements
+          vector.add("Java");
+          vector.add("Vector");
+          vector.add("Example");
+
+          // Accessing elements
+          System.out.println("Element at index 1: " + vector.get(1)); // Output: Vector
+
+          // Iterating over elements
+          for (String item : vector) {
+                System.out.println(item);
+          }
+
+          // Removing an element
+          vector.remove("Vector");
+          System.out.println("After removal: " + vector); // Output: [Java, Example]
+     }
+}
+```
+
+---
+
+### Key Methods:
+| Method                  | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `add(E e)`              | Adds an element to the end of the vector.        |
+| `get(int index)`        | Retrieves the element at the specified index.    |
+| `remove(Object o)`      | Removes the first occurrence of the specified element. |
+| `size()`                | Returns the number of elements in the vector.    |
+| `capacity()`            | Returns the current capacity of the vector.      |
+
+---
+
+### Advantages:
+1. **Thread-Safe**: Suitable for multi-threaded environments.
+2. **Dynamic Resizing**: Automatically adjusts its size as needed.
+
+### Disadvantages:
+1. **Performance Overhead**: Synchronization makes it slower compared to non-synchronized alternatives like `ArrayList`.
+2. **Legacy Design**: Lacks modern features and is generally replaced by `ArrayList` or `CopyOnWriteArrayList`.
+
+---
+
+### When to Use:
+- Use `Vector` only in legacy codebases where thread safety is required and replacing it with modern alternatives is not feasible.
+- For new development, prefer `ArrayList` for single-threaded environments or `CopyOnWriteArrayList` for thread-safe operations.
+
+---
+
+### Summary:
+`Vector` is a synchronized, dynamic array-like data structure that is part of Java's legacy collection classes. While it provides thread safety and dynamic resizing, it is generally replaced by `ArrayList` in modern applications due to its better performance and design.
+
+
+
+## 58. How to Make Java ArrayList Read-Only?
+
+To make a Java `ArrayList` read-only, you can use the `Collections.unmodifiableList()` method. This method wraps the original `ArrayList` in an unmodifiable view, preventing any modifications to the list through the wrapper.
+
+### Example:
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an ArrayList
+        List<String> list = new ArrayList<>();
+        list.add("Java");
+        list.add("Collections");
+        list.add("Read-Only");
+
+        // Make the ArrayList read-only
+        List<String> readOnlyList = Collections.unmodifiableList(list);
+
+        System.out.println("Read-Only List: " + readOnlyList);
+
+        // Attempting to modify the read-only list
+        try {
+            readOnlyList.add("New Element"); // Throws UnsupportedOperationException
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Cannot modify a read-only list!");
+        }
+
+        // Modifying the original list
+        list.add("New Element");
+        System.out.println("Original List: " + list);
+        System.out.println("Read-Only List Reflects Changes: " + readOnlyList);
+    }
+}
+```
+
+### Key Points:
+1. **Unmodifiable Wrapper**:
+   - The `Collections.unmodifiableList()` method creates a wrapper around the original list.
+   - Any attempt to modify the wrapper results in an `UnsupportedOperationException`.
+
+2. **Original List Modifications**:
+   - Changes to the original list are reflected in the read-only view because the wrapper does not create a copy of the list.
+
+3. **Truly Immutable List**:
+   - To create a truly immutable list, use `List.of()` (introduced in Java 9), which does not allow modifications to either the original or the returned list.
+
+### Example with `List.of()` (Java 9+):
+
+```java
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an immutable list
+        List<String> immutableList = List.of("Java", "Immutable", "List");
+
+        System.out.println("Immutable List: " + immutableList);
+
+        // Attempting to modify the immutable list
+        try {
+            immutableList.add("New Element"); // Throws UnsupportedOperationException
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Cannot modify an immutable list!");
+        }
+    }
+}
+```
+
+### When to Use:
+- Use `Collections.unmodifiableList()` when you want to prevent modifications to a list but still allow changes to the original list.
+- Use `List.of()` for truly immutable lists where no modifications are allowed.
+
+### Summary:
+- Use `Collections.unmodifiableList()` to create a read-only view of an `ArrayList`.
+- For truly immutable lists, prefer `List.of()` introduced in Java 9.
+
+
+
+## 59. What is a Priority Queue in Java?
+
+A **PriorityQueue** in Java is a part of the Java Collection Framework and is an implementation of the `Queue` interface. It is designed to process elements based on their priority rather than their insertion order. The elements in a `PriorityQueue` are ordered according to their natural ordering (if they implement `Comparable`) or by a custom comparator provided at the time of creation.
+
+### Key Features of `PriorityQueue`:
+1. **Priority-Based Ordering**: Elements are ordered based on their priority, with the highest-priority element at the head of the queue.
+2. **Heap Implementation**: Internally, it uses a binary heap to maintain the priority order.
+3. **No Null Elements**: Does not allow `null` elements.
+4. **Unbounded Queue**: The size grows dynamically as elements are added.
+
+### Example of `PriorityQueue`:
+
+```java
+import java.util.PriorityQueue;
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating a PriorityQueue of integers
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        // Adding elements
+        pq.add(10);
+        pq.add(5);
+        pq.add(20);
+
+        // Accessing and removing elements based on priority
+        System.out.println(pq.poll()); // Output: 5 (smallest element)
+        System.out.println(pq.poll()); // Output: 10
+        System.out.println(pq.poll()); // Output: 20
+    }
+}
+```
+
+### Custom Comparator Example:
+
+```java
+import java.util.PriorityQueue;
+import java.util.Comparator;
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating a PriorityQueue with a custom comparator (max-heap)
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
+
+        // Adding elements
+        pq.add(10);
+        pq.add(5);
+        pq.add(20);
+
+        // Accessing and removing elements based on priority
+        System.out.println(pq.poll()); // Output: 20 (largest element)
+        System.out.println(pq.poll()); // Output: 10
+        System.out.println(pq.poll()); // Output: 5
+    }
+}
+```
+
+### When to Use `PriorityQueue`:
+- Use `PriorityQueue` when you need to process elements based on their priority, such as in task scheduling, Dijkstra's algorithm, or implementing a min-heap or max-heap.
+
+### Limitations:
+- Not thread-safe. Use `PriorityBlockingQueue` for concurrent applications.
+- Does not maintain the order of elements with the same priority.
+
+`PriorityQueue` is a versatile and efficient tool for managing priority-based tasks in Java applications.
+
+
+## 60. Explain the LinkedList Class
+
+The `LinkedList` class in Java is a part of the Java Collections Framework and implements the `List`, `Deque`, and `Queue` interfaces. It is a doubly-linked list data structure that allows efficient insertion and deletion of elements.
+
+### Key Features of `LinkedList`:
+1. **Doubly-Linked List**:
+    - Each node contains references to both the previous and next nodes, enabling bidirectional traversal.
+
+2. **Implements Multiple Interfaces**:
+    - Implements `List` for sequential access.
+    - Implements `Deque` for double-ended queue operations.
+    - Implements `Queue` for FIFO (First-In-First-Out) operations.
+
+3. **Dynamic Size**:
+    - The size of a `LinkedList` grows dynamically as elements are added or removed.
+
+4. **Allows Nulls and Duplicates**:
+    - Can store `null` values and duplicate elements.
+
+5. **Not Thread-Safe**:
+    - Requires external synchronization for use in multi-threaded environments.
+
+---
+
+### Example:
+
+```java
+import java.util.LinkedList;
+
+public class Main {
+     public static void main(String[] args) {
+          LinkedList<String> list = new LinkedList<>();
+
+          // Adding elements
+          list.add("Java");
+          list.add("LinkedList");
+          list.add("Example");
+
+          // Accessing elements
+          System.out.println("First Element: " + list.getFirst()); // Output: Java
+          System.out.println("Last Element: " + list.getLast());   // Output: Example
+
+          // Removing elements
+          list.removeFirst();
+          list.removeLast();
+          System.out.println("After Removal: " + list); // Output: [LinkedList]
+     }
+}
+```
+
+---
+
+### Key Methods:
+| Method                  | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `add(E e)`              | Adds an element to the end of the list.          |
+| `addFirst(E e)`         | Adds an element to the beginning of the list.    |
+| `addLast(E e)`          | Adds an element to the end of the list.          |
+| `removeFirst()`         | Removes and returns the first element.           |
+| `removeLast()`          | Removes and returns the last element.            |
+| `getFirst()`            | Retrieves the first element without removing it. |
+| `getLast()`             | Retrieves the last element without removing it.  |
+
+---
+
+### Advantages:
+1. **Efficient Insertions/Deletions**:
+    - Adding or removing elements at the beginning or end is O(1).
+2. **Implements Deque**:
+    - Can be used as a stack, queue, or deque.
+
+### Disadvantages:
+1. **Slower Random Access**:
+    - Accessing elements by index is O(n) due to sequential traversal.
+2. **Higher Memory Usage**:
+    - Requires extra memory for storing node references.
+
+---
+
+### When to Use:
+- Use `LinkedList` when frequent insertions and deletions are required, especially at the beginning or middle of the list.
+- Avoid `LinkedList` when random access is needed; prefer `ArrayList` for such use cases.
+
+---
+
+### Summary:
+The `LinkedList` class is a versatile data structure that excels in scenarios requiring frequent insertions and deletions. Its implementation of multiple interfaces makes it suitable for various use cases, including stacks, queues, and deques.
+
+
+
+## 61. What is the Stack Class in Java and What Are the Various Methods Provided by It?
+
+The `Stack` class in Java is a part of the `java.util` package and represents a last-in-first-out (LIFO) stack of objects. It extends the `Vector` class and provides methods to perform standard stack operations such as `push`, `pop`, and `peek`.
+
+### Key Features of `Stack`:
+1. **LIFO Behavior**:
+    - The last element added to the stack is the first one to be removed.
+2. **Extends `Vector`**:
+    - Inherits all methods of the `Vector` class, making it synchronized and thread-safe.
+3. **Legacy Class**:
+    - Introduced in Java 1.0 and retained for backward compatibility. For modern applications, consider using `Deque` for stack operations.
+
+---
+
+### Example:
+
+```java
+import java.util.Stack;
+
+public class Main {
+     public static void main(String[] args) {
+          Stack<String> stack = new Stack<>();
+
+          // Pushing elements onto the stack
+          stack.push("Java");
+          stack.push("Stack");
+          stack.push("Example");
+
+          // Peeking at the top element
+          System.out.println("Top Element: " + stack.peek()); // Output: Example
+
+          // Popping elements from the stack
+          System.out.println("Popped: " + stack.pop()); // Output: Example
+          System.out.println("Popped: " + stack.pop()); // Output: Stack
+
+          // Checking if the stack is empty
+          System.out.println("Is Stack Empty? " + stack.isEmpty()); // Output: false
+     }
+}
+```
+
+---
+
+### Key Methods of `Stack`:
+
+| Method                  | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `push(E item)`          | Pushes an item onto the top of the stack.        |
+| `pop()`                 | Removes and returns the top item of the stack.   |
+| `peek()`                | Returns the top item without removing it.        |
+| `isEmpty()`             | Checks if the stack is empty.                   |
+| `search(Object o)`      | Returns the 1-based position of an object in the stack (or -1 if not found). |
+
+---
+
+### Advantages:
+1. **Thread-Safe**:
+    - Inherits synchronization from the `Vector` class.
+2. **Simple API**:
+    - Provides straightforward methods for stack operations.
+
+### Disadvantages:
+1. **Legacy Design**:
+    - Being a subclass of `Vector`, it inherits unnecessary methods and has higher memory overhead.
+2. **Performance**:
+    - Synchronization can lead to performance bottlenecks in single-threaded environments.
+
+---
+
+### When to Use:
+- Use `Stack` for simple LIFO operations in legacy codebases.
+- For modern applications, prefer `Deque` (e.g., `ArrayDeque`) for better performance and flexibility.
+
+---
+
+### Summary:
+The `Stack` class in Java provides a simple way to implement LIFO behavior with built-in thread safety. However, due to its legacy design, it is generally recommended to use `Deque` for stack operations in new applications.
+
+
+## 62. What is the HashSet Class in Java and How Does It Store Elements?
+
+The `HashSet` class in Java is a part of the Java Collections Framework and implements the `Set` interface. It is designed to store unique elements and provides constant-time performance for basic operations like `add`, `remove`, and `contains`.
+
+### Key Features of `HashSet`:
+1. **No Duplicates**:
+    - Ensures that no duplicate elements are stored in the set.
+2. **Unordered**:
+    - Does not maintain any specific order of elements.
+3. **Backed by `HashMap`**:
+    - Internally uses a `HashMap` to store elements as keys with a dummy value.
+4. **Allows Null**:
+    - Allows one `null` element.
+5. **Not Thread-Safe**:
+    - Requires external synchronization for use in multi-threaded environments.
+
+---
+
+### How `HashSet` Stores Elements:
+1. **Hashing**:
+    - When an element is added, its `hashCode()` method is called to compute a hash value.
+    - This hash value determines the bucket where the element will be stored.
+
+2. **Buckets**:
+    - The `HashSet` uses a `HashMap` internally, where the elements are stored as keys, and a dummy value (`PRESENT`) is used as the associated value.
+
+3. **Collision Handling**:
+    - If two elements have the same hash value (a collision), they are stored in the same bucket using a linked list or a balanced tree (since Java 8).
+
+4. **Equality Check**:
+    - The `equals()` method is used to ensure that duplicate elements are not added to the set.
+
+---
+
+### Example:
+
+```java
+import java.util.HashSet;
+
+public class Main {
+     public static void main(String[] args) {
+          HashSet<String> set = new HashSet<>();
+
+          // Adding elements
+          set.add("Java");
+          set.add("HashSet");
+          set.add("Java"); // Duplicate, will not be added
+
+          // Printing the set
+          System.out.println(set); // Output: [Java, HashSet]
+     }
+}
+```
+
+---
+
+### Key Points:
+1. **Performance**:
+    - Provides O(1) time complexity for basic operations like `add`, `remove`, and `contains` (in the average case).
+2. **Null Handling**:
+    - Allows one `null` element but does not allow duplicates.
+3. **Thread Safety**:
+    - Not thread-safe. Use `Collections.synchronizedSet` or `ConcurrentHashMap` for thread-safe operations.
+
+---
+
+### When to Use:
+- Use `HashSet` when you need a collection of unique elements and do not care about the order of elements.
+- Ideal for scenarios like removing duplicates from a dataset or checking membership in a collection.
+
+---
+
+### Summary:
+The `HashSet` class is a powerful and efficient tool for managing unique elements in Java. It uses hashing to store elements, ensuring fast lookups and preventing duplicates. However, it does not maintain any specific order of elements.
+
+
+## 63. What is LinkedHashSet in Java?
+
+The `LinkedHashSet` class in Java is a part of the Java Collections Framework and implements the `Set` interface. It is a subclass of `HashSet` and maintains the insertion order of elements while ensuring that no duplicate elements are stored.
+
+### Key Features of `LinkedHashSet`:
+1. **Maintains Insertion Order**:
+    - Unlike `HashSet`, which does not guarantee any order, `LinkedHashSet` maintains the order in which elements are inserted.
+
+2. **No Duplicates**:
+    - Ensures that no duplicate elements are stored in the set.
+
+3. **Backed by `LinkedHashMap`**:
+    - Internally uses a `LinkedHashMap` to store elements as keys with a dummy value.
+
+4. **Allows Null**:
+    - Allows one `null` element.
+
+5. **Not Thread-Safe**:
+    - Requires external synchronization for use in multi-threaded environments.
+
+---
+
+### Example:
+
+```java
+import java.util.LinkedHashSet;
+
+public class Main {
+    public static void main(String[] args) {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+
+        // Adding elements
+        set.add("Java");
+        set.add("LinkedHashSet");
+        set.add("Example");
+        set.add("Java"); // Duplicate, will not be added
+
+        // Printing the set
+        System.out.println(set); // Output: [Java, LinkedHashSet, Example]
+    }
+}
+```
+
+---
+
+### Key Points:
+1. **Performance**:
+    - Provides O(1) time complexity for basic operations like `add`, `remove`, and `contains` (in the average case).
+    - Slightly slower than `HashSet` due to the overhead of maintaining the insertion order.
+
+2. **Null Handling**:
+    - Allows one `null` element but does not allow duplicates.
+
+3. **Thread Safety**:
+    - Not thread-safe. Use `Collections.synchronizedSet` or `ConcurrentHashMap` for thread-safe operations.
+
+---
+
+### When to Use:
+- Use `LinkedHashSet` when you need a collection of unique elements and want to preserve the insertion order.
+- Ideal for scenarios like maintaining a history of unique user actions or preserving the order of unique elements in a dataset.
+
+---
+
+### Summary:
+The `LinkedHashSet` class combines the uniqueness guarantee of `HashSet` with the insertion order preservation of a linked list. It is a versatile and efficient choice for managing unique elements while maintaining their order.
+
+
+## 64. What is a Map Interface?
+
+The `Map` interface in Java is a part of the Java Collections Framework and represents a collection of key-value pairs. It is not a subtype of the `Collection` interface but is a standalone interface designed for mapping unique keys to values.
+
+### Key Features of `Map`:
+1. **Key-Value Pairs**:
+    - Each key is unique, and each key maps to exactly one value.
+    - Duplicate keys are not allowed, but duplicate values are permitted.
+
+2. **Implementations**:
+    - Common implementations include `HashMap`, `LinkedHashMap`, `TreeMap`, `Hashtable`, and `ConcurrentHashMap`.
+
+3. **Null Handling**:
+    - `HashMap` and `LinkedHashMap` allow one `null` key and multiple `null` values.
+    - `TreeMap` does not allow `null` keys but allows `null` values.
+    - `Hashtable` does not allow `null` keys or values.
+
+4. **Not Thread-Safe**:
+    - Most implementations are not thread-safe. Use `ConcurrentHashMap` or `Collections.synchronizedMap` for thread-safe operations.
+
+---
+
+### Key Methods of `Map`:
+
+| Method                  | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `put(K key, V value)`   | Associates the specified value with the specified key. |
+| `get(Object key)`       | Returns the value associated with the specified key. |
+| `remove(Object key)`    | Removes the mapping for the specified key.       |
+| `containsKey(Object key)` | Checks if the map contains the specified key.   |
+| `containsValue(Object value)` | Checks if the map contains the specified value. |
+| `keySet()`              | Returns a `Set` view of the keys in the map.     |
+| `values()`              | Returns a `Collection` view of the values in the map. |
+| `entrySet()`            | Returns a `Set` view of the key-value pairs in the map. |
+
+---
+
+### Example:
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+
+        // Adding key-value pairs
+        map.put("Java", 1);
+        map.put("Python", 2);
+        map.put("C++", 3);
+
+        // Accessing values
+        System.out.println("Value for 'Java': " + map.get("Java")); // Output: 1
+
+        // Iterating over the map
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
+    }
+}
+```
+
+---
+
+### Common Implementations:
+1. **`HashMap`**:
+    - Unordered, allows one `null` key and multiple `null` values.
+    - Best for general-purpose use.
+
+2. **`LinkedHashMap`**:
+    - Maintains insertion order.
+    - Useful when order matters.
+
+3. **`TreeMap`**:
+    - Maintains keys in sorted order.
+    - Useful for range queries and sorted data.
+
+4. **`ConcurrentHashMap`**:
+    - Thread-safe, high-performance map for concurrent applications.
+
+5. **`Hashtable`**:
+    - Legacy class, synchronized but less efficient than `ConcurrentHashMap`.
+
+---
+
+### When to Use:
+- Use `Map` when you need to associate unique keys with specific values.
+- Choose the implementation based on your requirements for ordering, thread safety, and performance.
+
+---
+
+### Summary:
+The `Map` interface is a powerful abstraction for managing key-value pairs in Java. It provides flexibility through various implementations, each optimized for specific use cases like unordered storage, sorted keys, or thread-safe operations.
+
+
+
+## 65. Explain TreeMap
+
+A `TreeMap` in Java is a part of the Java Collections Framework and implements the `Map` interface. It is a sorted map that maintains its keys in ascending order, according to their natural ordering or a custom comparator provided at the time of creation.
+
+### Key Features of `TreeMap`:
+1. **Sorted Order**:
+    - Maintains keys in their natural order (e.g., alphabetical or numerical) or a custom order defined by a comparator.
+
+2. **NavigableMap**:
+    - Implements the `NavigableMap` interface, providing methods for navigation like `lowerKey()`, `higherKey()`, `floorKey()`, and `ceilingKey()`.
+
+3. **No Null Keys**:
+    - Does not allow `null` keys but allows multiple `null` values.
+
+4. **Red-Black Tree**:
+    - Internally uses a Red-Black Tree, ensuring O(log n) time complexity for operations like `put()`, `get()`, and `remove()`.
+
+5. **Not Thread-Safe**:
+    - Requires external synchronization for use in multi-threaded environments.
+
+---
+
+### Example:
+
+```java
+import java.util.TreeMap;
+
+public class Main {
+     public static void main(String[] args) {
+          TreeMap<String, Integer> treeMap = new TreeMap<>();
+
+          // Adding key-value pairs
+          treeMap.put("Java", 1);
+          treeMap.put("Python", 2);
+          treeMap.put("C++", 3);
+
+          // Accessing values
+          System.out.println("Value for 'Java': " + treeMap.get("Java")); // Output: 1
+
+          // Iterating over the TreeMap
+          for (var entry : treeMap.entrySet()) {
+                System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+          }
+
+          // Accessing first and last keys
+          System.out.println("First Key: " + treeMap.firstKey()); // Output: C++
+          System.out.println("Last Key: " + treeMap.lastKey());   // Output: Python
+     }
+}
+```
+
+---
+
+### Key Methods of `TreeMap`:
+
+| Method                  | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `put(K key, V value)`   | Associates the specified value with the specified key. |
+| `get(Object key)`       | Returns the value associated with the specified key. |
+| `remove(Object key)`    | Removes the mapping for the specified key.       |
+| `firstKey()`            | Returns the first (lowest) key.                 |
+| `lastKey()`             | Returns the last (highest) key.                 |
+| `subMap(K fromKey, K toKey)` | Returns a view of the portion of the map whose keys range from `fromKey` to `toKey`. |
+| `headMap(K toKey)`      | Returns a view of the portion of the map whose keys are less than `toKey`. |
+| `tailMap(K fromKey)`    | Returns a view of the portion of the map whose keys are greater than or equal to `fromKey`. |
+
+---
+
+### Advantages:
+1. **Sorted Keys**:
+    - Automatically maintains keys in sorted order.
+2. **Efficient Operations**:
+    - Provides O(log n) performance for basic operations.
+3. **Range Queries**:
+    - Supports efficient range queries using methods like `subMap()`, `headMap()`, and `tailMap()`.
+
+---
+
+### Disadvantages:
+1. **No Null Keys**:
+    - Does not allow `null` keys, unlike `HashMap` or `LinkedHashMap`.
+2. **Higher Overhead**:
+    - Slightly slower than `HashMap` due to the overhead of maintaining sorted order.
+
+---
+
+### When to Use:
+- Use `TreeMap` when you need a map with sorted keys.
+- Ideal for scenarios like implementing a leaderboard, range queries, or maintaining sorted data.
+
+---
+
+### Summary:
+The `TreeMap` class is a powerful implementation of the `Map` interface that maintains keys in sorted order. It is ideal for use cases requiring efficient range queries and sorted key-value pairs, but it does not allow `null` keys and is not thread-safe.
+
+
+
+## 66. Can You Use Any Class as a Map Key?
+
+Yes, you can use any class as a key in a `Map` in Java, but the class must satisfy certain requirements to ensure proper functioning of the `Map`. These requirements are particularly important for hash-based maps like `HashMap` and `LinkedHashMap`.
+
+### Requirements for a Class to Be Used as a Map Key:
+
+1. **Override `hashCode()` and `equals()`**:
+    - The class must override the `hashCode()` and `equals()` methods to ensure that keys are compared correctly.
+    - Keys that are considered equal (using `equals()`) must have the same hash code (using `hashCode()`).
+
+2. **Consistency**:
+    - The `hashCode()` and `equals()` methods must be consistent. If two keys are equal according to `equals()`, they must return the same hash code.
+
+3. **Immutability**:
+    - It is recommended to use immutable objects as keys to prevent issues with hash-based maps. If the key's state changes after it is added to the map, it may not be retrievable.
+
+4. **Avoid `null` Keys in Certain Maps**:
+    - Some map implementations, like `HashMap`, allow one `null` key, but others, like `TreeMap`, do not allow `null` keys.
+
+---
+
+### Example of a Class Used as a Map Key:
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+class Person {
+     private String name;
+     private int age;
+
+     public Person(String name, int age) {
+          this.name = name;
+          this.age = age;
+     }
+
+     @Override
+     public int hashCode() {
+          return name.hashCode() + age;
+     }
+
+     @Override
+     public boolean equals(Object obj) {
+          if (this == obj) return true;
+          if (obj == null || getClass() != obj.getClass()) return false;
+          Person person = (Person) obj;
+          return age == person.age && name.equals(person.name);
+     }
+
+     @Override
+     public String toString() {
+          return name + " (" + age + ")";
+     }
+}
+
+public class Main {
+     public static void main(String[] args) {
+          Map<Person, String> map = new HashMap<>();
+          Person p1 = new Person("Alice", 30);
+          Person p2 = new Person("Alice", 30);
+
+          map.put(p1, "Developer");
+          System.out.println(map.get(p2)); // Output: Developer
+     }
+}
+```
+
+---
+
+### Key Points:
+1. **Custom Classes**:
+    - Ensure that custom classes override `hashCode()` and `equals()` for proper behavior in hash-based maps.
+
+2. **Immutability**:
+    - Use immutable classes like `String` or `Integer` as keys whenever possible to avoid issues with key mutability.
+
+3. **Thread Safety**:
+    - If the map is accessed by multiple threads, use thread-safe implementations like `ConcurrentHashMap`.
+
+---
+
+### Summary:
+You can use any class as a map key in Java, provided it properly overrides `hashCode()` and `equals()`. Using immutable objects as keys is recommended to ensure consistent behavior, especially in hash-based maps like `HashMap`.
+
+
+## 67. Difference Between `Collection` and `Collections`
+
+`Collection` and `Collections` are both part of the Java Collections Framework, but they serve different purposes and are fundamentally different.
+
+### Key Differences:
+
+| Feature                  | `Collection`                       | `Collections`                     |
+|--------------------------|-------------------------------------|------------------------------------|
+| **Type**                 | Interface                          | Utility class                     |
+| **Purpose**              | Defines the root interface for all collection types (e.g., `List`, `Set`, `Queue`) | Provides utility methods for working with collections (e.g., sorting, searching, synchronization) |
+| **Package**              | `java.util`                        | `java.util`                       |
+| **Inheritance**          | Extended by interfaces like `List`, `Set`, and `Queue` | Not extended or implemented by any class or interface |
+| **Usage**                | Used to represent a group of objects | Used to perform operations on collections |
+
+---
+
+### `Collection` Interface:
+- The root interface of the Java Collections Framework.
+- Represents a group of objects, known as elements.
+- Extended by interfaces like `List`, `Set`, and `Queue`.
+
+#### Example:
+```java
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Main {
+    public static void main(String[] args) {
+        Collection<String> collection = new ArrayList<>();
+        collection.add("Java");
+        collection.add("Collections");
+        System.out.println(collection); // Output: [Java, Collections]
+    }
+}
+```
+
+---
+
+### `Collections` Class:
+- A utility class that provides static methods for operations like sorting, searching, and synchronization.
+- Cannot be instantiated.
+
+#### Example:
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("Java");
+        list.add("Python");
+        list.add("C++");
+
+        // Sorting the list
+        Collections.sort(list);
+        System.out.println("Sorted List: " + list); // Output: [C++, Java, Python]
+
+        // Searching in the list
+        int index = Collections.binarySearch(list, "Java");
+        System.out.println("Index of 'Java': " + index); // Output: 1
+    }
+}
+```
+
+---
+
+### Summary:
+- **`Collection`**: The root interface for all collection types, representing a group of objects.
+- **`Collections`**: A utility class with static methods for performing operations on collections.
+
+Use `Collection` to define and work with groups of objects, and use `Collections` to manipulate or enhance those groups. 
+
+
+
+
+## 68. Difference Between Set and Map
+
+`Set` and `Map` are both part of the Java Collections Framework, but they serve different purposes and have distinct characteristics.
+
+### Key Differences:
+
+| Feature                  | `Set`                              | `Map`                              |
+|--------------------------|-------------------------------------|------------------------------------|
+| **Definition**           | A collection of unique elements    | A collection of key-value pairs    |
+| **Duplicates**           | Does not allow duplicate elements  | Keys must be unique, but values can be duplicated |
+| **Null Handling**        | Allows one `null` element (in most implementations) | Allows one `null` key (in some implementations) and multiple `null` values |
+| **Ordering**             | Depends on the implementation (`HashSet`, `LinkedHashSet`, `TreeSet`) | Depends on the implementation (`HashMap`, `LinkedHashMap`, `TreeMap`) |
+| **Access**               | Provides no direct access to elements by index or key | Provides access to values using unique keys |
+| **Use Case**             | Use when you need a collection of unique elements | Use when you need to associate keys with values |
+
+---
+
+### Example of `Set`:
+
+```java
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+        set.add("Java");
+        set.add("Python");
+        set.add("Java"); // Duplicate, will not be added
+
+        System.out.println("Set: " + set); // Output: [Java, Python]
+    }
+}
+```
+
+---
+
+### Example of `Map`:
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Java", 1);
+        map.put("Python", 2);
+        map.put("Java", 3); // Overwrites the previous value for "Java"
+
+        System.out.println("Map: " + map); // Output: {Java=3, Python=2}
+    }
+}
+```
+
+---
+
+### When to Use:
+- **`Set`**:
+  - Use when you need a collection of unique elements, such as a list of unique IDs or tags.
+- **`Map`**:
+  - Use when you need to associate keys with values, such as a dictionary or a cache.
+
+---
+
+### Summary:
+- `Set` is a collection of unique elements, while `Map` is a collection of key-value pairs.
+- Choose `Set` for uniqueness and `Map` for key-based access to values.
+
+
+
+## 69. Explain the FailFast Iterator and FailSafe Iterator
+
+In Java, iterators are used to traverse collections. They can be categorized as **FailFast** or **FailSafe** based on their behavior when the collection is modified during iteration.
+
+### FailFast Iterator
+
+A **FailFast iterator** throws a `ConcurrentModificationException` if the collection is structurally modified during iteration, except through the iterator's own `remove()` method. This behavior is a fail-fast mechanism to prevent unpredictable results.
+
+#### Key Features:
+1. **Direct Access**: Operates directly on the collection.
+2. **ConcurrentModificationException**: Detects structural changes and throws an exception.
+3. **Not Thread-Safe**: Requires external synchronization in multi-threaded environments.
+
+#### Example:
+
+```java
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("Java");
+        list.add("FailFast");
+        list.add("Iterator");
+
+        try {
+            for (String item : list) {
+                if (item.equals("FailFast")) {
+                    list.remove(item); // Throws ConcurrentModificationException
+                }
+            }
+        } catch (ConcurrentModificationException e) {
+            System.out.println("ConcurrentModificationException occurred!");
+        }
+    }
+}
+```
+
+---
+
+### FailSafe Iterator
+
+A **FailSafe iterator** does not throw an exception if the collection is modified during iteration. It works on a copy of the collection or uses concurrent mechanisms, ensuring safe iteration.
+
+#### Key Features:
+1. **Copy or Concurrent Mechanism**: Operates on a snapshot or uses thread-safe structures.
+2. **No Exception**: Does not throw `ConcurrentModificationException`.
+3. **Thread-Safe**: Suitable for multi-threaded environments.
+
+#### Example:
+
+```java
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+        list.add("Java");
+        list.add("FailSafe");
+        list.add("Iterator");
+
+        for (String item : list) {
+            if (item.equals("FailSafe")) {
+                list.remove(item); // No ConcurrentModificationException
+            }
+        }
+
+        System.out.println("Modified List: " + list); // Output: [Java, Iterator]
+    }
+}
+```
+
+---
+
+### Key Differences:
+
+| Feature                  | FailFast Iterator                 | FailSafe Iterator                 |
+|--------------------------|-------------------------------------|------------------------------------|
+| **Behavior**             | Throws `ConcurrentModificationException` if the collection is modified during iteration | Does not throw an exception if the collection is modified during iteration |
+| **Underlying Mechanism** | Directly accesses the collection and detects structural changes | Works on a copy of the collection or uses concurrent mechanisms |
+| **Thread Safety**        | Not thread-safe                    | Thread-safe                        |
+| **Examples**             | `ArrayList`, `HashMap`, `HashSet`  | `CopyOnWriteArrayList`, `ConcurrentHashMap` |
+
+---
+
+### When to Use:
+- Use **FailFast iterators** for single-threaded environments where modifications during iteration are not expected.
+- Use **FailSafe iterators** for multi-threaded environments to avoid exceptions and ensure thread safety.
+
+---
+
+### Summary:
+- **FailFast iterators** are efficient but throw exceptions if the collection is modified during iteration.
+- **FailSafe iterators** are thread-safe and allow modifications during iteration but may have higher memory overhead.
+
+
+## End of File
+
+This document provides a comprehensive guide to Java Collections Interview Q&A. It covers essential topics, examples, and best practices to help you prepare for interviews or deepen your understanding of Java Collections. For further reading, refer to the [official Java documentation](https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html).
